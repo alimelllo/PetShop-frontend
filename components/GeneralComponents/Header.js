@@ -1,10 +1,10 @@
 import React from "react";
 import Image from 'next/image';
-import Basket from '../basket.png';
-import logo from '../logo.png';
+import Basket from '../../public/images/basket.png';
+import logo from '../../public/images/logo.PNG';
 
 
-const Header = () => {
+const Header  = ()  => {
     return (
      <div className='flex flex-row justify-between text-white w-full z-50 fixed '>
        
@@ -13,6 +13,8 @@ const Header = () => {
             <Image src={logo}/>
          </div>
        </div>
+
+
 
      <div className="w-4/12 flex flex-row justify-center font-[600] text-[#676767] text-center pt-3 text-[1.25rem] md:text-[1rem]">
         <p className='p-2 mx-2 md:mx-0  cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[700] hover:tracking-[1px]'>تماس </p>
