@@ -1,10 +1,24 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import { useEffect } from 'react';
 import Header from '../components/GeneralComponents/Header.tsx';
 import mainBg from '../public/images/main.webp';
 import royalCaninLogo from '../public/images/royalCaninLogo.png';
 
 export default function Home() {
+
+// useEffect(() => {
+//   const api = async () => {
+//   fetch('http://localhost:6060/users').then((resp) => {
+//       return resp.json()
+//     }).then((result) => {
+//       console.log(result);
+//     })
+//   }
+//   api();
+// } , [])
+
+
   return (
    
     <div className='app'>
@@ -16,12 +30,11 @@ export default function Home() {
     
     <Header />
     
-        <div className='w-2/12 md:w-7/12 md:top-[10%] md:left-[25%] z-20 left-[5%] top-[15%] rounded-[10px] shadow-lg logoAnimation absolute'>
+        <div className='w-2/12 md:w-7/12 md:top-[10%] md:left-[23%] z-20 left-[5%] top-[15%] rounded-[10px] shadow-lg logoAnimation absolute'>
               <Image src={royalCaninLogo} />
         </div>
 
-
-        <div className='w-3/12 z-20 left-[70%] md:left-[5%] md:top-[65%] md:w-11/12 top-[20%] rounded-[10px] absolute '>
+        <div className='w-3/12 z-20 left-[70%] md:left-[10%] md:top-[65%] md:w-10/12 top-[20%] rounded-[10px] absolute '>
             <p className='text-[1.5rem] md:text-[1rem] text-[gray] flex flex-wrap text-justify font-[600]' dir='rtl'> فروش غذای گربه و سگ و حیوانات خانگی با ضمانت اصالت کالا و تحویل فوری </p>
             <p className='text-[1.5rem] md:text-[1rem] text-center pb-2 md:py-3 mt-[2rem] w-6/12 md:w-8/12 mx-auto rounded-[10px] transition-all duration-200 hover:scale-105 bg-[#c71f1f] hover:bg-[#980c0c] cursor-pointer  shadow-2xl text-[white]'> محصولات</p>
         </div>
