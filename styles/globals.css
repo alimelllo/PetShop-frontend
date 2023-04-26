@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Vibur';
+  src: url('../public/Vibur-Regular.ttf');
+}
+@font-face {
+  font-family: 'bkodak';
+  src: url('../public/BKoodakBold.ttf');
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.innerShadow{
+  box-shadow: inset 5px 5px 10px #a3a3a3,
+            inset -5px -5px 10px #ffffff;
+}
+
+
+::-webkit-scrollbar-corner{
+  display: none;
+}
+::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #252525; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(136, 0, 45); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(243, 72, 86); 
+}
+
+.rtl{
+  direction: rtl;
+}
+
+
+
+
+.logoAnimation{
+  animation: logoAnimation 1.2s ease-out forwards;
+  transition: all 1s ease-out;
+}
+
+@keyframes logoAnimation {
+  from {
+    opacity: 0.2;
+    transform: translateY(-20rem);
+  }
+  to {
+    opacity: 0.9;
+    transform: translateY(0); 
+  }
+}
