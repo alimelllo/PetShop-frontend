@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import { useEffect } from 'react';
-import Header from '../components/GeneralComponents/Header.tsx';
+import Header from '../components/GeneralComponents/Header.js';
 import mainBg from '../public/images/main.webp';
 import royalCaninLogo from '../public/images/royalCaninLogo.png';
 
