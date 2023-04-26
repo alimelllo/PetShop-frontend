@@ -10,6 +10,10 @@
   font-family: 'bkodak';
   src: url('../public/BKoodakBold.ttf');
 }
+@font-face {
+  font-family: 'bhoma';
+  src: url('../public/BHoma.ttf');
+}
 html,
 body {
   padding: 0;
