@@ -54,12 +54,6 @@ body {
   background: rgb(243, 72, 86); 
 }
 
-.rtl{
-  direction: rtl;
-}
-
-
-
 
 .logoAnimation{
   animation: logoAnimation 1.2s ease-out forwards;
