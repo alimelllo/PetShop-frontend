@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
    
-    <div className='app font-[BHoma] flex flex-row justify-end'>
+    <div className='app font-[BHoma] flex flex-col'>
        <Head>
         <title>Pet Shop</title>
         <meta property="og:title" content="Pet Shop" key="title" />
@@ -23,9 +23,16 @@ export default function Home() {
         <div className='w-5/12'>
               <Image src={main} />
         </div>
-       
-      </div>
-  
+        <div className='font-[2rem] text-[#a8a8a8] mt-[2rem] text-[3rem] text-center'>
+              فروشگاه غذای حیوانات
+        </div>
+     </div> 
+      
+     {/* <div className='w-full'>
+            <Image src={main} />
+     </div> */}
+
+
 
     </div>
   )
