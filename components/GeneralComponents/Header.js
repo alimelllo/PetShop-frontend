@@ -8,13 +8,13 @@ const Header  = ()  => {
     return (
      <div className='flex flex-row w-full fixed justify-between text-white z-50'>
 
-     <div className="w-6/12 flex flex-row  text-[#505050]  text-center pt-3 text-[1.5rem] md:text-[0.8rem]">
+     <div className="w-6/12 flex flex-row  text-[#505050]  text-center pt-3 text-[1.5rem] md:text-[1rem]">
       <div className="w-3/12 ml-5 md:hidden">
         <Image src={logo}/>
       </div>
-        <p className='py-2 md:py-0 px-5 md:px-4 ml-[10rem] md:ml-0 mx-5 hover:shadow-2xl rounded-[20px] md:mx-0  cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[700] hover:tracking-[1px]'>تماس </p>
-        <p className='py-2 md:py-0 px-5 md:px-4 mx-5 hover:shadow-2xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[700] hover:tracking-[1px]'>محصولات</p>
-        <p className='py-2 md:py-0 px-5 md:px-4 mx-5 hover:shadow-2xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[700] hover:tracking-[1px]'> دسته </p>
+        <p className='py-2 md:py-0 px-5 md:px-3 md:font-[700] ml-[10rem] md:ml-0 mx-5 hover:shadow-2xl rounded-[20px] md:mx-0  cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[700] hover:tracking-[1px]'>تماس </p>
+        <p className='py-2 md:py-0 px-5 md:px-3 md:font-[700] mx-5 hover:shadow-2xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[700] hover:tracking-[1px]'>محصولات</p>
+        <p className='py-2 md:py-0 px-5 md:px-3 md:font-[700] mx-5 hover:shadow-2xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[700] hover:tracking-[1px]'> دسته </p>
      </div>  
 
 
