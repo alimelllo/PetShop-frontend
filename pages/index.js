@@ -27,7 +27,7 @@ export default function Home() {
       
           <div className='flex flex-row justify-center mt-[2rem] md:mt-[1rem]'><p className='text-[1.75rem] md:text-[1.6rem] text-justify w-5/12 md:w-8/12 text-[#a5a5a5]'>فروشگاه غذای حیوانات خانگی با ضمانت اصالت کالا</p></div>
       
-          <div className='flex flex-row justify-between md:justify-around w-5/12 md:w-full mx-auto'>
+          <div className='flex flex-row justify-between md:justify-around w-5/12 md:w-full mx-auto md: my-3'>
               <button className=' pb-2 pt-1  w-6/12 bg-gradient-to-r from-[#52219b] to-[#771b99] hover:bg-gradient-to-r hover:from-[#411584] hover:to-[#611c7a] mt-[3rem] text-[white] text-[1.5rem] rounded-[20px] shadow-3xl hover:scale-105 transition-all duration-200'>محصولات</button>
               <button className='mt-[3rem]  py-2 text-[#241359] text-[1.5rem] rounded-[20px] px-5 hover:shadow-xl hover:scale-105 transition-all duration-200 '>تخفیف ها </button>
           </div>
