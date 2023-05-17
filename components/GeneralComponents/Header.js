@@ -1,7 +1,7 @@
 import React from "react";
 import Image from 'next/image';
 import Basket from '../../public/images/basket.png';
-import logo from '../../public/images/logo.png';
+import logo from '../../public/images/logo.PNG';
 import Link from 'next/link';
 
 const Header  = ()  => {
