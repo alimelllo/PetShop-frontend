@@ -3,10 +3,25 @@ import Image from 'next/image';
 import Basket from '../../public/images/basket.png';
 import logo from '../../public/images/logo.PNG';
 import Link from 'next/link';
+import { useState , useEffect } from "react";
 
 const Header  = ()  => {
+
+  const [clientWindowHeight, setClientWindowHeight] = useState("");
+
+  const handleScroll = () => {
+    setClientWindowHeight(window.scrollY);
+  };
+  
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll); 
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
+
+
+
     return (
-     <div className='flex flex-row w-full fixed justify-between text-white z-50 font-[Bhoma]'>
+     <div className={`flex flex-row w-full ${ clientWindowHeight > 30 ? ' bg-white shadow-2xl' : 'bg-transparent'} transition-all duration-300 fixed justify-between text-white z-50 font-[Bhoma]`}>
 
      <div className="w-6/12 flex flex-row justify-between text-[#505050]  text-center text-[1.25rem] md:text-[1rem]">
       <div className="w-3/12 ml-5 md:hidden ">

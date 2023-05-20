@@ -30,7 +30,10 @@ body {
             inset -5px -5px 10px #ffffff;
 }
 
-
+.boxShadow2x{
+  box-shadow:  10px 0px 50px #0b0b0b,
+             -10px 0px 50px #0b0b0b;
+}
 ::-webkit-scrollbar-corner{
   display: none;
 }
