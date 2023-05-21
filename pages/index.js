@@ -26,7 +26,7 @@ export default function Home() {
         <div className='flex flex-row justify-center mt-[2rem] md:mt-[1rem]'><p className='text-[1.75rem] md:text-[1.6rem] flex flex-wrap  w-5/12 md:w-8/12 text-[#a5a5a5]'>فروشگاه غذای حیوانات خانگی با ضمانت اصالت کالا</p></div>
 
         <div className='flex flex-row justify-between md:justify-around w-5/12 md:w-full mx-auto md: my-3'>
-          <button className=' py-2 w-6/12 bg-gradient-to-r from-[#52219b] to-[#771b99] hover:bg-gradient-to-r hover:from-[#411584] hover:to-[#611c7a] mt-[3rem] text-[white] text-[1.5rem] rounded-[20px] shadow-3xl hover:scale-105 transition-all duration-200 flex justify-center items-center'>محصولات</button>
+          <button className=' pt-1 pb-2 w-6/12 bg-gradient-to-r from-[#52219b] to-[#771b99] hover:bg-gradient-to-r hover:from-[#411584] hover:to-[#611c7a] mt-[3rem] text-[white] text-[1.5rem] rounded-[20px] shadow-3xl hover:scale-105 transition-all duration-200 flex justify-center items-center'>محصولات</button>
           <button className='mt-[3rem]   text-[#241359] text-[1.5rem] rounded-[20px] px-5 hover:shadow-xl hover:scale-105 transition-all duration-200 flex justify-center items-center'>تخفیف ها </button>
         </div>
       </div>
@@ -45,19 +45,22 @@ export default function Home() {
     </div>
 
 
-    <div className='my-[10rem] flex flex-row shadow-2xl font-[Bhoma] w-10/12 bg-gradient-to-r from-[#120921] to-[#0e0b23] rounded-[20px] h-[15rem] mx-auto'>
+    <div className='my-[20rem] flex flex-row md:flex-col shadow-2xl font-[Bhoma] w-10/12 bg-gradient-to-r from-[#1c0f31] to-[#161136] rounded-[20px] h-[15rem] mx-auto'>
       <div className='w-3/12 shadow-2xl rounded-[15px] '>
         <p className='text-[#d6d6d6] text-center pt-3 text-[1.5rem] shadow-lg'> ارسال سریع</p>
 
       </div>
-      <div className='w-3/12 boxShadow2x bg-gradient-to-r from-[#421e84] to-[#681fa3] rounded-[10px] scale-110 transition-all duration-200 text-center'>Cell
+      <div className='w-3/12 boxShadow2x overflow-hidden bg-gradient-to-r from-[#511e62] relative to-[#421b71] rounded-[10px] scale-110 transition-all duration-200 '>
+      <span className='bg-[#9595956b] rounded-[50%] w-[10rem] h-[10rem] absolute left-[60%] bottom-[60%]'></span>
+          <p className='text-[#d6d6d6] pl-5 py-3 text-[1.75rem]'> پرفروش </p>
+
 
       </div>
-      <div className='w-3/12 shadow-2xl text-center'>Cell
-
+      <div className='w-3/12 shadow-2xl text-center'>
+          <p className='text-[#d6d6d6] pl-5 py-3 text-[1.5rem]'> ضمانت کالا </p>
       </div>
-      <div className='w-3/12 shadow-2xl rounded-[15px] text-center'>Cell
-
+      <div className='w-3/12 shadow-2xl rounded-[15px] text-center'>
+          <p className='text-[#d6d6d6] pl-5 py-3 text-[1.5rem]'> تنوع بالا </p>
       </div>
     </div>
 
