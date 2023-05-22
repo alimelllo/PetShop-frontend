@@ -28,17 +28,18 @@ const CreateAccount = () => {
     SetIsLoading(true);
     
     const data = user;
-    console.log(user)
+    
    
-    userServices.create(data)
+    userServices.login(data)
       .then((response) => {
         setUser({
           email: response.data.email,
           password: response.data.password,
         })
         SetIsLoading(false);
+        localStorage.setItem("userName" , response.data.user.name );
+        localStorage.setItem("token" , response.data.token );
         router.push('/');
-        console.log(response.data);
       })
       .catch((e) => {
         SetIsLoading(false);
