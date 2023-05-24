@@ -21,7 +21,7 @@ const getAllProducts = async () => {
   const list = result.data.map(( item ) => (
     <div className='shadow-2xl w-[18%] rounded-[10px] flex flex-col h-[20rem]'>
     <div className='m-3 innerShadow2 p-3 h-[50%]'>
-      <Image src={item.productImage} />
+      <Image unoptimized width={300} height={400}   layout='fill' src={item.productImage} />
     </div>
     <p className='text-[1.25rem] text-[#5c5c5c] text-[700] font-[monospace] pl-3 '>{item.name}</p>
     <p className='text-[1rem] mt-5 text-[gray] text-[600] font-[monospace] pl-3 '> {item.description}</p>
