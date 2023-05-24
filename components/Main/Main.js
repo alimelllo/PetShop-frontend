@@ -1,12 +1,45 @@
 import Image from 'next/image';
-import React from "react";
+import React, { useEffect, useState } from "react";
 import main from '../../public/images/main3.png';
 import catMemoji from '../../public/images/memoji.png';
 import royalCaninLogo from '../../public/images/royalcaninlogo.png';
+import productService from '../../Services/ProductsServices/product.service';
 
 
 const Main = () => {
+
+const [ productList , SetProductList] = useState([]);
+
+
+
+
+useEffect(() => {
     
+const getAllProducts = async () => {
+  const result = await productService.getAllProducts();
+  console.log(result);
+  const list = result.data.map(( item ) => (
+    <div className='shadow-2xl w-[18%] rounded-[10px] flex flex-col h-[20rem]'>
+    <div className='m-3 innerShadow2 p-3 h-[50%]'>
+      <Image src={item.productImage} />
+    </div>
+    <p className='text-[1.25rem] text-[#5c5c5c] text-[700] font-[monospace] pl-3 '>{item.name}</p>
+    <p className='text-[1rem] mt-5 text-[gray] text-[600] font-[monospace] pl-3 '> {item.description}</p>
+    <div className='flex flex-row justify-between mt-5'>
+      <p className='text-[1.5rem]  text-[#5484f3] font-[800] font-[monospace] pl-3 pt-1'>{item.price}</p>
+      <p className='text-[1rem] rounded-[10px] bg-[#7698e8] text-white font-[800] font-[monospace] m-2 py-1 px-3 duration-200 hover:scale-105 transition-all hover:bg-[#365ebd] cursor-pointer'>Add +</p>
+    </div>
+
+    </div>
+  ))
+  SetProductList(list);
+}    
+    getAllProducts();
+} , [])
+    
+
+
+
    return (
         <>
             <div className='app font-[BHoma] flex flex-row md:flex-col-reverse justify-between'>
@@ -41,7 +74,7 @@ const Main = () => {
             </div>
 
 
-            <div className='my-[20rem] md:my-[10rem] flex flex-row md:flex-col  shadow-2xl font-[Bhoma] w-10/12 bg-gradient-to-r from-[#1c0f31] to-[#161136] rounded-[20px]  mx-auto'>
+            <div className='mt-[20rem] mb-[10rem] md:my-[10rem] flex flex-row md:flex-col  shadow-2xl font-[Bhoma] w-10/12 bg-gradient-to-r from-[#1c0f31] to-[#161136] rounded-[20px]  mx-auto'>
                 <div className='w-3/12 d:w-10/12 pb-[10rem] pt-2 shadow-2xl rounded-[15px] '>
                     <p className='text-[#d6d6d6] text-center pt-3 text-[1.5rem] shadow-lg'> ارسال سریع</p>
                 </div>
@@ -56,6 +89,13 @@ const Main = () => {
                     <p className='text-[#d6d6d6] pl-5 py-3 text-[1.5rem]'> تنوع بالا </p>
                 </div>
             </div>
+
+            <p className='text-center text-[3rem] font-[Bhoma] text-[#b3b3b3]'>محصولات</p>
+           
+            <div className='my-[5rem] py-[5rem] innerShadow2 w-full flex flex-row justify-around'>
+               {productList}
+            </div>
+
         </>
     )
 }
