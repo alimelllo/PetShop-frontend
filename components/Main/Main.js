@@ -90,7 +90,7 @@ const Main = () => {
                     <p className='text-[#d6d6d6] pl-5 py-3 text-[1.5rem]'> ضمانت کالا </p>
                 </div>
                 <div className='w-3/12 d:w-10/12 pb-[10rem] pt-2 shadow-2xl rounded-[15px] text-center'>
-                    <p className='text-[#d6d6d6] pl-5 py-3 text-[1.5rem]'> تنوع بالا </p>
+                    <p className='text-[#d6d6d6] pl-5 py-3 text-[1.5rem]'> مشتری ها </p>
                 </div>
             </div>
 
@@ -100,20 +100,19 @@ const Main = () => {
                 {productList}
             </div>}
 
-            <p className='bg-[#7777ef] rounded-[15px] transition-all duration-200 cursor-pointer hover:bg-[#3f3fae] hover:scale-105 flex justify-center p-2 pb-3 items-center text-white text-center w-2/12 md:w-6/12 mx-auto font-[Bhoma] text-[1.25rem]'>نمایش همه</p>
-            
+            { !isLoading && <p className='bg-[#7777ef] rounded-[15px] transition-all duration-200 cursor-pointer hover:bg-[#3f3fae] hover:scale-105 flex justify-center p-2  items-center text-white text-center w-2/12 md:w-6/12 mx-auto font-[Bhoma] shadow-3xl text-[1.25rem]'>نمایش همه</p>}            
             {isLoading && <div className='my-[5rem] py-[5rem] innerShadow2 overflow-hidden flex flex-row flex-wrap justify-around'>
                 <div className='w-2/12 md:w-5/12 md:my-5'>
-                    {<Skeleton count={1} height={280} />}
+                    {<Skeleton baseColor='#cbcbcb' className='shadow-2xl' highlightColor='white' count={1} height={280} />}
                 </div>
                 <div className='w-2/12 md:w-5/12 md:my-5'>
-                    {<Skeleton count={1} height={280} />}
+                    {<Skeleton baseColor='#cbcbcb' className='shadow-2xl' highlightColor='white' count={1} height={280} />}
                 </div>
                 <div className='w-2/12 md:w-5/12 md:my-5'>
-                    {<Skeleton count={1} height={280} />}
+                    {<Skeleton baseColor='#cbcbcb' className='shadow-2xl' highlightColor='white' count={1} height={280} />}
                 </div>
                 <div className='w-2/12 md:w-5/12 md:my-5'>
-                    {<Skeleton count={1} height={280} />}
+                    {<Skeleton baseColor='#cbcbcb' className='shadow-2xl' highlightColor='white' count={1} height={280} />}
                 </div>
             </div>}
 
