@@ -37,7 +37,7 @@ const Header = (props) => {
           <Image src={logo} />
         </div>
 
-        <div className="flex flex-row w-8/12 justify-between pt-3 md:pt-3">
+        <div className="flex flex-row w-8/12 justify-between pt-3 md:pt-4">
           <p className='h-[3rem] md:h-[2rem] md:py-0 px-5 pt-2 md:px-3 md:font-[700] ml-[10rem] md:ml-0 mx-5 hover:shadow-xl rounded-[20px] md:mx-0  cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]'>تماس </p>
           <p className='h-[3rem] md:h-[2rem] md:py-0 px-5 pt-2 md:px-3 md:font-[700] mx-5 hover:shadow-xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]'>محصولات</p>
           <p className='h-[3rem] md:h-[2rem] md:py-0 px-5 pt-2 md:px-3 md:font-[700] mx-5 hover:shadow-xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]'> دسته </p>
@@ -47,28 +47,30 @@ const Header = (props) => {
 
       <div className="w-3/12 flex flex-row justify-end pr-5  md:pr-2 text-center text-[#bfbfbf] md:w-5/12">
 
-        {!isLoggedIn &&<div className=' h-[3rem] text-[#545454]  md:h-[2.5rem] md:pt-2 md:py-1 mr-[1rem]  md:mr-0 md:text-[1rem] mt-3 md:mt-1 text-[1.25rem]   bg-white shadow-xl rounded-[25px]  flex flex-row justify-between items-center'> <Link href='/CreateAcount'><span className="px-4  cursor-pointer transition-all duration-200 hover:bg-[#e2e2e2] rounded-l-[10px] ">ثبت نام  </span></Link> | <Link href='/Login'><span className="px-6  cursor-pointer transition-all duration-200 hover:bg-[#e2e2e2] rounded-r-[10px] "> ورود </span></Link></div>}
+        {!isLoggedIn && <div className=' h-[3rem] text-[#545454]  md:h-[2.5rem] md:pt-2 md:py-1 mr-[1rem]  md:mr-0 md:text-[1rem] mt-3 md:mt-1 text-[1.25rem]   bg-white shadow-xl rounded-[25px]  flex flex-row justify-between items-center'>
+           <Link href='/CreateAcount'><span className="px-4  cursor-pointer transition-all duration-200 hover:bg-[#e2e2e2] rounded-l-[10px] ">ثبت نام  </span></Link> | <Link href='/Login'><span className="px-6  cursor-pointer transition-all duration-200 hover:bg-[#e2e2e2] rounded-r-[10px] "> ورود </span></Link>
+        </div> }
 
 
         {isLoggedIn &&
-        <Menu as="div" className="relative text-center">
-          <div>
-            <Menu.Button className={`font-[monospace] h-[3rem] mt-3 md:mt-1 cursor-pointer transition-all duration-200 ${clientWindowHeight > 30 ? ' text-[#7587ff] font-[600] hover:text-[#2236b8]' : 'text-[white] hover:font-[600] md:text-[#7587ff] md:font-[600] hover:text-[#363636]'}  text-[1.5rem] pr-3`}>
-              {localStorage.getItem("userName")}
-            </Menu.Button>
-          </div>
+          <Menu as="div" className="relative text-center">
+            <div>
+              <Menu.Button className={`font-[monospace] h-[3rem] mt-3 md:mt-1 cursor-pointer transition-all duration-200 ${clientWindowHeight > 30 ? ' text-[#7587ff] font-[600] hover:text-[#2236b8]' : 'text-[white] hover:font-[600] md:text-[#7587ff] md:font-[600] hover:text-[#363636]'}  text-[1.5rem] pr-3`}>
+                {localStorage.getItem("userName")}
+              </Menu.Button>
+            </div>
 
-          <Transition
-            as={Fragment}
-            enter="transition ease-out duration-100"
-            enterFrom="transform opacity-0 scale-95"
-            enterTo="transform opacity-100 scale-100"
-            leave="transition ease-in duration-75"
-            leaveFrom="transform opacity-100 scale-100"
-            leaveTo="transform opacity-0 scale-95"
-          >
-            <Menu.Items className="absolute font-[Bhoma] text-[1.25rem] right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-              <div className="py-1">
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Menu.Items className="absolute font-[Bhoma] text-[1.25rem] right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <div className="py-1">
                   <Menu.Item>
                     {({ active }) => (
                       <button
@@ -85,7 +87,7 @@ const Header = (props) => {
                   <Menu.Item>
                     {({ active }) => (
                       <button onClick={() => {
-                        localStorage.removeItem("token"); 
+                        localStorage.removeItem("token");
                         localStorage.removeItem("userName");
                         props.logOut();
                       }}
@@ -98,10 +100,10 @@ const Header = (props) => {
                       </button>
                     )}
                   </Menu.Item>
-              </div>
-            </Menu.Items>
-          </Transition>
-        </Menu>}
+                </div>
+              </Menu.Items>
+            </Transition>
+          </Menu>}
 
 
 
@@ -111,7 +113,7 @@ const Header = (props) => {
         </div>}
       </div>
 
-     
+
 
 
 
