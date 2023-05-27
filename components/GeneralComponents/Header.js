@@ -5,12 +5,17 @@ import logo from '../../public/images/logo.PNG';
 import Link from 'next/link';
 import { useState, useEffect } from "react";
 import { Menu, Transition } from '@headlessui/react';
+import { useRouter } from 'next/router';
+
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 const Header = (props) => {
+
+  const { asPath } = useRouter();
 
   const [clientWindowHeight, setClientWindowHeight] = useState("");
   const [isLoggedIn, SetIsLoggedIn] = useState(false);
@@ -30,7 +35,7 @@ const Header = (props) => {
 
   return (
 
-    <div className={`flex flex-row w-full ${clientWindowHeight > 30 ? ' bg-white shadow-2xl ' : 'bg-transparent'} transition-all duration-300 fixed justify-between text-white z-50 font-[Bhoma] md:pt-2 md:pb-4 md:bg-[white] md:shadow-2xl`}>
+    <div className={`flex flex-row w-full ${asPath === "/Products" && "shadow-xl bg-white"}  ${clientWindowHeight > 30 ? ' bg-white shadow-2xl ' : 'bg-transparent'} transition-all duration-300 fixed top-0 justify-between text-white z-50 font-[Bhoma] md:pt-2 md:pb-4 md:bg-[white] md:shadow-2xl`}>
 
       <div className="w-6/12 flex flex-row justify-between text-[#505050]  text-center text-[1.25rem] md:text-[1rem]">
         <div className="w-[22%] ml-5 md:hidden  ">

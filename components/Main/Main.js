@@ -5,7 +5,7 @@ import catMemoji from '../../public/images/memoji.png';
 import royalCaninLogo from '../../public/images/royalcaninlogo.png';
 import productService from '../../Services/ProductsServices/product.service';
 import ProductCard from '../GeneralComponents/ProductCard';
-import Skeleton ,  { SkeletonTheme } from 'react-loading-skeleton'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css';
 import instagram from './../../public/images//icons/instagram.png';
 import whatsapp from './../../public/images//icons/whatsapp.png';
@@ -14,37 +14,37 @@ import twitter from './../../public/images//icons/twitter.png';
 
 const Main = () => {
 
-const [ productList , SetProductList] = useState([]);
-const [ isLoading , SetIsLoading ] = useState(true);
+    const [productList, SetProductList] = useState([]);
+    const [isLoading, SetIsLoading] = useState(true);
 
 
 
-useEffect(() => {
-    
-const getAllProducts = async () => {
-  
-  try{
-  const result = await productService.getAllProducts();
-  console.log(result);
-  const list = result.data.map(( item ) => (
-     <ProductCard
-      name={item.name} 
-      price={item.price} 
-      productImage={item.productImage} 
-      description={item.description}
-      weight={item.weight}
-      width={"w-[19%] md:w-[45%]"}/>
-  ))
-  SetProductList(list);
-  SetIsLoading(false);
-  }catch(err){
-  SetIsLoading(false);
-  }
-}    
-getAllProducts();
-} , [])
-    
-   return (
+    useEffect(() => {
+
+        const getAllProducts = async () => {
+
+            try {
+                const result = await productService.getAllProducts();
+                console.log(result);
+                const list = result.data.map((item) => (
+                    <ProductCard
+                        name={item.name}
+                        price={item.price}
+                        productImage={item.productImage}
+                        description={item.description}
+                        weight={item.weight}
+                        width={"w-[19%] md:w-[45%]"} />
+                ))
+                SetProductList(list);
+                SetIsLoading(false);
+            } catch (err) {
+                SetIsLoading(false);
+            }
+        }
+        getAllProducts();
+    }, [])
+
+    return (
         <>
             <div className='app font-[BHoma] flex flex-row md:flex-col-reverse justify-between'>
 
@@ -95,26 +95,27 @@ getAllProducts();
             </div>
 
             <p className='text-center text-[3rem] font-[Bhoma] text-[#b3b3b3]'>محصولات</p>
-           
-            { !isLoading && <div className='mt-[5rem] mb-[1rem] py-[3rem] innerShadow2 w-full flex flex-row flex-wrap justify-around'>
-                {productList} 
-            </div> }
+
+            {!isLoading && <div className='mt-[5rem] mb-[1rem] py-[3rem] innerShadow2 w-full flex flex-row flex-wrap justify-around'>
+                {productList}
+            </div>}
+
+            <p className='bg-[#7777ef] rounded-[15px] transition-all duration-200 cursor-pointer hover:bg-[#3f3fae] hover:scale-105 flex justify-center p-2 pb-3 items-center text-white text-center w-2/12 md:w-6/12 mx-auto font-[Bhoma] text-[1.25rem]'>نمایش همه</p>
             
-            <p className='bg-[#7777ef] rounded-[15px] transition-all duration-200 cursor-pointer hover:bg-[#5656ea] hover:scale-105 flex justify-center p-2 pb-3 items-center text-white text-center w-2/12 mx-auto'>نمایش همه</p>
-            {  isLoading && <div className='my-[5rem] py-[5rem] innerShadow2 overflow-hidden flex flex-row flex-wrap justify-around'>
-                 <div className='w-2/12 md:w-5/12 md:my-5'>
-                    { <Skeleton count={1}  height={280} />}
-                 </div>
-                 <div className='w-2/12 md:w-5/12 md:my-5'>
-                    { <Skeleton count={1}  height={280} />}
-                 </div>
-                 <div className='w-2/12 md:w-5/12 md:my-5'>
-                    { <Skeleton count={1}  height={280} />}
-                 </div>
-                 <div className='w-2/12 md:w-5/12 md:my-5'>
-                    { <Skeleton count={1}  height={280} />}
-                 </div>
-            </div> }
+            {isLoading && <div className='my-[5rem] py-[5rem] innerShadow2 overflow-hidden flex flex-row flex-wrap justify-around'>
+                <div className='w-2/12 md:w-5/12 md:my-5'>
+                    {<Skeleton count={1} height={280} />}
+                </div>
+                <div className='w-2/12 md:w-5/12 md:my-5'>
+                    {<Skeleton count={1} height={280} />}
+                </div>
+                <div className='w-2/12 md:w-5/12 md:my-5'>
+                    {<Skeleton count={1} height={280} />}
+                </div>
+                <div className='w-2/12 md:w-5/12 md:my-5'>
+                    {<Skeleton count={1} height={280} />}
+                </div>
+            </div>}
 
 
 
@@ -122,29 +123,48 @@ getAllProducts();
 
 
 
-            <div className='bg-gradient-to-r from-[#1c0f31] to-[#161136] mt-[3rem] rounded-t-[40px] w-11/12 mx-auto'>
-     
-     <div className='flex flex-row justify-center mx-auto mb-5 pt-[10rem] md:pt-[5rem] w-4/12 md:w-10/12 '>
-     
-     <div className=' w-[3rem] mx-5 rounded-[10px] cursor-pointer hover:scale-125 transition-all duration-300'>
-       <Image src={instagram} layout="responsive" objectFit='cover' />
-      </div>
-      <div className=' w-[3rem] mx-5 rounded-[10px] cursor-pointer hover:scale-125 transition-all duration-300'>
-       <Image src={whatsapp} layout="responsive" objectFit='cover' />
-      </div>
-      <div className='w-[3rem] mx-5 rounded-[10px] cursor-pointer hover:scale-125 transition-all duration-300'>
-       <Image src={gmail} layout="responsive" objectFit='cover' />
-      </div>
-      <div className='w-[3rem] mx-5 rounded-[10px] cursor-pointer hover:scale-125 transition-all duration-300'>
-       <Image src={twitter} layout="responsive" objectFit='cover' />
-      </div>
-     
-     
-     </div>
-     
-     <p className='text-[#a1a1a1] text-center mt-5  py-[1rem] text-[1rem] md:text-[0.75rem] font-[monospace]'>&copy;2023 Feed Us IR,inc.All rights reserved </p>
-     
-             </div>
+            <div className='bg-gradient-to-r from-[#1c0f31] to-[#161136] mt-[10rem] rounded-t-[40px] w-11/12 mx-auto flex flex-col'>
+
+                <div className='bg-[#8383831b] w-[95%] mx-auto my-[3rem] rounded-[10px] flex flex-row justify-between md:flex-wrap'>
+
+                    <div className='text-[#c2c2c2] pt-3 shadow-2xl border-r-[#dbdbdb1a] md:border-0 border-r-[1px] border-r-[solid] h-[10rem]  text-center w-3/12 md:w-5/12'>
+                        Cell
+                    </div>
+                    <div className='text-[#c2c2c2] pt-3 shadow-2xl border-r-[#dbdbdb1a] md:border-0 border-r-[1px] border-r-[solid] h-[10rem]  text-center w-3/12 md:w-5/12'>
+                        Cell
+                    </div>
+                    <div className='text-[#c2c2c2] pt-3 shadow-2xl border-r-[#dbdbdb1a] md:border-0 border-r-[1px] border-r-[solid] h-[10rem]  text-center w-3/12 md:w-5/12'>
+                        Cell
+                    </div>
+                    <div className='text-[#c2c2c2] pt-3 shadow-2xl  h-[10rem]  text-center w-3/12 md:w-5/12'>
+                        Cell
+                    </div>
+                </div>
+
+
+
+
+                <div className='flex flex-row justify-center mx-auto  w-4/12 md:w-10/12 '>
+
+                    <div className=' w-[3rem] mx-5 rounded-[10px] cursor-pointer hover:scale-125 transition-all duration-300'>
+                        <Image src={instagram} layout="responsive" objectFit='cover' />
+                    </div>
+                    <div className=' w-[3rem] mx-5 rounded-[10px] cursor-pointer hover:scale-125 transition-all duration-300'>
+                        <Image src={whatsapp} layout="responsive" objectFit='cover' />
+                    </div>
+                    <div className='w-[3rem] mx-5 rounded-[10px] cursor-pointer hover:scale-125 transition-all duration-300'>
+                        <Image src={gmail} layout="responsive" objectFit='cover' />
+                    </div>
+                    <div className='w-[3rem] mx-5 rounded-[10px] cursor-pointer hover:scale-125 transition-all duration-300'>
+                        <Image src={twitter} layout="responsive" objectFit='cover' />
+                    </div>
+
+
+                </div>
+
+                <p className='text-[#a1a1a1] text-center  py-[1rem] text-[1rem] md:text-[0.75rem] font-[monospace]'>&copy;2023 Feed Us IR,inc.All rights reserved </p>
+
+            </div>
 
 
 
