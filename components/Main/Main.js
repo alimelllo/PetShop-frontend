@@ -25,12 +25,14 @@ const getAllProducts = async () => {
   
   try{
   const result = await productService.getAllProducts();
+  console.log(result);
   const list = result.data.map(( item ) => (
      <ProductCard
       name={item.name} 
       price={item.price} 
       productImage={item.productImage} 
       description={item.description}
+      weight={item.weight}
       width={"w-[19%] md:w-[45%]"}/>
   ))
   SetProductList(list);
@@ -94,10 +96,11 @@ getAllProducts();
 
             <p className='text-center text-[3rem] font-[Bhoma] text-[#b3b3b3]'>محصولات</p>
            
-            { !isLoading && <div className='my-[5rem] py-[5rem] innerShadow2 w-full flex flex-row flex-wrap justify-around'>
+            { !isLoading && <div className='mt-[5rem] mb-[1rem] py-[3rem] innerShadow2 w-full flex flex-row flex-wrap justify-around'>
                 {productList} 
             </div> }
             
+            <p className='bg-[#7777ef] rounded-[15px] transition-all duration-200 cursor-pointer hover:bg-[#5656ea] hover:scale-105 flex justify-center p-2 pb-3 items-center text-white text-center w-2/12 mx-auto'>نمایش همه</p>
             {  isLoading && <div className='my-[5rem] py-[5rem] innerShadow2 overflow-hidden flex flex-row flex-wrap justify-around'>
                  <div className='w-2/12 md:w-5/12 md:my-5'>
                     { <Skeleton count={1}  height={280} />}
@@ -114,29 +117,34 @@ getAllProducts();
             </div> }
 
 
-            <>
+
+
+
+
+
+            <div className='bg-gradient-to-r from-[#1c0f31] to-[#161136] mt-[3rem] rounded-t-[40px] w-11/12 mx-auto'>
      
-     <div className='flex flex-row justify-center mx-auto mb-5 mt-[10rem] md:mt-[5rem] w-3/12 md:w-10/12 '>
+     <div className='flex flex-row justify-center mx-auto mb-5 pt-[10rem] md:pt-[5rem] w-4/12 md:w-10/12 '>
      
-     <div className=' w-[4rem] mx-5 rounded-[10px] cursor-pointer hover:scale-125 transition-all duration-300'>
+     <div className=' w-[3rem] mx-5 rounded-[10px] cursor-pointer hover:scale-125 transition-all duration-300'>
        <Image src={instagram} layout="responsive" objectFit='cover' />
       </div>
-      <div className=' w-[4rem] mx-5 rounded-[10px] cursor-pointer hover:scale-125 transition-all duration-300'>
+      <div className=' w-[3rem] mx-5 rounded-[10px] cursor-pointer hover:scale-125 transition-all duration-300'>
        <Image src={whatsapp} layout="responsive" objectFit='cover' />
       </div>
-      <div className='w-[4rem] mx-5 rounded-[10px] cursor-pointer hover:scale-125 transition-all duration-300'>
+      <div className='w-[3rem] mx-5 rounded-[10px] cursor-pointer hover:scale-125 transition-all duration-300'>
        <Image src={gmail} layout="responsive" objectFit='cover' />
       </div>
-      <div className='w-[4rem] mx-5 rounded-[10px] cursor-pointer hover:scale-125 transition-all duration-300'>
+      <div className='w-[3rem] mx-5 rounded-[10px] cursor-pointer hover:scale-125 transition-all duration-300'>
        <Image src={twitter} layout="responsive" objectFit='cover' />
       </div>
      
      
      </div>
      
-     <p className='text-[#a1a1a1] text-center mt-5 my-[1rem] text-[1rem] md:text-[0.75rem] font-[monospace]'>&copy;2023 Feed Us IR,inc.All rights reserved </p>
+     <p className='text-[#a1a1a1] text-center mt-5  py-[1rem] text-[1rem] md:text-[0.75rem] font-[monospace]'>&copy;2023 Feed Us IR,inc.All rights reserved </p>
      
-             </>
+             </div>
 
 
 
