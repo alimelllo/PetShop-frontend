@@ -42,9 +42,9 @@ const Header = (props) => {
           <Image src={logo} />
         </div>
 
-        <div className="flex flex-row w-8/12 justify-between pt-3 md:pt-4">
+        <div className="flex flex-row w-8/12 justify-between pt-4">
           <p className='h-[3rem] md:h-[2rem] md:py-0 px-5 pt-2 md:px-3 md:font-[700] ml-[10rem] md:ml-0 mx-5 hover:shadow-xl rounded-[20px] md:mx-0  cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]'>تماس </p>
-          <p className='h-[3rem] md:h-[2rem] md:py-0 px-5 pt-2 md:px-3 md:font-[700] mx-5 hover:shadow-xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]'>محصولات</p>
+          <Link href='/Products'><p className='h-[3rem] md:h-[2rem] md:py-0 px-5 pt-2 md:px-3 md:font-[700] mx-5 hover:shadow-xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]'>محصولات</p></Link> 
           <p className='h-[3rem] md:h-[2rem] md:py-0 px-5 pt-2 md:px-3 md:font-[700] mx-5 hover:shadow-xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]'> دسته </p>
         </div>
 
@@ -52,8 +52,8 @@ const Header = (props) => {
 
       <div className="w-3/12 flex flex-row justify-end pr-5  md:pr-2 text-center text-[#bfbfbf] md:w-5/12">
 
-        {!isLoggedIn && <div className=' h-[3rem] text-[#545454]  md:h-[2.5rem] md:pt-2 md:py-1 mr-[1rem]  md:mr-0 md:text-[1rem] mt-3 md:mt-1 text-[1.25rem]   bg-white shadow-xl rounded-[25px]  flex flex-row justify-between items-center'>
-           <Link href='/CreateAcount'><span className="px-4  cursor-pointer transition-all duration-200 hover:bg-[#e2e2e2] rounded-l-[10px] md:text-[1rem]">ثبت نام  </span></Link> | <Link href='/Login'><span className="px-6  cursor-pointer transition-all duration-200 hover:bg-[#e2e2e2] rounded-r-[10px] "> ورود </span></Link>
+        {!isLoggedIn && <div className=' h-[3rem] text-[#545454]  md:h-[2.5rem] md:pt-2 md:py-1 mr-[1rem]  md:mr-0 md:text-[1rem] mt-3 md:mt-1 text-[1.25rem]  bg-white shadow-xl rounded-[25px]  flex flex-row justify-between items-center'>
+           <Link href='/CreateAcount'><span className="px-4  cursor-pointer transition-all duration-200 hover:scale-110 rounded-l-[10px] md:text-[0.9rem]">ثبت نام  </span></Link> | <Link href='/Login'><span className="px-6  cursor-pointer transition-all duration-200 hover:scale-110 rounded-r-[10px] "> ورود </span></Link>
         </div> }
 
 
