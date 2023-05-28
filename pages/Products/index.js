@@ -5,7 +5,7 @@ import LoadingProductCard from '../../components/GeneralComponents/LoadingProduc
 const Products = () => {
 
    const [ loadingProducts, SetLoadingProducts ] = useState([]);
-
+   
    useEffect(() => {
       const arr = [];
       for (let i = 0; i < 10; i++) {arr.push(<LoadingProductCard/>)}

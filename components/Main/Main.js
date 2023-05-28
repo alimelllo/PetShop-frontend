@@ -12,6 +12,11 @@ import whatsapp from './../../public/images//icons/whatsapp.png';
 import gmail from './../../public/images//icons/gmail.png';
 import twitter from './../../public/images//icons/twitter.png';
 
+export const skeleton = ( height , width ) => {
+    return (
+     <Skeleton baseColor='#cbcbcb' className='shadow-2xl' highlightColor='white' count={1} height={height} width={width}/>
+)}
+
 const Main = () => {
 
     const [productList, SetProductList] = useState([]);
@@ -172,3 +177,4 @@ const Main = () => {
 }
 
 export default Main;
+
