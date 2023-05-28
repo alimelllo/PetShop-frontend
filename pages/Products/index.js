@@ -1,6 +1,7 @@
 import Header from '../../components/GeneralComponents/Header.js';
 import { useEffect, useState } from 'react';
 import LoadingProductCard from '../../components/GeneralComponents/LoadingProductCard.js';
+import { skeleton } from '../../components/Main/Main.js';
 
 const Products = () => {
 
