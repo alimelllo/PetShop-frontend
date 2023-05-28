@@ -33,6 +33,8 @@ const Main = () => {
                 console.log(result);
                 const list = result.data.map((item) => (
                     <ProductCard
+                        imageWidth={130}
+                        imageHeight={160}
                         name={item.name}
                         price={item.price}
                         productImage={item.productImage}
@@ -131,13 +133,13 @@ const Main = () => {
 
                 <div className='bg-[#8383831b] w-[95%] mx-auto my-[3rem] rounded-[10px] flex flex-row justify-between md:flex-wrap'>
 
-                    <div className='text-[#c2c2c2] pt-3 shadow-2xl border-r-[#dbdbdb1a] md:border-0 border-r-[1px] border-r-[solid] h-[10rem]  text-center w-3/12 md:w-5/12'>
+                    <div className='text-[#c2c2c2] pt-3 shadow-2xl h-[10rem]  text-center w-3/12 md:w-5/12'>
                         Cell
                     </div>
-                    <div className='text-[#c2c2c2] pt-3 shadow-2xl border-r-[#dbdbdb1a] md:border-0 border-r-[1px] border-r-[solid] h-[10rem]  text-center w-3/12 md:w-5/12'>
+                    <div className='text-[#c2c2c2] pt-3 shadow-2xl h-[10rem]  text-center w-3/12 md:w-5/12'>
                         Cell
                     </div>
-                    <div className='text-[#c2c2c2] pt-3 shadow-2xl border-r-[#dbdbdb1a] md:border-0 border-r-[1px] border-r-[solid] h-[10rem]  text-center w-3/12 md:w-5/12'>
+                    <div className='text-[#c2c2c2] pt-3 shadow-2xl h-[10rem]  text-center w-3/12 md:w-5/12'>
                         Cell
                     </div>
                     <div className='text-[#c2c2c2] pt-3 shadow-2xl  h-[10rem]  text-center w-3/12 md:w-5/12'>
