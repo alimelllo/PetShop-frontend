@@ -25,17 +25,16 @@ const Products = () => {
 
           try {
               const result = await productService.getAllProducts();
-              console.log(result);
               const list = result.data.map((item) => (
                   <ProductCard
                       imageWidth={130}
-                      imageHeight={140}
+                      imageHeight={120}
                       name={item.name}
                       price={item.price}
                       productImage={item.productImage}
                       description={item.description}
                       weight={item.weight}
-                      width={"w-[20%] md:w-[45%]"} />
+                      width={"w-[18%] md:w-[45%]"} />
               ))
               SetProductList(list);
               SetIsLoading(false);
@@ -53,7 +52,7 @@ const Products = () => {
          <div className='flex flex-row  mt-[3rem]'>
 
             <div className='PRODUCTS_CONTAINER w-full mt-[1rem] pl-5 border-r-[3px] border-r-[solid] border-r-[#f7f7f7] flex flex-row flex-wrap h-[100%]'>
-               <div className='bg-[#e8e8e861] shadow-2xl pr-5 flex flex-row justify-end items-center w-full py-2 mx-auto mt-[2rem]'>
+               <div className='bg-[#e8e8e861] shadow-2xl pr-5 flex flex-row justify-end items-center w-full py-2 mx-auto mt-[1rem]'>
                   <button className='mr-5 bg-[#537df9f4] rounded-[15px] font-[Bhoma] px-5 h-[3rem] text-white flex justify-center items-center transition-all duration-200 hover:bg-[#535ef9f4] shadow-2xl '>جستجو</button>
                   <input 
                     className='w-8/12 h-[3rem] rounded-[15px] placeholder:font-[Bhoma] text-right pr-5 shadow-md mr-8 bg-[#b2b2b242]'
