@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import userServices from "../../Services/UserServices/user.services";
 import Link from 'next/link';
 import ReactLoading from "react-loading";
-import { useRouter } from 'next/router'
-
-
+import { useRouter } from 'next/router';
+import { Icon } from 'react-icons-kit'
+import { eye } from "react-icons-kit/feather/eye";
+import { eyeOff } from "react-icons-kit/feather/eyeOff";
 
 const Login = () => {
+  const [type, settype] = useState('password');
+  const [icon, seticon] = useState(eyeOff);
+
 
   const router = useRouter();
   const [isLoading, SetIsLoading] = useState(false)
@@ -32,6 +36,11 @@ const Login = () => {
     console.log(user)
 
   };
+
+  const handleShowPass = () => {
+    settype(type === 'password' ? 'text' : 'password')
+    seticon(icon === eyeOff ? eye : eyeOff)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,25 +68,27 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col z-80 text-[#707070] text-center  text-[2rem] font-[BHoma] overflow-hidden">
-      <div className="flex flex-row justify-between shadow-xl "><Link href='/'><p className="py-5 pl-5 md:text-[1.5rem] hover:text-[black] transition-all duration-200 cursor-pointer">{"<< بازگشت"}</p></Link> <p className="text-[2rem] md:text-[1.5rem] py-5 pr-5 text-[#828282] ">
-        ثبت نام
-      </p>
+    <div className="bg-violet-500 text-white flex flex-col z-80  text-center text-[1.5rem] font-[BHoma] overflow-hidden h-full">
+      <div className="flex justify-around">
+        <Link href='/'>
+          <p className="py-5 pl-5 md:text-[1.5rem] text-[20px] text-white hover:text-[black] transition-all duration-200 cursor-pointer">{"<< بازگشت"}</p></Link> <p className="hover:text-[black] md:text-[1.5rem] py-5 pr-5 text-[20px]">
+          ورود به حساب کاربری
+        </p>
       </div>
       <form onSubmit={handleSubmit}>
-        <div className="FORM_CONTAINER mt-[3rem] md:text-[1rem] w-6/12 md:w-11/12 mx-auto">
+        <div className="FORM_CONTAINER mt-[3rem] md:text-[1rem] h-[90vh] md:w-11/12 mx-auto w-4/12 rounded-[25px] bg-white round flex flex-col items-center">
           <div className="flex flex-row-reverse my-5">
-            <p className="w-5/12  textshadow2 pt-2 md:pt-4 md:w-4/12 text-right">: نام کاربری  </p>
+            <p className="w-4/12 text-[gray] textshadow2 pt-2 md:pt-4 md:w-4/12 text-right"> نام کاربری  </p>
             <input
               autoComplete="true"
               name="name"
               placeholder="نام کاربری"
-              className="ml-5 md:w-8/12 rounded-[5px] shadow-xl h-[4rem]  outline-none pl-5  bg-[#dadada]"
+              className="w-8/12 ml-5 md:w-8/12 rounded-[5px] shadow-xl h-[4rem]  outline-none pl-5  bg-[#dadada]"
               onChange={handleInputChange}
               required
             ></input>
           </div>
-          <div className="flex flex-row-reverse my-5">
+          {/* <div className="flex flex-row-reverse my-5">
             <p className="w-5/12 textshadow2 pt-2 md:pt-4 md:w-4/12 text-right"> : ایمیل</p>
             <input
               autoComplete="true"
@@ -101,21 +112,24 @@ const Login = () => {
           </div>
           <div className="flex flex-row-reverse my-5">
             <p className="w-5/12 textshadow2 pt-2 md:pt-4 md:w-4/12 text-right"> : رمز عبور</p>
-            <input
-              name="password"
-              placeholder="رمز عبور"
-              type="password"
-              className="ml-5 md:w-8/12 rounded-[5px] shadow-xl h-[4rem]  outline-none pl-5  bg-[#dadada]"
-              onChange={handleInputChange}
-              required
-            ></input>
+            <label>
+              <span className="cursor-pointer relative left-[16vw]" onClick={handleShowPass}><Icon icon={icon} size={25}></Icon></span>
+              <input
+                name="password"
+                placeholder="رمز عبور"
+                type={type}
+                className="ml-5 md:w-8/12 rounded-[5px] shadow-xl h-[4rem]  outline-none pl-5  bg-[#dadada]"
+                onChange={handleInputChange}
+                required
+              ></input>
+            </label>
           </div>
           {!isLoading &&
             <button
               className="mx-auto w-3/12 md:w-8/12 md:p-4 bg-gradient-to-r from-[#c05a11] to-[#d43b11] px-5 text-[white] border-none rounded-[15px] p-2 shadow-xl my-[3rem] hover:scale-110 duration-200 transition-all"
               onClick={handleSubmit}>
               ثبت نام
-            </button>}
+            </button>} */}
         </div>
       </form>
 
