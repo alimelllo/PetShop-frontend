@@ -68,7 +68,91 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-violet-500 text-white flex flex-col z-80  text-center text-[1.5rem] font-[BHoma] overflow-hidden h-full">
+    <div className="body">
+      <div className="main">
+        <input className="input" type="checkbox" id="chk" aria-hidden="true" />
+
+        <div className="signup">
+          <form onSubmit={handleSubmit}>
+            <label className="label mt-[30px]" for="chk" aria-hidden="true">ثبت نام</label>
+            <input
+              className="input"
+              autoComplete="true"
+              name="name"
+              placeholder="نام کاربری"
+              onChange={handleInputChange}
+              required />
+            <input
+              className="input"
+              autoComplete="true"
+              name="email"
+              placeholder="ایمیل"
+              onChange={handleInputChange}
+              required
+            />
+            <input
+              className="input"
+              autoComplete="false"
+              name="mobile"
+              placeholder="شماره موبایل"
+              onChange={handleInputChange}
+              required
+            />
+            <input
+              className="input"
+              name="password"
+              placeholder="رمز عبور"
+              type={type}
+              onChange={handleInputChange}
+              required
+            />
+            <button className="button">Sign up</button>
+          </form>
+        </div>
+
+        <div className="login">
+          <form onSubmit={handleSubmit}>
+            <label className="label mt-[6rem]" for="chk" aria-hidden="true">ورود   </label>
+            <input
+              className="input"
+              autoComplete="true"
+              name="email"
+              placeholder="ایمیل"
+              onChange={handleInputChange}
+              required
+            />
+
+            <input
+              className="input"
+              name="password"
+              placeholder="رمز عبور"
+              type={type}
+              onChange={handleInputChange}
+              required
+            />
+            {!isLoading &&
+              <button
+                className="button"
+                onClick={handleSubmit}>
+                ورود
+              </button>}
+            {isLoading && <ReactLoading type={"spinningBubbles"} color="gray" className="w-1/12 mx-auto " />}
+
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
+
+
+
+
+
+
+{/* <div className="bg-violet-500 text-white flex flex-col z-80  text-center text-[1.5rem] font-[BHoma] overflow-hidden h-[100vh]">
       <div className="flex justify-around">
         <Link href='/'>
           <p className="py-5 pl-5 md:text-[1.5rem] text-[20px] text-white hover:text-[black] transition-all duration-200 cursor-pointer">{"<< بازگشت"}</p></Link> <p className="hover:text-[black] md:text-[1.5rem] py-5 pr-5 text-[20px]">
@@ -76,19 +160,20 @@ const Login = () => {
         </p>
       </div>
       <form onSubmit={handleSubmit}>
-        <div className="FORM_CONTAINER mt-[3rem] md:text-[1rem] h-[90vh] md:w-11/12 mx-auto w-4/12 rounded-[25px] bg-white round flex flex-col items-center">
+        <div className="FORM_CONTAINER mb-9  md:text-[1rem] h-[85vh] md:w-11/12 mx-auto w-4/12 rounded-[25px] bg-white round flex flex-col items-center">
+          <p className="text-[gray]">فرم ثبت نام</p>
+          <p className="w-4/12 text-[gray] textshadow2 pt-2 md:pt-4 md:w-4/12 text-right"> نام کاربری  </p>
           <div className="flex flex-row-reverse my-5">
-            <p className="w-4/12 text-[gray] textshadow2 pt-2 md:pt-4 md:w-4/12 text-right"> نام کاربری  </p>
             <input
               autoComplete="true"
               name="name"
               placeholder="نام کاربری"
-              className="w-8/12 ml-5 md:w-8/12 rounded-[5px] shadow-xl h-[4rem]  outline-none pl-5  bg-[#dadada]"
+              className="w-8/12 ml-5 md:w-8/12 rounded-[5px] shadow-xl h-[4rem]  outline-none px-5 text-zinc-800  bg-[#dadada]"
               onChange={handleInputChange}
               required
             ></input>
           </div>
-          {/* <div className="flex flex-row-reverse my-5">
+          <div className="flex flex-row-reverse my-5">
             <p className="w-5/12 textshadow2 pt-2 md:pt-4 md:w-4/12 text-right"> : ایمیل</p>
             <input
               autoComplete="true"
@@ -129,13 +214,10 @@ const Login = () => {
               className="mx-auto w-3/12 md:w-8/12 md:p-4 bg-gradient-to-r from-[#c05a11] to-[#d43b11] px-5 text-[white] border-none rounded-[15px] p-2 shadow-xl my-[3rem] hover:scale-110 duration-200 transition-all"
               onClick={handleSubmit}>
               ثبت نام
-            </button>} */}
+            </button>}
         </div>
       </form>
 
       {isLoading && <ReactLoading type={"spinningBubbles"} color="gray" className="m-auto mt-[3rem]" />}
 
-    </div>
-  );
-};
-export default Login;
+    </div> */}

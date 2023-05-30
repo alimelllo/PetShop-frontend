@@ -6,14 +6,17 @@
   font-family: 'Vibur';
   src: url('../public/Vibur-Regular.ttf');
 }
+
 @font-face {
   font-family: 'bkodak';
   src: url('../public/BKoodakBold.ttf');
 }
+
 @font-face {
   font-family: 'bhoma';
   src: url('../public/BHoma.ttf');
 }
+
 html,
 body {
   padding: 0;
@@ -25,44 +28,51 @@ body {
   box-sizing: border-box;
 }
 
-.innerShadow{
+.innerShadow {
   box-shadow: inset 5px 5px 10px #a3a3a3,
-            inset -5px -5px 10px #ffffff;
-}
-.innerShadow2{
-  box-shadow: inset 7px 7px 32px #e5e5e5,
-            inset -7px -7px 32px #ffffff;
+    inset -5px -5px 10px #ffffff;
 }
 
-.boxShadow2x{
-  box-shadow:  10px 0px 20px #0b0b0b,
-             -10px  0px 20px #0b0b0b;
+.innerShadow2 {
+  box-shadow: inset 7px 7px 32px #e5e5e5,
+    inset -7px -7px 32px #ffffff;
 }
-::-webkit-scrollbar-corner{
+
+.boxShadow2x {
+  box-shadow: 10px 0px 20px #0b0b0b,
+    -10px 0px 20px #0b0b0b;
+}
+
+.boxShadow3x {
+  box-shadow: 5px 20px 50px #000
+}
+
+::-webkit-scrollbar-corner {
   display: none;
 }
+
 ::-webkit-scrollbar {
   width: 0.3rem;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #252525; 
+  background: #252525;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(136, 0, 45); 
+  background: rgb(136, 0, 45);
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(243, 72, 86); 
+  background: rgb(243, 72, 86);
 }
 
 
-.logoAnimation{
+.logoAnimation {
   animation: logoAnimation 1.2s ease-out forwards;
   transition: all 1s ease-out;
 }
@@ -72,8 +82,9 @@ body {
     opacity: 0.2;
     transform: translateY(-20rem);
   }
+
   to {
     opacity: 0.9;
-    transform: translateY(0); 
+    transform: translateY(0);
   }
 }
