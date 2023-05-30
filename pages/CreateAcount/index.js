@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import userServices from "../../Services/UserServices/user.services";
-import Link from 'next/link';
 import ReactLoading from "react-loading";
 import { useRouter } from 'next/router';
 import { Icon } from 'react-icons-kit'
@@ -8,13 +7,17 @@ import { eye } from "react-icons-kit/feather/eye";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
 
 const Login = () => {
+
   const [type, settype] = useState('password');
   const [icon, seticon] = useState(eyeOff);
 
 
   const router = useRouter();
   const [isLoading, SetIsLoading] = useState(false)
+  const [ checkLoginRequierd , SetCheckLoginRequired ] = useState(false);
+  const [ checkRegisterRequierd , SetCheckRegisterRequired ] = useState(false);
 
+  
   const initialUserState = {
     name: "",
     email: "",
@@ -33,19 +36,59 @@ const Login = () => {
 
     regixPhone.test(user.mobile) ? console.log('yes') : console.log('no')
     regixEmail.test(user.email) ? console.log('yes') : console.log('no')
-    console.log(user)
+   
 
   };
+
+  useEffect(() => {
+    console.log(user)
+  } , [user]);
+
 
   const handleShowPass = () => {
     settype(type === 'password' ? 'text' : 'password')
     seticon(icon === eyeOff ? eye : eyeOff)
   }
 
-  const handleSubmit = async (e) => {
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
+    if(!user.name || !user.mobile|| !user.email || !user.password){
+      SetCheckRegisterRequired(true);
+      return
+    }
     SetIsLoading(true);
+    SetCheckRegisterRequired(true);
+    const data = user;
+    console.log(user)
 
+    userServices.create(data)
+      .then((response) => {
+        setUser({
+          name: response.data.name,
+          email: response.data.email,
+          mobile: response.data.mobile,
+          password: response.data.password,
+        })
+        SetIsLoading(false);
+        router.push('/Login');
+        console.log(response.data)
+      })
+      .catch((e) => {
+        SetIsLoading(false);
+        console.log(e);
+      });
+  };
+
+
+
+
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault();
+    if( !user.email || !user.password){
+      SetCheckLoginRequired(true);
+      return
+    }
+    SetIsLoading(true);
     const data = user;
     console.log(user)
 
@@ -73,17 +116,17 @@ const Login = () => {
         <input className="input" type="checkbox" id="chk" aria-hidden="true" />
 
         <div className="signup">
-          <form onSubmit={handleSubmit}>
-            <label className="label mt-[30px]" for="chk" aria-hidden="true">ثبت نام</label>
+          <form onSubmit={handleRegisterSubmit}>
+            <label onClick={() =>  {SetCheckLoginRequired(false); SetCheckRegisterRequired(false)}} className="label my-[15px]" for="chk" aria-hidden="true">ثبت نام</label>
             <input
-              className="input"
+              className={`input ${ checkRegisterRequierd && !user.name ? "border-[2px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :""}`}
               autoComplete="true"
               name="name"
               placeholder="نام کاربری"
               onChange={handleInputChange}
               required />
             <input
-              className="input"
+              className={`input  ${ checkRegisterRequierd && !user.email ? "border-[2px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :""}`}
               autoComplete="true"
               name="email"
               placeholder="ایمیل"
@@ -91,7 +134,7 @@ const Login = () => {
               required
             />
             <input
-              className="input"
+              className={`input  ${ checkRegisterRequierd && !user.mobile ? "border-[2px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :""}`}
               autoComplete="false"
               name="mobile"
               placeholder="شماره موبایل"
@@ -99,41 +142,41 @@ const Login = () => {
               required
             />
             <input
-              className="input"
+              className={`input  ${ checkRegisterRequierd && !user.password ? "border-[2px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :""}`}
               name="password"
               placeholder="رمز عبور"
               type={type}
               onChange={handleInputChange}
               required
             />
-            <button className="button">Sign up</button>
+            <button onClick={handleRegisterSubmit} className="button shadow-xl">ثبت نام</button>
           </form>
         </div>
 
         <div className="login">
-          <form onSubmit={handleSubmit}>
-            <label className="label mt-[6rem]" for="chk" aria-hidden="true">ورود   </label>
+          <form onSubmit={handleLoginSubmit}>
+            <label onClick={() => {SetCheckRegisterRequired(false); SetCheckLoginRequired(false)}} className="label mt-[6rem]" for="chk" aria-hidden="true">ورود</label>
             <input
-              className="input"
+              className={`input shadow-xl  ${ checkLoginRequierd && !user.email ? "border-[2px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :""}`}
               autoComplete="true"
               name="email"
-              placeholder="ایمیل"
+              placeholder="... ایمیل خود را وارد کنید"
               onChange={handleInputChange}
               required
             />
 
             <input
-              className="input"
+              className={`input shadow-xl ${ checkLoginRequierd && !user.password ? "border-[2px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :""}`}
               name="password"
-              placeholder="رمز عبور"
+              placeholder="... رمز عبور را وارد کنید "
               type={type}
               onChange={handleInputChange}
               required
             />
             {!isLoading &&
               <button
-                className="button"
-                onClick={handleSubmit}>
+                className="button shadow-xl"
+                onClick={handleLoginSubmit}>
                 ورود
               </button>}
             {isLoading && <ReactLoading type={"spinningBubbles"} color="gray" className="w-1/12 mx-auto " />}

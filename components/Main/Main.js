@@ -29,9 +29,9 @@ const Main = () => {
         const getAllProducts = async () => {
 
             try {
-                const result = await productService.getAllProducts();
+                const result = await productService.getAllProducts("");
                 console.log(result);
-                const list = result.data.map((item) => (
+                const list = result.data.map((item , i) => (
                     <ProductCard
                         imageWidth={130}
                         imageHeight={140}
@@ -42,7 +42,12 @@ const Main = () => {
                         weight={item.weight}
                         width={"w-[19%] md:w-[45%]"} />
                 ))
-                SetProductList(list);
+                let arr = [];
+                for( let i =0 ; i < list.length; i++){
+                    arr.push(list[i]);
+                    if(i === 3) break
+                }
+                SetProductList(arr);
                 SetIsLoading(false);
             } catch (err) {
                 SetIsLoading(false);
