@@ -70,7 +70,7 @@ const Login = () => {
           password: response.data.password,
         })
         SetIsLoading(false);
-        router.push('/Login');
+        router.push('/');
         console.log(response.data)
       })
       .catch((e) => {
@@ -92,16 +92,16 @@ const Login = () => {
     const data = user;
     console.log(user)
 
-    userServices.create(data)
+    userServices.login(data)
       .then((response) => {
         setUser({
-          name: response.data.name,
           email: response.data.email,
-          mobile: response.data.mobile,
           password: response.data.password,
         })
         SetIsLoading(false);
-        router.push('/Login');
+        localStorage.setItem("userName" , response.data.user.name );
+        localStorage.setItem("token" , response.data.token );
+        router.push('/');
         console.log(response.data)
       })
       .catch((e) => {
@@ -111,22 +111,26 @@ const Login = () => {
   };
 
   return (
-    <div className="body">
+    <div className="body relative">
+      <span className="absolute bubbleLeftAnimation left-[-10%]  top-[-25%] w-[25rem] h-[25rem] rounded-[50%] bg-[#d1d1d131]"></span>
+      <span className="absolute right-[-10%] bubbleRightAnimation bottom-[-25%] w-[25rem] h-[25rem] rounded-[50%] bg-[#d1d1d130]"></span>
+      <span className="absolute right-[10%] bubbleTopAnimation top-[5%] w-[10rem] h-[10rem] rounded-[50%] bg-[#d1d1d119]"></span>
+
       <div className="main">
         <input className="input" type="checkbox" id="chk" aria-hidden="true" />
 
         <div className="signup">
           <form onSubmit={handleRegisterSubmit}>
-            <label onClick={() =>  {SetCheckLoginRequired(false); SetCheckRegisterRequired(false)}} className="label my-[15px]" for="chk" aria-hidden="true">ثبت نام</label>
+            <label onClick={() =>  {SetCheckLoginRequired(false); SetCheckRegisterRequired(false)}} className="label mb-[15px] pt-[15px]" for="chk" aria-hidden="true">ثبت نام</label>
             <input
-              className={`input ${ checkRegisterRequierd && !user.name ? "border-[2px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :""}`}
-              autoComplete="true"
+              className={`input shadow-3xl  placeholder:text-right placeholder:font-[bhoma]  ${ checkRegisterRequierd && !user.name ? "border-[1px] border-solid border-[#ff4444] placeholder:text-[#c23c3c]" :""}`}
+              autoComplete="true" 
               name="name"
               placeholder="نام کاربری"
               onChange={handleInputChange}
               required />
             <input
-              className={`input  ${ checkRegisterRequierd && !user.email ? "border-[2px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :""}`}
+              className={`input shadow-3xl  placeholder:text-right placeholder:font-[bhoma]  ${ checkRegisterRequierd && !user.email ? "border-[1px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :""}`}
               autoComplete="true"
               name="email"
               placeholder="ایمیل"
@@ -134,7 +138,7 @@ const Login = () => {
               required
             />
             <input
-              className={`input  ${ checkRegisterRequierd && !user.mobile ? "border-[2px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :""}`}
+              className={`input shadow-3xl  placeholder:text-right placeholder:font-[bhoma]  ${ checkRegisterRequierd && !user.mobile ? "border-[1px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :""}`}
               autoComplete="false"
               name="mobile"
               placeholder="شماره موبایل"
@@ -142,14 +146,16 @@ const Login = () => {
               required
             />
             <input
-              className={`input  ${ checkRegisterRequierd && !user.password ? "border-[2px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :""}`}
+              className={`input shadow-3xl  placeholder:text-right placeholder:font-[bhoma]  ${ checkRegisterRequierd && !user.password ? "border-[1px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :""}`}
               name="password"
               placeholder="رمز عبور"
               type={type}
               onChange={handleInputChange}
               required
             />
-            <button onClick={handleRegisterSubmit} className="button shadow-xl">ثبت نام</button>
+            { !isLoading && <button onClick={handleRegisterSubmit} className="button shadow-3xl">ثبت نام</button>}
+            { isLoading && <ReactLoading type={"bars"} color="#2c125c" width={50} className=" mt-[2rem] mx-auto" />}
+
           </form>
         </div>
 
@@ -157,7 +163,7 @@ const Login = () => {
           <form onSubmit={handleLoginSubmit}>
             <label onClick={() => {SetCheckRegisterRequired(false); SetCheckLoginRequired(false)}} className="label mt-[6rem]" for="chk" aria-hidden="true">ورود</label>
             <input
-              className={`input shadow-xl  ${ checkLoginRequierd && !user.email ? "border-[2px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :""}`}
+              className={`input boxShadow1x placeholder:text-right placeholder:font-[bhoma] ${ checkLoginRequierd && !user.email ? "border-[2px] border-solid border-[#ff4141] placeholder:text-[#cb4f4f]" :""}`}
               autoComplete="true"
               name="email"
               placeholder="... ایمیل خود را وارد کنید"
@@ -166,7 +172,7 @@ const Login = () => {
             />
 
             <input
-              className={`input shadow-xl ${ checkLoginRequierd && !user.password ? "border-[2px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :""}`}
+              className={`input boxShadow1x  placeholder:text-right placeholder:font-[bhoma]  ${ checkLoginRequierd && !user.password ? "border-[2px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :""}`}
               name="password"
               placeholder="... رمز عبور را وارد کنید "
               type={type}
@@ -175,11 +181,11 @@ const Login = () => {
             />
             {!isLoading &&
               <button
-                className="button shadow-xl"
+                className="button boxShadow1x"
                 onClick={handleLoginSubmit}>
                 ورود
               </button>}
-            {isLoading && <ReactLoading type={"spinningBubbles"} color="gray" className="w-1/12 mx-auto " />}
+            {isLoading && <ReactLoading type={"bars"} color="white" width={50} className=" mt-[2rem] mx-auto" />}
 
           </form>
         </div>

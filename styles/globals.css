@@ -22,6 +22,7 @@ body {
   padding: 0;
   margin: 0;
   -webkit-tap-highlight-color: transparent;
+ 
 }
 
 * {
@@ -36,6 +37,11 @@ body {
 .innerShadow2 {
   box-shadow: inset 7px 7px 32px #e5e5e5,
     inset -7px -7px 32px #ffffff;
+}
+
+
+.boxShadow1x {
+  box-shadow: 5px 10px 50px rgb(32, 32, 32)
 }
 
 .boxShadow2x {

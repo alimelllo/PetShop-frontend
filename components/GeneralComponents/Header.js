@@ -52,9 +52,9 @@ const Header = (props) => {
 
       <div className="w-3/12 flex flex-row justify-end pr-5  md:pr-2 text-center text-[#bfbfbf] md:w-5/12">
 
-        {!isLoggedIn && <div className=' h-[3rem] text-[#545454]  md:h-[2.5rem] md:pt-2 md:py-1 mr-[1rem]  md:mr-0 md:text-[1rem] mt-3 md:mt-1 text-[1.25rem]  bg-white shadow-xl rounded-[25px]  flex flex-row justify-between items-center'>
-           <Link href='/CreateAcount'><span className="px-4  cursor-pointer transition-all duration-200 hover:scale-110 rounded-l-[10px] md:text-[0.9rem]">ثبت نام  </span></Link> | <Link href='/Login'><span className="px-6  cursor-pointer transition-all duration-200 hover:scale-110 rounded-r-[10px] "> ورود </span></Link>
-        </div> }
+        {!isLoggedIn && <Link href='/Register'><div className=' h-[3rem] text-[#545454]  md:h-[2.5rem] md:pt-2 md:py-1 mr-[1rem] cursor-pointer transition-all duration-200 hover:scale-105 hover:bg-[#ebebeb] md:mr-0 md:text-[1rem] mt-3 md:mt-1 text-[1.25rem]  bg-white shadow-xl rounded-[25px]  flex flex-row justify-between items-center'>
+           <span className="px-4  rounded-l-[10px] md:text-[0.9rem]">ثبت نام  </span> | <span className="px-6   rounded-r-[10px] "> ورود </span>
+        </div></Link> }
 
 
         {isLoggedIn &&
