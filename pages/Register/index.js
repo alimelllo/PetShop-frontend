@@ -5,14 +5,28 @@ import { useRouter } from 'next/router';
 import { Icon } from 'react-icons-kit'
 import { eye } from "react-icons-kit/feather/eye";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
+import { nameHandler , tokenHandler , isLoggedInHandler} from '../../Redux/Reducers/Settings/Profile/ProfileSettings.ts';
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
+ 
+  const router = useRouter();
+
+  const selectState  = useSelector(tokenHandler);
+  const tokenState = selectState.payload.ProfileSettings.token;
+  const SetToken = useDispatch();
+  
+  const selectNameState  = useSelector(nameHandler);
+  const nameState = selectNameState.payload.ProfileSettings.name;
+  const SetName = useDispatch();
+
+  const selectisLoggedInState = useSelector(isLoggedInHandler);
+  const isLoggedInState = selectisLoggedInState.payload.ProfileSettings.isLoggedIn;
+  const SetIsLoggedInHandler = useDispatch();
+
 
   const [type, settype] = useState('password');
   const [icon, seticon] = useState(eyeOff);
-
-
-  const router = useRouter();
   const [isLoading, SetIsLoading] = useState(false)
   const [ checkLoginRequierd , SetCheckLoginRequired ] = useState(false);
   const [ checkRegisterRequierd , SetCheckRegisterRequired ] = useState(false);
@@ -69,7 +83,10 @@ const Login = () => {
           mobile: response.data.mobile,
           password: response.data.password,
         })
-        SetIsLoading(false);
+         SetIsLoading(false);
+         SetToken(tokenHandler(response.data.token));
+         SetName(nameHandler(response.data.user.name));
+        SetIsLoggedInHandler(isLoggedInHandler(true));
         router.push('/');
         console.log(response.data)
       })
@@ -101,8 +118,10 @@ const Login = () => {
         SetIsLoading(false);
         localStorage.setItem("userName" , response.data.user.name );
         localStorage.setItem("token" , response.data.token );
+        SetToken(tokenHandler(response.data.token));
+        SetName(nameHandler(response.data.user.name));
+        SetIsLoggedInHandler(isLoggedInHandler(true));
         router.push('/');
-        console.log(response.data)
       })
       .catch((e) => {
         SetIsLoading(false);
@@ -123,14 +142,14 @@ const Login = () => {
           <form onSubmit={handleRegisterSubmit}>
             <label onClick={() =>  {SetCheckLoginRequired(false); SetCheckRegisterRequired(false)}} className="label mb-[15px] pt-[15px]" for="chk" aria-hidden="true">ثبت نام</label>
             <input
-              className={`input shadow-3xl  placeholder:text-right placeholder:font-[bhoma]  ${ checkRegisterRequierd && !user.name ? "border-[1px] border-solid border-[#ff4444] placeholder:text-[#c23c3c]" :""}`}
+              className={`input shadow-3xl   placeholder:text-right placeholder:font-[bhoma]  ${ checkRegisterRequierd && !user.name ? "border-[1px] border-solid border-[#ff4444] placeholder:text-[#c23c3c]" :"placeholder:text-[#828282]"}`}
               autoComplete="true" 
               name="name"
               placeholder="نام کاربری"
               onChange={handleInputChange}
               required />
             <input
-              className={`input shadow-3xl  placeholder:text-right placeholder:font-[bhoma]  ${ checkRegisterRequierd && !user.email ? "border-[1px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :""}`}
+              className={`input shadow-3xl  placeholder:text-right placeholder:font-[bhoma]  ${ checkRegisterRequierd && !user.email ? "border-[1px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :"placeholder:text-[#828282]"}`}
               autoComplete="true"
               name="email"
               placeholder="ایمیل"
@@ -138,7 +157,7 @@ const Login = () => {
               required
             />
             <input
-              className={`input shadow-3xl  placeholder:text-right placeholder:font-[bhoma]  ${ checkRegisterRequierd && !user.mobile ? "border-[1px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :""}`}
+              className={`input shadow-3xl  placeholder:text-right placeholder:font-[bhoma]  ${ checkRegisterRequierd && !user.mobile ? "border-[1px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :"placeholder:text-[#828282]"}`}
               autoComplete="false"
               name="mobile"
               placeholder="شماره موبایل"
@@ -146,7 +165,7 @@ const Login = () => {
               required
             />
             <input
-              className={`input shadow-3xl  placeholder:text-right placeholder:font-[bhoma]  ${ checkRegisterRequierd && !user.password ? "border-[1px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :""}`}
+              className={`input shadow-3xl  placeholder:text-right placeholder:font-[bhoma]  ${ checkRegisterRequierd && !user.password ? "border-[1px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :"placeholder:text-[#828282]"}`}
               name="password"
               placeholder="رمز عبور"
               type={type}
@@ -163,7 +182,7 @@ const Login = () => {
           <form onSubmit={handleLoginSubmit}>
             <label onClick={() => {SetCheckRegisterRequired(false); SetCheckLoginRequired(false)}} className="label mt-[6rem]" for="chk" aria-hidden="true">ورود</label>
             <input
-              className={`input boxShadow1x placeholder:text-right placeholder:font-[bhoma] ${ checkLoginRequierd && !user.email ? "border-[2px] border-solid border-[#ff4141] placeholder:text-[#cb4f4f]" :""}`}
+              className={`input boxShadow1x placeholder:text-right placeholder:font-[bhoma] ${ checkLoginRequierd && !user.email ? "border-[2px] border-solid border-[#ff4141] placeholder:text-[#cb4f4f]" :"placeholder:text-[#828282]"}`}
               autoComplete="true"
               name="email"
               placeholder="... ایمیل خود را وارد کنید"
@@ -172,7 +191,7 @@ const Login = () => {
             />
 
             <input
-              className={`input boxShadow1x  placeholder:text-right placeholder:font-[bhoma]  ${ checkLoginRequierd && !user.password ? "border-[2px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :""}`}
+              className={`input boxShadow1x  placeholder:text-right placeholder:font-[bhoma]  ${ checkLoginRequierd && !user.password ? "border-[2px] border-solid border-[#f04242] placeholder:text-[#c23c3c]" :"placeholder:text-[#828282]"}`}
               name="password"
               placeholder="... رمز عبور را وارد کنید "
               type={type}

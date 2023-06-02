@@ -1,41 +1,43 @@
-import Head from 'next/head';
-import { useEffect, useState } from 'react';
-import Header from '../components/GeneralComponents/Header.js';
-import Main from '../components/Main/Main.js';
+import Head from "next/head";
+import { useEffect, useState } from "react";
+import Header from "../components/GeneralComponents/Header.js";
+import Main from "../components/Main/Main.js";
+
+import {
+  nameHandler,
+  tokenHandler,
+  isLoggedInHandler,
+} from "../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
+
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
+  
+  
+  const selectState = useSelector(tokenHandler);
+  const tokenState = selectState.payload.ProfileSettings.token;
 
-  const [isLoggedIn, SetIsLoggedIn] = useState(false);
-
-  const initialState = {
-    token: typeof window !== "undefined" ? window.localStorage.getItem('token') : false,
-    userName: typeof window !== "undefined" ? window.localStorage.getItem('userName') : false,
-  };
-
-  const logOut = () => {
-     SetIsLoggedIn(false);
-  }
+  const selectIsLoggedInState = useSelector(isLoggedInHandler);
+  const isLoggedInState = selectIsLoggedInState.payload.ProfileSettings.isLoggedIn;
+  const SetIsLoggedInHandler = useDispatch();
 
   useEffect(() => {
-
-    if (initialState.token && initialState.userName) {
-      SetIsLoggedIn(true);
+    if (localStorage.getItem("userName") && localStorage.getItem("token")) {
+      SetIsLoggedInHandler(isLoggedInHandler(true));
+    }else if(!localStorage.getItem("userName") || !localStorage.getItem("token")) {
+      SetIsLoggedInHandler(isLoggedInHandler(false));
     }
-
-  }, [initialState.token])
+  }, [isLoggedInState]);
 
   return (
     <>
-
       <Head>
         <title>Pet Shop</title>
         <meta property="og:title" content="Pet Shop" key="title" />
       </Head>
 
-      <Header isLoggedIn={isLoggedIn} logOut={logOut} />
+      <Header />
       <Main />
-
     </>
-
-  )
+  );
 }
