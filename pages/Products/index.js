@@ -26,7 +26,7 @@ const Products = () => {
          const list = result.data.map((item) => (
             <ProductCard
                imageWidth={130}
-               imageHeight={120}
+               imageHeight={130}
                name={item.name}
                price={item.price}
                productImage={item.productImage}
