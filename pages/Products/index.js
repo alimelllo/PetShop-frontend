@@ -5,7 +5,7 @@ import { skeleton } from '../../components/Main/Main.js';
 import productService from '../../Services/ProductsServices/product.service';
 import ProductCard from '../../components/GeneralComponents/ProductCard';
 
-const Products = () => {
+const Products = (props) => {
 
    const [loadingProducts, SetLoadingProducts] = useState([]);
    const [isLoading, SetIsLoading] = useState(false);
@@ -42,15 +42,27 @@ const Products = () => {
    }
 
    useEffect(() => {
-      getAllProducts();
+      const list = props.data.map((item) => (
+         <ProductCard
+            imageWidth={130}
+            imageHeight={130}
+            name={item.name}
+            price={item.price}
+            productImage={item.productImage}
+            description={item.description}
+            weight={item.weight}
+            width={"w-[18%] md:w-[45%]"} />
+      ))
+      SetProductList(list);
    }, [])
 
    const handleEnterPress = (event) => {
-      console.log("hit");
       if (event.key === "Enter") {
          getAllProducts(searchText);
       }
    }
+ 
+console.log(props)
 
    return (
       <div>
@@ -59,7 +71,7 @@ const Products = () => {
 
             <div className='PRODUCTS_CONTAINER w-full mt-[1rem] pl-5 border-r-[3px] border-r-[solid] border-r-[#f7f7f7] flex flex-row flex-wrap h-[100%]'>
                <div className='bg-[#e8e8e861] shadow-2xl pr-5 flex flex-row justify-end items-center w-full py-2 mx-auto mt-[1rem]'>
-                  <button  onClick={() => getAllProducts(searchText)} className='mr-5 bg-[#537df9f4] rounded-[15px] font-[Bhoma] px-5 h-[3rem] text-white flex justify-center items-center transition-all duration-200 hover:bg-[#535ef9f4] shadow-2xl '>جستجو</button>
+                  <button onClick={() => getAllProducts(searchText)} className='mr-5 bg-[#537df9f4] rounded-[15px] font-[Bhoma] px-5 h-[3rem] text-white flex justify-center items-center transition-all duration-200 hover:bg-[#535ef9f4] shadow-2xl '>جستجو</button>
                   <input
                      onKeyUp={(e) => handleEnterPress(e)}
                      onChange={(e) => SetSearchText(e.target.value)}
@@ -82,3 +94,12 @@ const Products = () => {
 }
 
 export default Products;
+
+export async function getServerSideProps(context) {
+   const result = await productService.getAllProducts("");
+   return {
+      props: {
+         data: result.data
+      }
+   }
+}

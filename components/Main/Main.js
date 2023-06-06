@@ -21,21 +21,14 @@ export const skeleton = (height, width) => {
     )
 }
 
-const Main = () => {
+const Main = ( props ) => {
 
     const [productList, SetProductList] = useState([]);
     const [isLoading, SetIsLoading] = useState(true);
 
-
-
     useEffect(() => {
-
-        const getAllProducts = async () => {
-
             try {
-                const result = await productService.getAllProducts("");
-                console.log(result);
-                const list = result.data.map((item, i) => (
+                const list = props.data.map((item, i) => (
                     <ProductCard
                         key={i}
                         imageWidth={130}
@@ -57,8 +50,7 @@ const Main = () => {
             } catch (err) {
                 SetIsLoading(false);
             }
-        }
-        getAllProducts();
+    
     }, [])
 
     return (

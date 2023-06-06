@@ -20,7 +20,6 @@ const Header = (props) => {
   const isLoggedInState = selectState.payload.ProfileSettings.isLoggedIn;
   const SetIsLoggedInHandler = useDispatch();
   
-
   const { asPath } = useRouter();
 
   const [clientWindowHeight, setClientWindowHeight] = useState("");
@@ -82,7 +81,7 @@ const Header = (props) => {
             <div>
               <Menu.Button
                 className={`font-[monospace] h-[3rem] mt-3 md:mt-1 cursor-pointer transition-all duration-200 ${
-                  clientWindowHeight > 30
+                  clientWindowHeight > 30 || asPath === "/Products"
                     ? " text-[#7587ff] font-[600] hover:text-[#2236b8]"
                     : "text-[white] hover:font-[600] md:text-[#7587ff] md:font-[600] hover:text-[#363636]"
                 }  text-[1.5rem] pr-3`}
