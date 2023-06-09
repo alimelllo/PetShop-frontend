@@ -3,31 +3,34 @@ import "../styles/register.css";
 import "animate.css/animate.min.css";
 import store from "../Redux/Store.tsx";
 import { Provider } from "react-redux";
-import { useEffect, useState } from "react";
-
-
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
+import "../styles/nprogress.css";
+import Router from "next/router";
+import { useEffect } from "react";
 
 function MyApp({ Component, pageProps }) {
-
-  const [session, SetSession] = useState({});
+  NProgress.configure({ showSpinner: false });
+  NProgress.configure({ easing: "ease", speed: 800 });
 
   useEffect(() => {
-    SetSession({
-      token: localStorage.getItem("token"),
-      userName: localStorage.getItem("userName")
-    })
-  },[])
+    Router.events.on("routeChangeStart", NProgress.start);
+    Router.events.on("routeChangeComplete", NProgress.done);
+    Router.events.on("routeChangeError", NProgress.done);
+    return () => {
+      Router.events.off("routeChangeStart", NProgress.start);
+      Router.events.off("routeChangeComplete", NProgress.done);
+      Router.events.off("routeChangeError", NProgress.done);
+    };
+  }, []);
 
-  pageProps.session = session;
- 
   return (
     <>
       <Provider store={store}>
-         <Component {...pageProps} />
+        <Component {...pageProps} />
       </Provider>
     </>
   );
 }
 
 export default MyApp;
-

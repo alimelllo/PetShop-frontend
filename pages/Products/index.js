@@ -62,7 +62,7 @@ const Products = (props) => {
       }
    }
  
-console.log(props)
+
 
    return (
       <div>

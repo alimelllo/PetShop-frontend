@@ -2,33 +2,9 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import Header from "../components/GeneralComponents/Header.js";
 import Main from "../components/Main/Main.js";
-import productService from '../Services/ProductsServices/product.service';
-import {
-  nameHandler,
-  tokenHandler,
-  isLoggedInHandler,
-} from "../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
+import productService from "../Services/ProductsServices/product.service";
 
-import { useDispatch, useSelector } from "react-redux";
-
-export default function Home( props ) {
-  
-  const selectState = useSelector(tokenHandler);
-  const tokenState = selectState.payload.ProfileSettings.token;
-
-  const selectIsLoggedInState = useSelector(isLoggedInHandler);
-  const isLoggedInState = selectIsLoggedInState.payload.ProfileSettings.isLoggedIn;
-  const SetIsLoggedInHandler = useDispatch();
-
-  console.log(props);
-  useEffect(() => {
-    if (props.session.userName && props.session.token) {
-      SetIsLoggedInHandler(isLoggedInHandler(true));
-    }else if(!props.session.userName || !props.session.token) {
-      SetIsLoggedInHandler(isLoggedInHandler(false));
-    }
-  } );
-
+export default function Home(props) {
   return (
     <>
       <Head>
@@ -44,9 +20,9 @@ export default function Home( props ) {
 
 export async function getStaticProps() {
   const result = await productService.getAllProducts("");
-  return{
+  return {
     props: {
-      data : result.data
-    }
-  }
+      data: result.data,
+    },
+  };
 }

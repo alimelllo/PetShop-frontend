@@ -7,7 +7,11 @@ import { useState, useEffect } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { useRouter } from "next/router";
 
-import { nameHandler , tokenHandler , isLoggedInHandler } from '../../Redux/Reducers/Settings/Profile/ProfileSettings.ts';
+import {
+  nameHandler,
+  tokenHandler,
+  isLoggedInHandler,
+} from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
 import { useDispatch, useSelector } from "react-redux";
 
 function classNames(...classes) {
@@ -15,11 +19,24 @@ function classNames(...classes) {
 }
 
 const Header = (props) => {
-  
   const selectState = useSelector(isLoggedInHandler);
   const isLoggedInState = selectState.payload.ProfileSettings.isLoggedIn;
   const SetIsLoggedInHandler = useDispatch();
-  
+
+  const selectTokenState = useSelector(tokenHandler);
+  const tokenState = selectTokenState.payload.ProfileSettings.token;
+
+  useEffect(() => {
+    if (localStorage.getItem("token") && localStorage.getItem("userName")) {
+      SetIsLoggedInHandler(isLoggedInHandler(true));
+    } else if (
+      !localStorage.getItem("token") ||
+      !localStorage.getItem("userName")
+    ) {
+      SetIsLoggedInHandler(isLoggedInHandler(false));
+    }
+  }, []);
+
   const { asPath } = useRouter();
 
   const [clientWindowHeight, setClientWindowHeight] = useState("");
@@ -32,8 +49,6 @@ const Header = (props) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   });
-
- 
 
   return (
     <div
