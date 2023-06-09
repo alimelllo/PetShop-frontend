@@ -1,8 +1,11 @@
 import BaseUrl from "../BaseUrl.ts";
 
 class ProductServices {
-  getAllProducts( searchText ) {
-    return BaseUrl.get(`/getAllProducts/${searchText}`);
+  getAllProducts( searchText , productGroup) {
+    return BaseUrl.get(`/getAllProducts/${searchText}${productGroup ? `/${productGroup}` : null}`);
+  }
+  getAllProductGroups(){
+    return BaseUrl.get("/getAllProductGroups" );
   }
 }
 

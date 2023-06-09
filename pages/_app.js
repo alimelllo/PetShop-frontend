@@ -10,10 +10,11 @@ import Router from "next/router";
 import { useEffect } from "react";
 
 function MyApp({ Component, pageProps }) {
-  NProgress.configure({ showSpinner: false });
+  // NProgress.configure({ showSpinner: false });
   NProgress.configure({ easing: "ease", speed: 800 });
 
   useEffect(() => {
+    NProgress.done(true);
     Router.events.on("routeChangeStart", NProgress.start);
     Router.events.on("routeChangeComplete", NProgress.done);
     Router.events.on("routeChangeError", NProgress.done);
@@ -21,7 +22,8 @@ function MyApp({ Component, pageProps }) {
       Router.events.off("routeChangeStart", NProgress.start);
       Router.events.off("routeChangeComplete", NProgress.done);
       Router.events.off("routeChangeError", NProgress.done);
-    };
+      NProgress.done(false);
+    }; 
   }, []);
 
   return (
