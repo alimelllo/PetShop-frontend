@@ -51,7 +51,7 @@ const Header = (props) => {
   });
 
   return (
-    <div
+    <header
       className={`flex flex-row w-full ${
         asPath === "/Products" && "shadow-xl bg-white"
       }  ${
@@ -59,9 +59,11 @@ const Header = (props) => {
       } transition-all duration-300 fixed top-0 justify-between text-white z-50 font-[Bhoma] md:pt-2 md:pb-4 md:bg-[white] md:shadow-2xl`}
     >
       <div className="w-6/12 flex flex-row justify-between text-[#505050]  text-center text-[1.25rem] md:text-[1rem]">
-        <div className="w-[22%] ml-5 md:hidden  ">
+        {asPath !== "/" ? <div className="w-[22%] ml-5 md:hidden  cursor-pointer">
+          <Link href='/'><Image src={logo} /></Link>
+        </div> : <div className="w-[22%] ml-5 md:hidden ">
           <Image src={logo} />
-        </div>
+        </div>}
 
         <div className="flex flex-row w-8/12 justify-between pt-4">
           <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 pt-2 md:px-3 md:font-[700] ml-[10rem] md:ml-0 mx-5 hover:shadow-xl rounded-[20px] md:mx-0  cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
@@ -166,7 +168,7 @@ const Header = (props) => {
           </div>
         )}
       </div>
-    </div>
+    </header>
   );
 };
 

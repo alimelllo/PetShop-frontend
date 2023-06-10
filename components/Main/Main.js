@@ -7,13 +7,14 @@ import productService from '../../Services/ProductsServices/product.service';
 import ProductCard from '../GeneralComponents/ProductCard';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css';
-import instagram from './../../public/images//icons/instagram.png';
-import whatsapp from './../../public/images//icons/whatsapp.png';
-import gmail from './../../public/images//icons/gmail.png';
-import twitter from './../../public/images//icons/twitter.png';
-import expressDelivery from '../../public/images/expressDelivery.png';
-import guarantee from '../../public/images/guarantee.png';
 import Link from 'next/link';
+import expressDelivery from '../../public/images/icons/expressDelivery.svg';
+import guarantee from '../../public/images/icons/guarantee.svg';
+import { Icon } from 'react-icons-kit';
+import { instagram } from 'react-icons-kit/fa/instagram';
+import { whatsapp } from 'react-icons-kit/fa/whatsapp'
+import { phone } from 'react-icons-kit/fa/phone';
+import {telegram} from 'react-icons-kit/fa/telegram';
 
 export const skeleton = (height, width) => {
     return (
@@ -21,36 +22,36 @@ export const skeleton = (height, width) => {
     )
 }
 
-const Main = ( props ) => {
+const Main = (props) => {
 
     const [productList, SetProductList] = useState([]);
     const [isLoading, SetIsLoading] = useState(true);
 
     useEffect(() => {
-            try {
-                const list = props.data.map((item, i) => (
-                    <ProductCard
-                        key={i}
-                        imageWidth={130}
-                        imageHeight={140}
-                        name={item.name}
-                        price={item.price}
-                        productImage={item.productImage}
-                        description={item.description}
-                        weight={item.weight}
-                        width={"w-[19%] md:w-[45%]"} />
-                ))
-                let arr = [];
-                for (let i = 0; i < list.length; i++) {
-                    arr.push(list[i]);
-                    if (i === 3) break
-                }
-                SetProductList(arr);
-                SetIsLoading(false);
-            } catch (err) {
-                SetIsLoading(false);
+        try {
+            const list = props.data.map((item, i) => (
+                <ProductCard
+                    key={i}
+                    imageWidth={130}
+                    imageHeight={140}
+                    name={item.name}
+                    price={item.price}
+                    productImage={item.productImage}
+                    description={item.description}
+                    weight={item.weight}
+                    width={"w-[19%] md:w-[45%]"} />
+            ))
+            let arr = [];
+            for (let i = 0; i < list.length; i++) {
+                arr.push(list[i]);
+                if (i === 3) break
             }
-    
+            SetProductList(arr);
+            SetIsLoading(false);
+        } catch (err) {
+            SetIsLoading(false);
+        }
+
     }, [])
 
     return (
@@ -92,30 +93,32 @@ const Main = ( props ) => {
 
 
             <div className='mt-[20rem] mb-[10rem] md:my-[10rem] flex flex-row md:flex-col  shadow-2xl font-[Bhoma] w-10/12 bg-gradient-to-r from-[#1c0f31] to-[#161136] rounded-[20px]  mx-auto'>
-                <div className='w-3/12 d:w-10/12 p-2 shadow-2xl rounded-[15px] '>
-                    <p className='text-[#d6d6d6] text-center pt-3 text-[1.5rem] shadow-lg'> ارسال سریع</p>
-                    <div className="w-7/12 mx-auto opacity-[0.7] my-5 ">
-                        <Image src={expressDelivery} />
+                <div className='w-3/12 md:w-full shadow-2xl rounded-[15px] py-5'>
+                    <p className='text-[#d6d6d6] text-center text-[1.5rem] shadow-lg'> ارسال سریع</p>
+                    <div className="w-5/12 mx-auto opacity-[0.7]">
+                        <Image className="w-5/12 mx-auto opacity-[0.7]" src={expressDelivery} />
                     </div>
+                    <p className='text-white text-center opacity-[0.7]'>منشتسایشمسابشنستبذشسنتذبنتشسذبتنشذ</p>
                 </div>
                 <div className='w-3/12 md:w-full pb-[2rem] boxShadow2x overflow-hidden bg-gradient-to-r from-[#511e62] relative to-[#421b71] rounded-[10px] scale-110 transition-all duration-200 '>
                     <span className='bg-[#9595956b] rounded-[50%] w-[10rem] h-[10rem] absolute left-[60%] bottom-[60%]'></span>
                     <p className='text-[#d6d6d6] pl-5 py-3 text-[1.75rem]'> پرفروش </p>
-
                 </div>
-                <div className='w-3/12 d:w-10/12 shadow-2xl text-center'>
-                    <p className='text-[#d6d6d6] pl-5 pt-3 text-[1.5rem]'> ضمانت کالا </p>
-                    <div className="w-6/12 mx-auto opacity-[0.7] mt-[1rem]">
-                        <Image src={guarantee} />
+                <div className='w-3/12 md:w-full shadow-2xl text-center py-5'>
+                    <p className='text-[#d6d6d6] text-[1.5rem]'> ضمانت کالا </p>
+                    <div className="w-4/12 mx-auto opacity-[0.6] mt-3">
+                        <Image className='' src={guarantee} />
                     </div>
+                    <p className='text-white text-center opacity-[0.7] mt-2'>شسیشکسیتشسمنیشسمنیتشسم</p>
                 </div>
-                <div className='w-3/12 d:w-10/12 pb-[2rem] shadow-2xl rounded-[15px] text-center'>
-                    <p className='text-[#d6d6d6] pl-5 py-3 text-[1.5rem]'> مشتری ها </p>
-                    <div className="w-8/12 mx-auto opacity-[0.8] my-5 mr-10">
-                        <div className='w-[8rem] mt-5 m-auto h-[8rem] rounded-[50%] bg-[#59bd8ea0]' src={expressDelivery}>
+                <div className='w-3/12 md:w-full pb-[2rem] shadow-2xl rounded-[15px] text-center py-5'>
+                    <p className='text-[#d6d6d6] text-[1.5rem]'> مشتری ها </p>
+                    <div className="w-8/12 mx-auto opacity-[0.8] ">
+                        <div className='w-[7rem] m-auto h-[7rem] rounded-[50%] bg-[#59bd8ea0] mt-4 mb-3 ' >
 
                         </div>
                     </div>
+                    <p className='text-white text-center opacity-[0.7]'>۴۷ مشتری فعال</p>
                 </div>
             </div>
 
@@ -147,18 +150,18 @@ const Main = ( props ) => {
 
 
 
-            <div className='bg-gradient-to-r from-[#1c0f31] to-[#161136] mt-[10rem] rounded-t-[40px] w-11/12 mx-auto flex flex-col'>
+            <footer className='bg-gradient-to-r from-[#1c0f31] to-[#161136] mt-[10rem] rounded-t-[40px] w-11/12 mx-auto flex flex-col'>
 
                 <div className='bg-[#8383831b] w-[95%] mx-auto my-[3rem] rounded-[10px] flex flex-row justify-between md:flex-wrap'>
 
                     <div className='text-[#c2c2c2] pt-3 shadow-2xl h-[10rem]  text-center w-3/12 md:w-5/12'>
-                        Cell
+                        خدمات مشتریان
                     </div>
                     <div className='text-[#c2c2c2] pt-3 shadow-2xl h-[10rem]  text-center w-3/12 md:w-5/12'>
-                        Cell
+                        اطلاعات فودآس
                     </div>
                     <div className='text-[#c2c2c2] pt-3 shadow-2xl h-[10rem]  text-center w-3/12 md:w-5/12'>
-                        Cell
+                        دسته‌بندی‌ها
                     </div>
                     <div className='text-[#c2c2c2] pt-3 shadow-2xl  h-[10rem]  text-center w-3/12 md:w-5/12'>
                         Cell
@@ -171,16 +174,24 @@ const Main = ( props ) => {
                 <div className='flex flex-row justify-center mx-auto  w-4/12 md:w-10/12 '>
 
                     <div className=' w-[3rem] mx-5 rounded-[10px] cursor-pointer hover:scale-125 transition-all duration-300'>
-                        <Image src={instagram} layout="responsive" objectFit='cover' />
+                        <div className='bg-neutral-400 w-[4vw] h-[4vw] md:w-[40px] md:h-[40px] rounded-[50px] flex justify-center items-center hover:bg-pink-500 py-1'>
+                            <Icon icon={instagram} size={30} style={{ color: 'white' }}></Icon>
+                        </div>
                     </div>
                     <div className=' w-[3rem] mx-5 rounded-[10px] cursor-pointer hover:scale-125 transition-all duration-300'>
-                        <Image src={whatsapp} layout="responsive" objectFit='cover' />
+                        <div className='bg-neutral-400 w-[4vw] h-[4vw] md:w-[40px] md:h-[40px] rounded-[50px] flex justify-center items-center hover:bg-green-500 py-1'>
+                            <Icon icon={whatsapp} size={30} style={{ color: 'white' }}></Icon>
+                        </div>
                     </div>
                     <div className='w-[3rem] mx-5 rounded-[10px] cursor-pointer hover:scale-125 transition-all duration-300'>
-                        <Image src={gmail} layout="responsive" objectFit='cover' />
+                        <div className='bg-neutral-400 w-[4vw] h-[4vw] md:w-[40px] md:h-[40px] rounded-[50px] flex justify-center items-center hover:bg-[#007fc9] py-1'>
+                            <Icon icon={telegram} size={30} style={{ color: 'white' }}></Icon>
+                        </div>
                     </div>
                     <div className='w-[3rem] mx-5 rounded-[10px] cursor-pointer hover:scale-125 transition-all duration-300'>
-                        <Image src={twitter} layout="responsive" objectFit='cover' />
+                    <div className='bg-neutral-400 w-[4vw] h-[4vw] md:w-[40px] md:h-[40px] rounded-[50px] flex justify-center items-center hover:bg-orange-600 py-1'>
+                            <Icon icon={phone} size={30} style={{ color: 'white' }}></Icon>
+                        </div>
                     </div>
 
 
@@ -188,7 +199,7 @@ const Main = ( props ) => {
 
                 <p className='text-[#a1a1a1] text-center  py-[1rem] text-[1rem] md:text-[0.75rem] font-[monospace]'>&copy;2023 Feed Us IR,inc.All rights reserved </p>
 
-            </div>
+            </footer>
 
 
 

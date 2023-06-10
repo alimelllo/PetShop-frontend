@@ -112,12 +112,12 @@ const Products = (props) => {
             </div>
           )}
         </div>
-        <div className="FILTER_CONTAINER bg-white w-2/12 shadow-2xl h-screen">
+        <aside className="FILTER_CONTAINER bg-white w-2/12 shadow-2xl h-screen">
           <p className="text-right pr-10 font-[bhoma] text-[1.3rem] text-[gray] mt-[3rem] py-3 pb-4 shadow-xl">
             فیلتر
           </p>
           {productGroups}
-        </div>
+        </aside>
       </div>
     </div>
   );
