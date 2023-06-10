@@ -20,29 +20,13 @@ const Products = (props) => {
     SetLoadingProducts(arr);
   }, []);
 
-  useEffect(() => {
-    try {
-      productService.getAllProductGroups().then((result) => {
-        console.log(result);
-        
-        const list = result.data.map((item) => (
-          <div className="my-5 flex flex-row justify-end">
-            <p className="text-right font-[bhoma] text-[1rem] text-[gray] mr-5 ">
-              {item.title}
-            </p>
-            <input className="mr-5" type={"checkbox"}/>
-          </div>
-        ));
-        SetProductGroups(list);
-      });
-    } catch (err) {}
-  }, []);
+  
 
-  const getAllProducts = async (searchText) => {
+  const getAllProducts = async (searchText , productGroup) => {
     SetIsLoading(true);
     try {
       const result = await productService.getAllProducts(
-        searchText ? searchText : ""
+        searchText ? searchText : "" , productGroup
       );
       const list = result.data.map((item) => (
         <ProductCard
@@ -62,6 +46,22 @@ const Products = (props) => {
       SetIsLoading(false);
     }
   };
+
+useEffect(() => {
+    try {
+      productService.getAllProductGroups().then((result) => {
+        const list = result.data.map((item) => (
+          <div className="my-5 flex flex-row justify-end">
+            <p className="text-right font-[bhoma] text-[1rem] text-[gray] mr-5 ">
+              {item.title}
+            </p>
+            <input onChange={(e) => {e.target.checked ? getAllProducts("" , item.categoryName) : null}} className="mr-5" type={"checkbox"}/>
+          </div>
+        ));
+        SetProductGroups(list);
+      });
+    } catch (err) {}
+  }, []);
 
   useEffect(() => {
     const list = props.data.map((item) => (
