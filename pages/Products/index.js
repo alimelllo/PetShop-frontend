@@ -11,6 +11,8 @@ const Products = (props) => {
   const [productList, SetProductList] = useState([]);
   const [searchText, SetSearchText] = useState("");
   const [productGroups, SetProductGroups] = useState([]);
+  const [pageNumber , SetPageNumber]=useState(undefined);
+
 
   useEffect(() => {
     const arr = [];
@@ -20,13 +22,13 @@ const Products = (props) => {
     SetLoadingProducts(arr);
   }, []);
 
-  
 
-  const getAllProducts = async (searchText , productGroup) => {
+
+  const getAllProducts = async (searchText, productGroup , pageNumber) => {
     SetIsLoading(true);
     try {
       const result = await productService.getAllProducts(
-        searchText ? searchText : "" , productGroup
+        searchText ? searchText : "", productGroup , pageNumber
       );
       const list = result.data.map((item) => (
         <ProductCard
@@ -47,7 +49,7 @@ const Products = (props) => {
     }
   };
 
-useEffect(() => {
+  useEffect(() => {
     try {
       productService.getAllProductGroups().then((result) => {
         const list = result.data.map((item) => (
@@ -55,12 +57,12 @@ useEffect(() => {
             <p className="text-right font-[bhoma] text-[1rem] text-[gray] mr-5 ">
               {item.title}
             </p>
-            <input onChange={(e) => {e.target.checked ? getAllProducts("" , item.categoryName) : null}} className="mr-5" type={"checkbox"}/>
+            <input onChange={(e) => { e.target.checked ? getAllProducts("", item.categoryName, 1) : null ; SetSearchText('');}} className="mr-5" type={"checkbox"} />
           </div>
         ));
         SetProductGroups(list);
       });
-    } catch (err) {}
+    } catch (err) { }
   }, []);
 
   useEffect(() => {
@@ -86,11 +88,19 @@ useEffect(() => {
     }
   };
 
+useEffect(() => {
+  if(pageNumber){
+       console.log(pageNumber);
+       getAllProducts("", "", pageNumber);
+  }
+} ,[ pageNumber ])
+
+
   return (
-    <div>
+    <div className="h-screen">
       <Header />
       <div className="flex flex-row  mt-[3rem]">
-        <div className="PRODUCTS_CONTAINER w-full mt-[1rem] pl-5 border-r-[3px] border-r-[solid] border-r-[#f7f7f7] flex flex-row flex-wrap h-[100%]">
+        <div className="PRODUCTS_CONTAINER  w-full mt-[1rem] pl-5 border-r-[3px] border-r-[solid] border-r-[#f7f7f7] flex flex-row flex-wrap h-[100%]">
           <div className="bg-[#e8e8e861] shadow-2xl pr-5 flex flex-row justify-end items-center w-full pt-4 py-3 mx-auto mt-[1rem]">
             <button
               onClick={() => getAllProducts(searchText)}
@@ -107,16 +117,23 @@ useEffect(() => {
           </div>
           {isLoading && loadingProducts}
           {!isLoading && (
-            <div className=" w-full flex flex-row flex-wrap justify-around">
-              {productList}
-            </div>
+            <>
+              <div className=" w-full flex flex-row flex-wrap justify-around">
+                {productList}
+              </div>
+              <div className="w-2/12 flex flex-row justify-around mx-auto my-5">
+                <button disabled={ !pageNumber || pageNumber === 1 ? true : false } onClick={() => SetPageNumber(pageNumber - 1) }  className="pb-1 px-2 rounded-[10px] shadow-xl hover:bg-[#6487f0f4] hover:text-white font-[700] border-[#6487f0f4] border-solid border-[1px]  transition-all duration-200 cursor-pointer text-[#6487f0f4]">{"<<"}</button>
+                <p className="p-2 px-4 rounded-[10px] shadow-xl bg-[#395cc7f4]  font-[700] transition-all duration-200 text-white">{pageNumber ? pageNumber : 1}</p>
+                <button onClick={() =>{ pageNumber ? SetPageNumber(pageNumber + 1) : SetPageNumber(2) }} className="pb-1 px-2 rounded-[10px] shadow-xl hover:bg-[#6487f0f4] font-[700] hover:text-white border-[#6487f0f4] border-solid border-[1px]  transition-all duration-200 cursor-pointer text-[#6487f0f4]">{">>"}</button>
+              </div>
+            </>
           )}
         </div>
-        <aside className="FILTER_CONTAINER bg-white w-2/12 shadow-2xl h-screen">
+        <aside className="FILTER_CONTAINER  w-2/12 shadow-2xl h-screen">
           <p className="text-right pr-10 font-[bhoma] text-[1.3rem] text-[gray] mt-[3rem] py-3 pb-4 shadow-xl">
             فیلتر
           </p>
-          {productGroups}
+          { productGroups }
         </aside>
       </div>
     </div>
@@ -126,7 +143,7 @@ useEffect(() => {
 export default Products;
 
 export async function getServerSideProps(context) {
-  const result = await productService.getAllProducts("" , "");
+  const result = await productService.getAllProducts("", "", 1);
   return {
     props: {
       data: result.data,

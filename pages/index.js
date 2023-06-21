@@ -19,7 +19,7 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-  const result = await productService.getAllProducts("");
+  const result = await productService.getAllProducts("" , "" , 1);
   return {
     props: {
       data: result.data,
