@@ -5,11 +5,16 @@ import { skeleton } from "../../components/Main/Main.js";
 import productService from "../../Services/ProductsServices/product.service";
 import ProductCard from "../../components/GeneralComponents/ProductCard";
 import MobileFilterDropDown from "../../components/Products/MobileFilterDropDown.js";
+import Skeleton from 'react-loading-skeleton'
 
 const Products = (props) => {
   
   const [loadingProducts, SetLoadingProducts] = useState([]);
+  
   const [isLoading, SetIsLoading] = useState(false);
+  const [categoyIsLoading, SetCategoryIsLoading] = useState(false);
+
+  const [ categoryName , SetCategoryName ] = useState("");
   const [productList, SetProductList] = useState([]);
   const [searchText, SetSearchText] = useState("");
   const [productGroups, SetProductGroups] = useState([]);
@@ -52,17 +57,23 @@ const Products = (props) => {
   };
 
   useEffect(() => {
+    SetCategoryIsLoading(true);
     try {
       productService.getAllProductGroups().then((result) => {
-        const list = result.data.map((item, i) => (
-          <div className="flex flex-row justify-end w-10/12 mx-auto my-2 font-[bhoma] text-[#505050]">
-            <label className="mr-5" >{item.title}</label>
-            <input type="radio" onChange={(e) => { e.target.checked ? getAllProducts("", item.categoryName, 1) : null; SetSearchText(''); }} value={item.categoryName} name="productGroup" />
+
+        result.data.unshift({title : 'نمایش همه ' , categoryName : null})
+        const list = result.data.map((item) => (
+          <div className="flex flex-row justify-end w-10/12 mx-auto my-2 border-b-[1px] border-b-solid border-b-[#d4d4d4] pb-4 font-[bhoma] text-[#979797]">
+            <label className="mr-5 text-[1.25rem]" >{item.title}</label>
+            <input type="radio" onChange={(e) => { e.target.checked ? SetCategoryName(item.categoryName) : null; SetSearchText(''); SetPageNumber(1);}} value={item.categoryName} name="productGroup" />
           </div>
         ));
         SetProductGroups(list);
+        SetCategoryIsLoading(false);
       });
-    } catch (err) { }
+    } catch (err) { 
+      SetCategoryIsLoading(false);
+    }
   }, []);
 
   useEffect(() => {
@@ -79,22 +90,22 @@ const Products = (props) => {
         width={"w-[18%] md:w-[45%]"}
       />
     ));
-    console.log(props.data)
     SetProductList(list);
   }, []);
 
   const handleEnterPress = (event) => {
     if (event.key === "Enter") {
-      getAllProducts(searchText);
+      getAllProducts(searchText , categoryName , 1);
+      SetPageNumber(1);
     }
   };
 
   useEffect(() => {
     if (pageNumber) {
-      console.log(pageNumber);
-      getAllProducts("", "", pageNumber);
+      getAllProducts("", categoryName , pageNumber);
+      console.log('requested ...')
     }
-  }, [pageNumber])
+  }, [pageNumber , categoryName])
 
 
   return (
@@ -102,7 +113,7 @@ const Products = (props) => {
       <Header />
       <div className="flex flex-row mt-[3rem]">
         <div className="PRODUCTS_CONTAINER w-10/12 md:w-full md:pl-0 mt-[1rem] pl-5 border-r-[3px] border-r-[solid] border-r-[#f7f7f7] flex flex-row flex-wrap">
-          <div className="bg-[#e8e8e861] shadow-2xl pr-5 flex flex-row justify-end md:justify-around items-center w-full pt-1 pb-2 mx-auto mt-[1rem]">
+          <div className="bg-[#e8e8e861] shadow-2xl pr-5 flex flex-row justify-end md:justify-around items-center w-full py-2 mx-auto mt-[1.5rem]">
             <button
               onClick={() => getAllProducts(searchText)}
               className="mr-5 md:mr-0 bg-[#537df9f4] rounded-[15px] font-[Bhoma] px-5 h-[3rem] text-white flex justify-center items-center transition-all duration-200 hover:bg-[#535ef9f4] shadow-2xl "
@@ -119,29 +130,57 @@ const Products = (props) => {
               <MobileFilterDropDown/>
             </aside>
           </div>
-          {isLoading && loadingProducts}
+         
+          { isLoading && loadingProducts }
+         
           {!isLoading && (
             <>
               <div className=" w-full flex flex-row flex-wrap justify-around">
                 {productList}
               </div>
-              <div className="w-2/12 md:w-6/12 flex flex-row justify-around mx-auto my-5">
-                <button disabled={!pageNumber || pageNumber === 1 ? true : false} onClick={() => SetPageNumber(pageNumber - 1)} className={`${!pageNumber || pageNumber === 1 ? "opacity-[0.5] hover:none" : "hover:bg-[#6487f0f4] hover:text-white"} pb-1 px-2 rounded-[10px] shadow-xl font-[700] border-[#6487f0f4] border-solid border-[1px]  transition-all duration-200 cursor-pointer text-[#6487f0f4]`}>{"<<"}</button>
+              { productList.length > 0 && <div className="w-2/12 md:w-6/12 flex flex-row justify-around mx-auto my-5">
+                <button disabled={!pageNumber || pageNumber === 1 ? true : false} onClick={() => SetPageNumber(pageNumber - 1)} className={`${!pageNumber || pageNumber === 1 ? "opacity-[0.5] hover:none" : "hover:bg-[#6487f0f4] hover:text-white cursor-pointer"} pb-1 px-2 rounded-[10px] shadow-xl font-[700] border-[#6487f0f4] border-solid border-[1px]  transition-all duration-200  text-[#6487f0f4]`}>{"<<"}</button>
                 <p className="p-2 px-4 rounded-[10px] shadow-xl bg-[#395cc7f4]  font-[700] transition-all duration-200 text-white">{pageNumber ? pageNumber : 1}</p>
-                <button disabled={productList.length < 10 ? true : false} onClick={() => { pageNumber ? SetPageNumber(pageNumber + 1) : SetPageNumber(2) }} className={` ${productList.length < 10 ? "opacity-[0.5] hover:none" : "hover:bg-[#6487f0f4] hover:text-white"}  pb-1 px-2 rounded-[10px] shadow-xl  font-[700]  border-[#6487f0f4] border-solid border-[1px]  transition-all duration-200 cursor-pointer text-[#6487f0f4]`}>{">>"}</button>
-              </div>
+                <button disabled={productList.length < 10 ? true : false} onClick={() => { pageNumber ? SetPageNumber(pageNumber + 1) : SetPageNumber(2) }} className={` ${productList.length < 10 ? "opacity-[0.5] hover:none" : "hover:bg-[#6487f0f4] hover:text-white cursor-pointer"}  pb-1 px-2 rounded-[10px] shadow-xl  font-[700]  border-[#6487f0f4] border-solid border-[1px]  transition-all duration-200 text-[#6487f0f4]`}>{">>"}</button>
+              </div> }
+             { productList.length === 0 &&
+              <div className="mx-auto mt-[10rem] font-[bhoma] text-[2rem] text-[#a5a5a5]">
+                 <p className="">هیچ موردی یافت نشد</p>
+              </div> }
             </>
           )}
         </div>
+        
         <aside className="FILTER_CONTAINER md:hidden w-2/12 shadow-2xl fixed right-0 h-screen ">
-          <p className="text-right pr-10 font-[bhoma] text-[1.3rem] text-[gray] py-3 mt-[2rem] shadow-xl">
+          <p className="text-right pr-10 font-[bhoma] text-[1.3rem] text-[gray] py-3 mt-[3rem] shadow-xl">
             فیلتر
           </p>
-          <div className="flex flex-col mt-5">
+          { !categoyIsLoading && <div className="flex flex-col mt-5">
             {productGroups}
-          </div>
-
+          </div> }
+          { categoyIsLoading && 
+          <>
+                <div className='w-[80%] mx-auto   my-8'>
+                  <Skeleton count={1} baseColor='#e1dfdff4'  height={'1.5rem'} highlightColor='white' />
+               </div>
+               <div className='w-[80%] mx-auto   my-8'>
+                  <Skeleton count={1} baseColor='#e1dfdff4' height={'1.5rem'}  highlightColor='white' />
+               </div>
+               <div className='w-[80%] mx-auto   my-8'>
+                 <Skeleton count={1} baseColor='#e1dfdff4' height={'1.5rem'}  highlightColor='white' />
+               </div>
+               <div className='w-[80%] mx-auto   my-8'>
+                 <Skeleton count={1} baseColor='#e1dfdff4' height={'1.5rem'}  highlightColor='white' />
+               </div>
+               <div className='w-[80%] mx-auto   my-8'>
+                 <Skeleton count={1} baseColor='#e1dfdff4' height={'1.5rem'}  highlightColor='white' />
+               </div>
+               <div className='w-[80%] mx-auto   my-8'>
+                 <Skeleton count={1} baseColor='#e1dfdff4' height={'1.5rem'}  highlightColor='white' />
+               </div>
+</> }
         </aside>
+      
       </div>
     </div>
   );

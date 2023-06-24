@@ -6,7 +6,7 @@ import React from "react";
 const productCard = (props) => {
     return (
         <Link href={`/Products/${props.id}`}>
-            <div className={`shadow-2xl ${props.width} rounded-[10px] flex flex-col  justify-between my-5`}>
+            <div className={`shadow-2xl ${props.width} rounded-[10px] flex flex-col transition-all duration-200 hover:cursor-pointer hover:bg-[#f5f5f5] justify-between my-5`}>
                 <div className='m-3 innerShadow2 p-3 min-h-[45%] flex justify-center'>
                     <Image width={props.imageWidth} height={props.imageHeight} src={props.productImage} />
                 </div>
