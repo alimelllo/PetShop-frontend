@@ -53,7 +53,7 @@ const Header = (props) => {
   return (
     <header
       className={`flex flex-row w-full ${
-        asPath === "/Products" && "shadow-xl bg-white"
+        asPath !== "/" && "shadow-xl bg-white"
       }  ${
         clientWindowHeight > 30 ? " bg-white shadow-2xl " : "bg-transparent"
       } transition-all duration-300 fixed top-0 justify-between text-white z-50 font-[Bhoma] md:pt-2 md:pb-4 md:bg-[white] md:shadow-2xl`}

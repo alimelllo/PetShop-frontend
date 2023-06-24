@@ -7,6 +7,9 @@ class ProductServices {
   getAllProductGroups(){
     return BaseUrl.get("/getAllProductGroups" );
   }
+  getAllProductIds(){
+    return BaseUrl.get("/getAllProductIds");
+  }
 }
 
 export default new ProductServices();
