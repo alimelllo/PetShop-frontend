@@ -32,6 +32,7 @@ const Main = (props) => {
             const list = props.data.map((item, i) => (
                 <ProductCard
                     key={i}
+                    id={item.id}
                     imageWidth={130}
                     imageHeight={140}
                     name={item.name}
