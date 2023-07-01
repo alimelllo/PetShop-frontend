@@ -17,7 +17,10 @@ const Products = (props) => {
   const [ categoryName , SetCategoryName ] = useState("");
   const [productList, SetProductList] = useState([]);
   const [searchText, SetSearchText] = useState("");
+
   const [productGroups, SetProductGroups] = useState([]);
+  const [productGroupsData, SetProductGroupsData] = useState([]);
+
   const [pageNumber, SetPageNumber] = useState(undefined);
 
   useEffect(() => {
@@ -61,7 +64,9 @@ const Products = (props) => {
     try {
       productService.getAllProductGroups().then((result) => {
 
-        result.data.unshift({title : 'نمایش همه ' , categoryName : null})
+        result.data.unshift({title : 'نمایش همه ' , categoryName : null});
+        SetProductGroupsData(result.data);
+
         const list = result.data.map((item) => (
           <div className="flex flex-row justify-end w-10/12 mx-auto my-2 border-b-[1px] border-b-solid border-b-[#d4d4d4] pb-4 font-[bhoma] text-[#979797]">
             <label className="mr-5 text-[1.25rem]" >{item.title}</label>
@@ -113,7 +118,7 @@ const Products = (props) => {
       <Header />
       <div className="flex flex-row mt-[3rem]">
         <div className="PRODUCTS_CONTAINER w-10/12 md:w-full md:pl-0 mt-[1rem] pl-5 border-r-[3px] border-r-[solid] border-r-[#f7f7f7] flex flex-row flex-wrap">
-          <div className="bg-[#e8e8e861] shadow-2xl pr-5 flex flex-row justify-end md:justify-around items-center w-full py-2 mx-auto mt-[1.5rem]">
+          <div className="bg-[#e8e8e861] shadow-2xl pr-5 flex flex-row justify-end md:justify-around items-center w-full py-2 mx-auto mt-[1.5rem] md:mt-[0.5rem] ">
             <button
               onClick={() => getAllProducts(searchText)}
               className="mr-5 md:mr-0 bg-[#537df9f4] rounded-[15px] font-[Bhoma] px-5 h-[3rem] text-white flex justify-center items-center transition-all duration-200 hover:bg-[#535ef9f4] shadow-2xl "
@@ -127,7 +132,7 @@ const Products = (props) => {
               placeholder="... محصول مورد نظر را جستجو کنید"
             />
             <aside className="hidden md:flex w-1/12 justify-center">
-              <MobileFilterDropDown/>
+              <MobileFilterDropDown service={getAllProducts} productGroups={productGroupsData}/>
             </aside>
           </div>
          

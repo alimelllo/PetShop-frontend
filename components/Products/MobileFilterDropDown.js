@@ -7,8 +7,10 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
 
-const MobileFilterDropDown = () => {
-    return ( 
+const MobileFilterDropDown = ( props ) => {
+  console.log(props);
+    
+  return ( 
         <Menu as="div" className="relative text-center ">
         <div>
           <Menu.Button>
@@ -29,36 +31,19 @@ const MobileFilterDropDown = () => {
         >
           <Menu.Items className="absolute font-[Bhoma] text-[1.25rem] right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="py-1">
-              <Menu.Item>
+              {props.productGroups.map((item) => (
+                <Menu.Item>
                 {({ active }) => (
                   <button
+                  onClick={() => {props.service('' , item.categoryName , 1);}}
                     type="submit"
-                    className={classNames(
-                      active
-                        ? "bg-gray-100 text-gray-900"
-                        : "text-gray-700",
-                      "block w-full px-4 py-2 text-right "
-                    )}
-                  >
-                    پروفایل
+                    className={classNames( active ? "bg-gray-100 text-gray-900" : "text-gray-700", "block w-full px-4 py-2 text-right ")}>
+                    {item.title}
                   </button>
                 )}
               </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    type="submit"
-                    className={classNames(
-                      active
-                        ? "bg-gray-100 text-gray-900"
-                        : "text-gray-700",
-                      "block w-full px-4 py-2 text-right "
-                    )}
-                  >
-                    خروج
-                  </button>
-                )}
-              </Menu.Item>
+              ))}
+              
             </div>
           </Menu.Items>
         </Transition>

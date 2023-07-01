@@ -15,6 +15,7 @@ import { instagram } from 'react-icons-kit/fa/instagram';
 import { whatsapp } from 'react-icons-kit/fa/whatsapp'
 import { phone } from 'react-icons-kit/fa/phone';
 import {telegram} from 'react-icons-kit/fa/telegram';
+import Basket from '../GeneralComponents/Basket';
 
 export const skeleton = (height, width) => {
     return (
@@ -57,6 +58,7 @@ const Main = (props) => {
 
     return (
         <>
+        <Basket/>
             <div className='app  font-[BHoma] flex flex-row md:flex-col-reverse justify-between'>
 
 
