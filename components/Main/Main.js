@@ -76,8 +76,12 @@ const Main = (props) => {
                         <button className='mt-[3rem] md:mt-[2.5rem]  text-[#241359] text-[1.5rem] rounded-[20px] px-5 hover:shadow-xl hover:scale-105 transition-all duration-200 flex justify-center items-center'>تخفیف ها </button>
                     </div>
                 </div>
+                
+                <span className='bg-[#e19e9821] md:hidden w-[10rem] absolute right-[83%] z-10 top-[30%] h-[10rem] rounded-[50%]'></span>
+                <span className='bg-[#9f9dd421] md:hidden w-[15rem] absolute right-[53%] z-10 top-[15%] h-[15rem] rounded-[50%]'></span>
+                <span className='bg-[#6298a721] md:hidden w-[8rem] absolute right-[70%] z-10 top-[70%] h-[8rem] rounded-[50%]'></span>
+             
 
-                <span className='bg-[#d8d7fd3a] md:hidden w-[40rem] absolute right-[55%] z-10 top-[10%]  h-[35rem] rounded-r-[45%]'></span>
                 <div className='w-6/12 relative md:w-full md:mt-[2rem] '>
                     <Image src={main} />
                     <div className='absolute bg-white flex flex-col h-[13rem]  md:h-[8rem] w-[12rem] md:w-[7rem] right-[20%] md:right-[5%] rounded-[20px] shadow-xl top-[85%] md:top-[70%] p-3 md:p-2'>

@@ -68,12 +68,12 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #252525;
+  background: white;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(136, 0, 45);
+  background: rgb(30, 93, 203);
   border-radius: 10px;
 }
 
