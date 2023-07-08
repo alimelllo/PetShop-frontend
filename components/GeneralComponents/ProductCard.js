@@ -16,7 +16,7 @@ const productCard = (props) => {
 
                 <div className='flex flex-row justify-between'>
                     <p className='text-[1.25rem]  text-[#5484f3] font-[800] font-[monospace] pl-3 pt-3 md:pt-2 md:text-[1.1rem]'>{props.price}</p>
-                    <p className='text-[1rem] rounded-[10px] bg-[#7698e8] text-white font-[800] font-[monospace] m-2 md:mb-3 py-1 px-3 duration-200 hover:scale-105 transition-all hover:bg-[#365ebd] cursor-pointer md:text-[0.8rem]'>Add +</p>
+                    <p onClick={(e) =>{e.stopPropagation(); props.onClick()}} className='text-[1rem] rounded-[10px] bg-[#7698e8] text-white font-[800] font-[monospace] m-2 md:mb-3 py-1 px-3 duration-200 hover:scale-105 transition-all hover:bg-[#365ebd] cursor-pointer md:text-[0.8rem]'>Add +</p>
                 </div>
             </div>
         </Link>

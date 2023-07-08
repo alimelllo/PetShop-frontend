@@ -2,21 +2,29 @@ import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
 import basketIcon from "../../public/images/basket.png";
+import { showBasketHandler , ordersHandler} from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Basket() {
- 
-  const [open, setOpen] = useState(true);
-  const cancelButtonRef = useRef(null);
-  
-  const arr = ['1', '2', '3', '4', '5', '6'];
 
+  const selectShowBasketState = useSelector(showBasketHandler);
+  const showBasketState = selectShowBasketState.payload.ProfileSettings.showBasket;
+  const SetShowBasketHandler = useDispatch();
+
+  const selectOrderState = useSelector(ordersHandler);
+  const ordersState = selectOrderState.payload.ProfileSettings.orders;
+  const SetOrdersHandler = useDispatch();
+
+  const cancelButtonRef = useRef(null);
+    
+  
   return (
-    <Transition.Root show={open} as={Fragment}>
+    <Transition.Root show={showBasketState} as={Fragment}>
       <Dialog
         as="div"
         className="relative z-50"
         initialFocus={cancelButtonRef}
-        onClose={setOpen}
+        onClose={() => SetShowBasketHandler(showBasketHandler(false))}
       >
         <Transition.Child
           as={Fragment}
@@ -31,7 +39,7 @@ export default function Basket() {
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 overflow-y-hidden h-screen">
-          <div className="flex h-[90%] mt-[1rem] justify-center p-4 text-center">
+          <div className="flex h-[85%] mt-[1rem] justify-center p-4 text-center">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -41,10 +49,10 @@ export default function Basket() {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-y-scroll rounded-lg bg-white shadow-xl transition-all w-8/12">
-                <div className="MODAL_CONTAINER relative w-full flex flex-col ">
+              <Dialog.Panel className={`fadeLoadAnimation relative transform ${ ordersState > 0 ? 'overflow-y-scroll' : 'overflow-y-hidden'} rounded-lg bg-white shadow-xl transition-all w-8/12`}>
+                <div className="MODAL_CONTAINER bg-white relative w-full flex flex-col ">
                   {/* ///////////////// HEADER /////////////////////// */}
-                  <div className="MODAL_HEADER sticky top-0 z-50 bg-white flex flex-row shadow-xl mb-[1rem] py-[1rem] w-full ">
+                  <div className="MODAL_HEADER sticky top-0 z-50 bg-white flex flex-row shadow-xl mb-[1rem] py-[1rem] w-full">
                     <div className="w-4/12 flex flex-row justify-start">
                       <div className="w-2/12 mx-auto ml-5 z-10">
                         <Image src={basketIcon} />
@@ -55,7 +63,7 @@ export default function Basket() {
                     </div>
 
                     <div className="w-4/12 flex flex-row justify-end">
-                      <span className="h-[3rem] mt-1 px-5 font-[700] bg-[#d11f3a] text-white rounded-[10px] mr-5 shadow-2xl hover:bg-[#9b0b20] transition-all duration-200 flex justify-center items-center cursor-pointer">
+                      <span onClick={() => SetShowBasketHandler(showBasketHandler(false))} className="h-[3rem] mt-1 px-5 font-[700] bg-[#d11f3a] text-white rounded-[10px] mr-5 shadow-2xl hover:bg-[#9b0b20] transition-all duration-200 flex justify-center items-center cursor-pointer">
                         X
                       </span>
                     </div>
@@ -64,9 +72,9 @@ export default function Basket() {
                   {/* ///////////////// HEADER /////////////////////// */}
 
                   {/* ///////////////// MODAL_BODY /////////////////////// */}
-                  <div className="flex flex-col">
-                    {arr.map((item) => (
-                      <div className="w-[95%] shadow-xl my-4 rounded-[15px] py-4 mx-auto flex flex-row">
+                  <div className="flex flex-col bg-white pb-5 h-screen">
+                    { ordersState.map(() => (
+                      <div className="w-[95%] border-[1px] border-solid border-[#acacac] my-2 rounded-[10px] py-4 mx-auto flex flex-row">
                         <div className="w-4/12 flex flex-row justify-start ml-5">
                           <div className="w-4/12">
                              <Image src={basketIcon} layout='responsive'/>
@@ -82,17 +90,21 @@ export default function Basket() {
                         </div>
                         <div className="w-4/12 flex flex-row justify-end mr-5">
                           <div className="flex flex-col justify-between w-6/12">
-                            <p className="font-[600] text-[2rem] w-10/12 mx-auto pb-2 text-[#a9341a] border-b-solid border-b-[1px] border-b-[#85250f]">1</p>
-                            <div className="flex flex-row justify-around pt-5">
-                              <p className="text-[1.5rem] border-[2px] border-solid border-[#df2f07] text-[#df2f07] hover:bg-[#df2f07]  hover:text-white px-3 rounded-[15px] shadow-xl transition-all duration-200 cursor-pointer">-</p>
-                              <p className="text-[1.5rem] border-[2px] border-solid border-[#df2f07] text-[#df2f07] hover:bg-[#df2f07]  hover:text-white px-2 rounded-[15px] shadow-xl transition-all duration-200 cursor-pointer">+</p>
+                            <p className="font-[600] text-[1.75rem] mx-auto text-center px-3 text-[#a9341a] border-solid border-[2px] rounded-[10px] border-[#75210f]">1</p>
+                            <div className=" flex flex-row justify-center pt-5">
+                              <p className="text-[1.5rem] mx-2 border-[2px] border-solid bg-[#5d1a0b] hover:bg-[#a32b10] text-white px-3 rounded-[15px] shadow-xl transition-all duration-200 cursor-pointer">-</p>
+                              <p className="text-[1.5rem] mx-2 border-[2px] border-solid bg-[#75210f] hover:bg-[#a32b10] text-white px-2 rounded-[15px] shadow-xl transition-all duration-200 cursor-pointer">+</p>
                             </div>
                           </div>
                         </div>
                       </div>
                     ))}
 
-
+                    { ordersState.length === 0 && 
+                    <div className="text-center text-[#969696] flex justify-center items-center">
+                          <p className="mt-[7rem] text-[2.5rem] font-[bhoma]">سبد خرید خالی است</p>
+                    </div>
+                    }
                   </div>
 
 
@@ -110,9 +122,6 @@ export default function Basket() {
                     </div>
                   </div>
                  {/* ///////////////// FOOTER /////////////////////// */}
-
-
-
 
 
                 </div>

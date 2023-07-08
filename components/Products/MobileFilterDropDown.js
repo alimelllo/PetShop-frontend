@@ -8,7 +8,6 @@ function classNames(...classes) {
 }
 
 const MobileFilterDropDown = ( props ) => {
-  console.log(props);
     
   return ( 
         <Menu as="div" className="relative text-center ">

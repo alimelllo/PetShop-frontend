@@ -1,30 +1,36 @@
 import React, { Fragment } from "react";
 import Image from "next/image";
-import Basket from "../../public/images/basket.png";
+import BasketIcon from "../../public/images/basket.png";
 import logo from "../../public/images/logo.PNG";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { useRouter } from "next/router";
-
 import {
-  nameHandler,
-  tokenHandler,
   isLoggedInHandler,
+  showBasketHandler , 
+  ordersHandler 
 } from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
 import { useDispatch, useSelector } from "react-redux";
+import Basket from '../GeneralComponents/Basket';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 const Header = (props) => {
+ 
   const selectState = useSelector(isLoggedInHandler);
   const isLoggedInState = selectState.payload.ProfileSettings.isLoggedIn;
   const SetIsLoggedInHandler = useDispatch();
 
-  const selectTokenState = useSelector(tokenHandler);
-  const tokenState = selectTokenState.payload.ProfileSettings.token;
+  const selectShowBasketState = useSelector(showBasketHandler);
+  const showBasketState = selectShowBasketState.payload.ProfileSettings.showBasket;
+  const SetShowBasketHandler = useDispatch();
+
+  const selectOrderState = useSelector(ordersHandler);
+  const ordersState = selectOrderState.payload.ProfileSettings.orders;
+  
 
   useEffect(() => {
     if (localStorage.getItem("token") && localStorage.getItem("userName")) {
@@ -58,6 +64,7 @@ const Header = (props) => {
         clientWindowHeight > 30 ? " bg-white shadow-2xl " : "bg-transparent"
       } transition-all duration-300 fixed top-0 justify-between text-white z-50 font-[Bhoma] md:pt-2 md:pb-4 md:bg-[white] md:shadow-2xl`}
     >
+       { showBasketState && <Basket/> }
       <div className="w-6/12 flex flex-row justify-between text-[#505050]  text-center text-[1.25rem] md:text-[1rem]">
         {asPath !== "/" ? <div className="w-[22%] ml-5 md:hidden  cursor-pointer">
           <Link href='/'><Image src={logo} /></Link>
@@ -160,11 +167,11 @@ const Header = (props) => {
         )}
 
         {isLoggedInState && (
-          <div className="w-[4rem]  h-[4rem] md:w-[3rem] md:h-[3rem] relative innerShadow  p-2  rounded-[20px] mr-2 bg-white mt-2 md:mt-1 md:mr-3 text-[1rem]">
+          <div onClick={() => SetShowBasketHandler(showBasketHandler(true))} className="w-[4rem]  h-[4rem] md:w-[3rem] md:h-[3rem] relative innerShadow  p-2  rounded-[20px] mr-2 bg-white mt-2 md:mt-1 md:mr-3 text-[1rem] hover:bg-[#e1e1e1] cursor-pointer transition-all duration-200">
             <p className="bg-[#ba3131] w-[1.5rem]  h-[1.5rem] rounded-[50%] absolute left-[75%]  bottom-[70%] md:bottom-[67%] text-white shadow-2xl font-[monospace]">
-              0
+              {ordersState.length}
             </p>
-            <Image src={Basket} />
+            <Image src={BasketIcon} />
           </div>
         )}
       </div>

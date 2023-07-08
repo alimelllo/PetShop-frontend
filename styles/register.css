@@ -180,3 +180,17 @@
       transform: translateY(0);
     }
   }
+
+  .fadeLoadAnimation {
+    animation: fadeLoadAnimation 1s ease-out forwards;
+    transition: all 1s ease-out;
+  }
+  
+  @keyframes fadeLoadAnimation {
+    from {
+      opacity: 0.2;
+    }
+    to {
+      opacity: 0.9;
+    }
+  }

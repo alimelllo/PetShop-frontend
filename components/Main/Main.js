@@ -14,8 +14,8 @@ import { Icon } from 'react-icons-kit';
 import { instagram } from 'react-icons-kit/fa/instagram';
 import { whatsapp } from 'react-icons-kit/fa/whatsapp'
 import { phone } from 'react-icons-kit/fa/phone';
-import {telegram} from 'react-icons-kit/fa/telegram';
-import Basket from '../GeneralComponents/Basket';
+import { telegram } from 'react-icons-kit/fa/telegram';
+
 
 export const skeleton = (height, width) => {
     return (
@@ -58,12 +58,17 @@ const Main = (props) => {
 
     return (
         <>
-        <Basket/>
+
             <div className='app  font-[BHoma] flex flex-row md:flex-col-reverse justify-between'>
 
 
                 <div className='w-6/12 md:w-full flex flex-col text-center z-30'>
-                    <div className='flex flex-row justify-center mt-[10rem] md:mt-[2rem]'><p className='text-[4rem] md:text-[2.5rem]  font-[600] font-[monospace] text-[#1e2f4b]'>Feed us </p><div className='w-1/12 md:w-2/12 mt-[1.5rem] md:mt-[0.25rem] pl-3'><Image src={catMemoji} /></div></div>
+                    <div className='flex flex-row justify-center mt-[10rem] md:mt-[2rem]'>
+                        <p className='text-[4rem] md:text-[2.5rem]  font-[600] font-[monospace] text-[#1e2f4b]'>Feed us </p>
+                        <div className='w-1/12 md:w-2/12 mt-[1.5rem] md:mt-[0.25rem] pl-3'>
+                            <Image src={catMemoji} />
+                        </div>
+                    </div>
 
                     <div className='flex flex-row justify-center mt-[2rem] md:mt-[1rem]'><p className='text-[1.75rem] md:text-[1.6rem] flex flex-wrap  w-5/12 md:w-8/12 text-[#a5a5a5]'>فروشگاه غذای حیوانات خانگی با ضمانت اصالت کالا</p></div>
 
@@ -76,14 +81,14 @@ const Main = (props) => {
                         <button className='mt-[3rem] md:mt-[2.5rem]  text-[#241359] text-[1.5rem] rounded-[20px] px-5 hover:shadow-xl hover:scale-105 transition-all duration-200 flex justify-center items-center'>تخفیف ها </button>
                     </div>
                 </div>
-                
-                <span className='bg-[#e19e9821] md:hidden w-[10rem] absolute right-[83%] z-10 top-[30%] h-[10rem] rounded-[50%]'></span>
-                <span className='bg-[#9f9dd421] md:hidden w-[15rem] absolute right-[53%] z-10 top-[15%] h-[15rem] rounded-[50%]'></span>
-                <span className='bg-[#6298a721] md:hidden w-[8rem] absolute right-[70%] z-10 top-[70%] h-[8rem] rounded-[50%]'></span>
-             
+
+                <span className='bubbleTopAnimation bg-[#e19e9821] md:hidden w-[10rem] absolute right-[83%] z-10 top-[30%] h-[10rem] rounded-[50%]'></span>
+                <span className='bubbleRightAnimation bg-[#9f9dd421] md:hidden w-[15rem] absolute right-[53%] z-10 top-[15%] h-[15rem] rounded-[50%]'></span>
+                <span className='bubbleLeftAnimation bg-[#6298a721] md:hidden w-[8rem] absolute right-[70%] z-10 top-[70%] h-[8rem] rounded-[50%]'></span>
+
 
                 <div className='w-6/12 relative md:w-full md:mt-[2rem] '>
-                    <Image src={main} />
+                    <Image className='fadeLoadAnimation' src={main} />
                     <div className='absolute bg-white flex flex-col h-[13rem]  md:h-[8rem] w-[12rem] md:w-[7rem] right-[20%] md:right-[5%] rounded-[20px] shadow-xl top-[85%] md:top-[70%] p-3 md:p-2'>
                         <div className='w-full bg-[#ffcead] shadow-2xl h-[40%] md:h-[50%] px-1 md:px-0 mx-auto rounded-[10px] text-center text-white'>
                             <div className='mt-2'>
@@ -153,19 +158,14 @@ const Main = (props) => {
 
 
 
-
-
-
-
             <footer className='bg-gradient-to-r from-[#1c0f31] to-[#161136] mt-[10rem] rounded-t-[40px] w-11/12 mx-auto flex flex-col'>
 
                 <div className='bg-[#8383831b] w-[95%] mx-auto my-[3rem] rounded-[10px] flex flex-row justify-between md:flex-wrap'>
-
                     <div className='text-[#c2c2c2] pt-3 shadow-2xl h-[10rem]  text-center w-3/12 md:w-5/12'>
                         خدمات مشتریان
                     </div>
                     <div className='text-[#c2c2c2] pt-3 shadow-2xl h-[10rem]  text-center w-3/12 md:w-5/12'>
-                        اطلاعات فودآس
+                      Feed Us  اطلاعات 
                     </div>
                     <div className='text-[#c2c2c2] pt-3 shadow-2xl h-[10rem]  text-center w-3/12 md:w-5/12'>
                         دسته‌بندی‌ها
@@ -196,7 +196,7 @@ const Main = (props) => {
                         </div>
                     </div>
                     <div className='w-[3rem] mx-5 rounded-[10px] cursor-pointer hover:scale-125 transition-all duration-300'>
-                    <div className='bg-neutral-400 w-[4vw] h-[4vw] md:w-[40px] md:h-[40px] rounded-[50px] flex justify-center items-center hover:bg-orange-600 py-1'>
+                        <div className='bg-neutral-400 w-[4vw] h-[4vw] md:w-[40px] md:h-[40px] rounded-[50px] flex justify-center items-center hover:bg-orange-600 py-1'>
                             <Icon icon={phone} size={30} style={{ color: 'white' }}></Icon>
                         </div>
                     </div>
