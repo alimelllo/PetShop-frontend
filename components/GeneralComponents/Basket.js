@@ -2,7 +2,7 @@ import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
 import basketIcon from "../../public/images/basket.png";
-import { showBasketHandler , ordersHandler} from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
+import { showBasketHandler , ordersHandler , removeOrder , addOrder} from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Basket() {
@@ -13,7 +13,9 @@ export default function Basket() {
 
   const selectOrderState = useSelector(ordersHandler);
   const ordersState = selectOrderState.payload.ProfileSettings.orders;
-  const SetOrdersHandler = useDispatch();
+  
+  const RemoveOrdersHandler = useDispatch();
+  const AddOrdersHandler = useDispatch();
 
   const cancelButtonRef = useRef(null);
     
@@ -49,7 +51,7 @@ export default function Basket() {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className={`fadeLoadAnimation relative transform ${ ordersState > 0 ? 'overflow-y-scroll' : 'overflow-y-hidden'} rounded-lg bg-white shadow-xl transition-all w-8/12`}>
+              <Dialog.Panel className={`fadeLoadAnimation relative transform ${ ordersState.length > 0 ? 'overflow-y-scroll' : 'overflow-y-hidden'} rounded-lg bg-white shadow-xl transition-all w-8/12`}>
                 <div className="MODAL_CONTAINER bg-white relative w-full flex flex-col ">
                   {/* ///////////////// HEADER /////////////////////// */}
                   <div className="MODAL_HEADER sticky top-0 z-50 bg-white flex flex-row shadow-xl mb-[1rem] py-[1rem] w-full">
@@ -73,27 +75,27 @@ export default function Basket() {
 
                   {/* ///////////////// MODAL_BODY /////////////////////// */}
                   <div className="flex flex-col bg-white pb-5 h-screen">
-                    { ordersState.map(() => (
-                      <div className="w-[95%] border-[1px] border-solid border-[#acacac] my-2 rounded-[10px] py-4 mx-auto flex flex-row">
+                    { ordersState.map(( item) => (
+                      <div className="w-[95%] border-[1px] bg-white border-solid border-[#acacac] my-2 rounded-[10px] py-4 mx-auto flex flex-row">
                         <div className="w-4/12 flex flex-row justify-start ml-5">
                           <div className="w-4/12">
-                             <Image src={basketIcon} layout='responsive'/>
+                             <Image height={150} width={130} src={item.productImage} layout='responsive'/>
                           </div>
                         </div>
                         <div className="w-4/12 flex flex-col justify-between">
                           <p className="text-[1.5rem] text-[#626262] font-[600]">
-                            Royal Canin biscuits
+                            {item.name}
                           </p>
                           <p className="text-[2rem] text-[#e43419] font-[600] font-[bhoma] tracking-[4px]">
-                            <span className="text-[#fd8c7a] tracking-[0px] text-[1.5rem] pl-5"> تومان </span> 198,000{" "}
+                            <span className="text-[#fd8c7a] tracking-[0px] text-[1.5rem] pl-5"> تومان </span> {item.price}{" "}
                           </p>
                         </div>
                         <div className="w-4/12 flex flex-row justify-end mr-5">
                           <div className="flex flex-col justify-between w-6/12">
-                            <p className="font-[600] text-[1.75rem] mx-auto text-center px-3 text-[#a9341a] border-solid border-[2px] rounded-[10px] border-[#75210f]">1</p>
+                            <p className="font-[600] text-[1.75rem] mx-auto text-center px-3 text-[#a9341a] border-solid border-[2px] rounded-[10px] border-[#75210f]">{item.count}</p>
                             <div className=" flex flex-row justify-center pt-5">
-                              <p className="text-[1.5rem] mx-2 border-[2px] border-solid bg-[#5d1a0b] hover:bg-[#a32b10] text-white px-3 rounded-[15px] shadow-xl transition-all duration-200 cursor-pointer">-</p>
-                              <p className="text-[1.5rem] mx-2 border-[2px] border-solid bg-[#75210f] hover:bg-[#a32b10] text-white px-2 rounded-[15px] shadow-xl transition-all duration-200 cursor-pointer">+</p>
+                              <p onClick={() => RemoveOrdersHandler(removeOrder( item ))} className="text-[1.5rem] mx-2 border-[2px] border-solid bg-[#5d1a0b] hover:bg-[#a32b10] text-white px-3 rounded-[15px] shadow-xl transition-all duration-200 cursor-pointer">-</p>
+                              <p onClick={() => AddOrdersHandler(addOrder( item ))}className="text-[1.5rem] mx-2 border-[2px] border-solid bg-[#75210f] hover:bg-[#a32b10] text-white px-2 rounded-[15px] shadow-xl transition-all duration-200 cursor-pointer">+</p>
                             </div>
                           </div>
                         </div>
@@ -114,7 +116,7 @@ export default function Basket() {
                   {/* ///////////////// FOOTER /////////////////////// */}
                   <div className=" bg-[white] w-full flex flex-row justify-between py-[1rem] sticky bottom-0 uperShadow">
                     <div className="w-4/12 flex flex-row justify-start items-center">
-                        <button className="ml-5 outline-none bg-[#e1561f] hover:bg-[#be410f] transition-all duration-200 hover:scale-105 p-3 font-[600] px-5 text-white rounded-[15px] shadow-2xl">+ افزودن به سبد</button>
+                        <button className="ml-5 outline-none bg-[#e1561f] hover:bg-[#be410f] transition-all duration-200 hover:scale-105 p-3 font-[600] px-10 text-white rounded-[15px] shadow-2xl">تکمیل خرید </button>
                     </div>
                     <div className="p-1 font-[bhoma] flex flex-row justify-around w-4/12 text-[2rem]">
                       <p className="text-[#e05721] font-[600]">155,0000</p>

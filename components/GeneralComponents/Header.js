@@ -19,7 +19,8 @@ function classNames(...classes) {
 }
 
 const Header = (props) => {
- 
+
+
   const selectState = useSelector(isLoggedInHandler);
   const isLoggedInState = selectState.payload.ProfileSettings.isLoggedIn;
   const SetIsLoggedInHandler = useDispatch();
@@ -51,11 +52,13 @@ const Header = (props) => {
     setClientWindowHeight(window.scrollY);
   };
 
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   });
-
+  
+  
   return (
     <header
       className={`flex flex-row w-full ${
@@ -168,7 +171,7 @@ const Header = (props) => {
 
         {isLoggedInState && (
           <div onClick={() => SetShowBasketHandler(showBasketHandler(true))} className="w-[4rem]  h-[4rem] md:w-[3rem] md:h-[3rem] relative innerShadow  p-2  rounded-[20px] mr-2 bg-white mt-2 md:mt-1 md:mr-3 text-[1rem] hover:bg-[#e1e1e1] cursor-pointer transition-all duration-200">
-            <p className="bg-[#ba3131] w-[1.5rem]  h-[1.5rem] rounded-[50%] absolute left-[75%]  bottom-[70%] md:bottom-[67%] text-white shadow-2xl font-[monospace]">
+            <p key={ordersState} className="bump bg-[#ba3131] w-[1.5rem]  h-[1.5rem] rounded-[50%] absolute left-[75%]  bottom-[70%] md:bottom-[67%] text-white shadow-2xl font-[monospace]">
               {ordersState.length}
             </p>
             <Image src={BasketIcon} />

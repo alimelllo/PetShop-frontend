@@ -1,19 +1,22 @@
 import Header from "../../components/GeneralComponents/Header.js";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import LoadingProductCard from "../../components/GeneralComponents/LoadingProductCard.js";
 import { skeleton } from "../../components/Main/Main.js";
 import productService from "../../Services/ProductsServices/product.service";
 import ProductCard from "../../components/GeneralComponents/ProductCard";
 import MobileFilterDropDown from "../../components/Products/MobileFilterDropDown.js";
 import Skeleton from 'react-loading-skeleton'
-import { ordersHandler } from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
+import { ordersHandler , addOrder} from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
 import { useDispatch, useSelector } from "react-redux";
 
 const Products = (props) => {
 
   const selectOrderState = useSelector(ordersHandler);
   const ordersState = selectOrderState.payload.ProfileSettings.orders;
+  // const AddOrdersHandler = useDispatch();
+
   const AddOrdersHandler = useDispatch();
+
 
   const [loadingProducts, SetLoadingProducts] = useState([]);
   const [isLoading, SetIsLoading] = useState(false);
@@ -87,15 +90,12 @@ const Products = (props) => {
       SetCategoryIsLoading(false);
     }
   }, []);
-  
+
   const addOrderHandler = ( order ) => {
-
     const arr = [...ordersState];
-
     arr.push(order);
-    AddOrdersHandler( ordersHandler({type : 'ADD' , payload : order}));
+    AddOrdersHandler(addOrder(order));
   }
-  
   
   useEffect(() => {
     const list = props.data.map((item) => (
