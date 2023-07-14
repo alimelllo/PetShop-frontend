@@ -41,7 +41,8 @@ const Main = (props) => {
                     productImage={item.productImage}
                     description={item.description}
                     weight={item.weight}
-                    width={"w-[19%] md:w-[45%]"} />
+                    width={"w-[19%] md:w-[45%]"}
+                    data={item} />
             ))
             let arr = [];
             for (let i = 0; i < list.length; i++) {

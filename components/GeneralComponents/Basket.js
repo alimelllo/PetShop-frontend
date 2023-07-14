@@ -95,7 +95,7 @@ export default function Basket() {
                             <p className="font-[600] text-[1.75rem] mx-auto text-center px-3 text-[#a9341a] border-solid border-[2px] rounded-[10px] border-[#75210f]">{item.count}</p>
                             <div className=" flex flex-row justify-center pt-5">
                               <p onClick={() => RemoveOrdersHandler(removeOrder( item ))} className="text-[1.5rem] mx-2 border-[2px] border-solid bg-[#5d1a0b] hover:bg-[#a32b10] text-white px-3 rounded-[15px] shadow-xl transition-all duration-200 cursor-pointer">-</p>
-                              <p onClick={() => AddOrdersHandler(addOrder( item ))}className="text-[1.5rem] mx-2 border-[2px] border-solid bg-[#75210f] hover:bg-[#a32b10] text-white px-2 rounded-[15px] shadow-xl transition-all duration-200 cursor-pointer">+</p>
+                              <p onClick={() => AddOrdersHandler(addOrder( item ))} className="text-[1.5rem] mx-2 border-[2px] border-solid bg-[#75210f] hover:bg-[#a32b10] text-white px-2 rounded-[15px] shadow-xl transition-all duration-200 cursor-pointer">+</p>
                             </div>
                           </div>
                         </div>

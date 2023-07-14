@@ -60,6 +60,7 @@ const Products = (props) => {
           weight={item.weight}
           width={"w-[18%] md:w-[45%]"}
           onClick={() => addOrderHandler(item)}
+          data={item}
         />
       ));
       SetProductList(list);
@@ -110,6 +111,7 @@ const Products = (props) => {
         weight={item.weight}
         width={"w-[18%] md:w-[45%]"}
         onClick={() => addOrderHandler(item)}
+        data={item}
       />
     ));
     SetProductList(list);
