@@ -8,11 +8,12 @@ import { Menu, Transition } from "@headlessui/react";
 import { useRouter } from "next/router";
 import {
   isLoggedInHandler,
-  showBasketHandler , 
-  ordersHandler 
+  showBasketHandler,
+  ordersHandler
 } from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
 import { useDispatch, useSelector } from "react-redux";
 import Basket from '../GeneralComponents/Basket';
+import productService from "../../Services/ProductsServices/product.service";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -20,6 +21,7 @@ function classNames(...classes) {
 
 const Header = (props) => {
 
+  const [ productGroups , SetProductGroups] = useState([]);
 
   const selectState = useSelector(isLoggedInHandler);
   const isLoggedInState = selectState.payload.ProfileSettings.isLoggedIn;
@@ -31,7 +33,15 @@ const Header = (props) => {
 
   const selectOrderState = useSelector(ordersHandler);
   const ordersState = selectOrderState.payload.ProfileSettings.orders;
-  
+
+
+  useEffect(() => {
+     productService.getAllProductGroups().then((resp) => {
+      console.log(resp.data);
+      SetProductGroups(resp.data);
+     })
+  }, [])
+
 
   useEffect(() => {
     if (localStorage.getItem("token") && localStorage.getItem("userName")) {
@@ -57,17 +67,15 @@ const Header = (props) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   });
-  
-  
+
+
   return (
     <header
-      className={`flex flex-row w-full ${
-        asPath !== "/" && "shadow-xl bg-white"
-      }  ${
-        clientWindowHeight > 30 ? " bg-white shadow-2xl " : "bg-transparent"
-      } transition-all duration-300 fixed top-0 justify-between text-white z-50 font-[Bhoma] md:pt-2 md:pb-4 md:bg-[white] md:shadow-2xl`}
+      className={`flex flex-row w-full ${asPath !== "/" && "shadow-xl bg-white"
+        }  ${clientWindowHeight > 30 ? " bg-white shadow-2xl " : "bg-transparent"
+        } transition-all duration-300 fixed top-0 justify-between text-white z-50 font-[Bhoma] md:pt-2 md:pb-4 md:bg-[white] md:shadow-2xl`}
     >
-       { showBasketState && <Basket/> }
+      {showBasketState && <Basket />}
       <div className="w-6/12 flex flex-row justify-between text-[#505050]  text-center text-[1.25rem] md:text-[1rem]">
         {asPath !== "/" ? <div className="w-[22%] ml-5 md:hidden  cursor-pointer">
           <Link href='/'><Image src={logo} /></Link>
@@ -76,21 +84,21 @@ const Header = (props) => {
         </div>}
 
         <div className="flex flex-row w-8/12 justify-between pt-3">
-        <Link href="/AboutUs">
-          <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 pt-3 md:px-3 md:font-[700] ml-[10rem] md:ml-0 mx-5 hover:shadow-xl rounded-[20px] md:mx-0  cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
-            تماس{" "}
-          </p>
+          <Link href="/AboutUs">
+            <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 pt-3 md:px-3 md:font-[700] ml-[10rem] md:ml-0 mx-5 hover:shadow-xl rounded-[20px] md:mx-0  cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
+              تماس{" "}
+            </p>
           </Link>
           <Link href="/Products">
             <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 pt-3 md:px-3 md:font-[700] mx-5 hover:shadow-xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
               محصولات
             </p>
           </Link>
-          <Link href={{ pathname: '/Products', query: { data: 'cat' } }}>
-          <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 pt-3 md:px-3 md:font-[700] mx-5 hover:shadow-xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
-            {" "}
-            دسته{" "}
-          </p>
+          <Link href={{ pathname: '/Products', query: { category: 'cat' } }}>
+            <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 pt-3 md:px-3 md:font-[700] mx-5 hover:shadow-xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
+              {" "}
+              دسته{" "}
+            </p>
           </Link>
         </div>
       </div>
@@ -111,11 +119,10 @@ const Header = (props) => {
           <Menu as="div" className="relative text-center">
             <div>
               <Menu.Button
-                className={`font-[monospace] h-[3rem] mt-3 md:mt-1 cursor-pointer transition-all duration-200 ${
-                  clientWindowHeight > 30 || asPath === "/Products"
+                className={`font-[monospace] h-[3rem] mt-3 md:mt-1 cursor-pointer transition-all duration-200 ${clientWindowHeight > 30 || asPath === "/Products"
                     ? " text-[#7587ff] font-[600] hover:text-[#2236b8]"
                     : "text-[white] hover:font-[600] md:text-[#7587ff] md:font-[600] hover:text-[#363636]"
-                }  text-[1.5rem] pr-3`}
+                  }  text-[1.5rem] pr-3`}
               >
                 {localStorage.getItem("userName")}
               </Menu.Button>

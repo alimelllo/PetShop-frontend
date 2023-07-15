@@ -8,6 +8,7 @@ import MobileFilterDropDown from "../../components/Products/MobileFilterDropDown
 import Skeleton from 'react-loading-skeleton'
 import { ordersHandler , addOrder} from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
 import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router.js";
 
 const Products = (props) => {
 
@@ -131,6 +132,9 @@ const Products = (props) => {
   }, [pageNumber, categoryName])
 
 
+  const {query} = useRouter();
+  console.log(query);
+
   return (
     <div className="flex flex-col">
       <Header />
@@ -212,7 +216,8 @@ const Products = (props) => {
 export default Products;
 
 export async function getServerSideProps(context) {
-  const result = await productService.getAllProducts("", "", 1);
+  
+  const result = await productService.getAllProducts("", context.query.category ? context.query.category : "", 1);
   return {
     props: {
       data: result.data,
