@@ -113,3 +113,9 @@ body {
     scale:1;
   }
 }
+
+.blurEffect{
+  background: rgba( 255, 255, 255, 0.25 );
+  backdrop-filter: blur( 14.5px );
+  -webkit-backdrop-filter: blur( 14.5px );
+}

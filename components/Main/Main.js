@@ -15,6 +15,7 @@ import { instagram } from 'react-icons-kit/fa/instagram';
 import { whatsapp } from 'react-icons-kit/fa/whatsapp'
 import { phone } from 'react-icons-kit/fa/phone';
 import { telegram } from 'react-icons-kit/fa/telegram';
+import { useRouter } from 'next/router';
 
 
 export const skeleton = (height, width) => {
@@ -56,6 +57,12 @@ const Main = (props) => {
         }
 
     }, [])
+
+    
+        const router = useRouter();
+        console.log(router);
+ 
+
 
     return (
         <>

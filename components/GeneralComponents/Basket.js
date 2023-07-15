@@ -18,7 +18,14 @@ export default function Basket() {
   const AddOrdersHandler = useDispatch();
 
   const cancelButtonRef = useRef(null);
-    
+  
+  const countTotalSome = () => {
+    let sum = 0;
+    for(let i=0 ; i < ordersState.length; i ++){
+      sum = sum + (ordersState[i].price * ordersState[i].count)
+    }
+    return sum;
+  }
   
   return (
     <Transition.Root show={showBasketState} as={Fragment}>
@@ -41,7 +48,7 @@ export default function Basket() {
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 overflow-y-hidden h-screen">
-          <div className="flex h-[85%] mt-[1rem] justify-center p-4 text-center">
+          <div className="flex h-[85%] md:h-[95%] mt-[1rem] justify-center p-4 text-center">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -51,21 +58,21 @@ export default function Basket() {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className={`fadeLoadAnimation relative transform ${ ordersState.length > 0 ? 'overflow-y-scroll' : 'overflow-y-hidden'} rounded-lg bg-white shadow-xl transition-all w-8/12`}>
+              <Dialog.Panel className={`fadeLoadAnimation relative transform ${ ordersState.length > 0 ? 'overflow-y-scroll' : 'overflow-y-hidden'} rounded-lg bg-white shadow-xl transition-all w-8/12 md:w-full`}>
                 <div className="MODAL_CONTAINER bg-white relative w-full flex flex-col ">
                   {/* ///////////////// HEADER /////////////////////// */}
                   <div className="MODAL_HEADER sticky top-0 z-50 bg-white flex flex-row shadow-xl mb-[1rem] py-[1rem] w-full">
                     <div className="w-4/12 flex flex-row justify-start">
-                      <div className="w-2/12 mx-auto ml-5 z-10">
+                      <div className="w-2/12 md:w-4/12 mx-auto ml-5 z-10">
                         <Image src={basketIcon} />
                       </div>
                     </div>
-                    <div className="w-4/12 text-[gray] font-[bhoma] text-[2rem]">
+                    <div className="w-4/12 text-[gray] font-[bhoma] text-[2rem] md:text-[1.5rem]">
                       سبد خرید
                     </div>
 
                     <div className="w-4/12 flex flex-row justify-end">
-                      <span onClick={() => SetShowBasketHandler(showBasketHandler(false))} className="h-[3rem] mt-1 px-5 font-[700] bg-[#d11f3a] text-white rounded-[10px] mr-5 shadow-2xl hover:bg-[#9b0b20] transition-all duration-200 flex justify-center items-center cursor-pointer">
+                      <span onClick={() => SetShowBasketHandler(showBasketHandler(false))} className="h-[3rem] md:h-[2.5rem] mt-1 px-5 font-[700] bg-[#d11f3a] text-white rounded-[10px] mr-5 shadow-2xl hover:bg-[#9b0b20] transition-all duration-200 flex justify-center items-center cursor-pointer">
                         X
                       </span>
                     </div>
@@ -76,21 +83,21 @@ export default function Basket() {
                   {/* ///////////////// MODAL_BODY /////////////////////// */}
                   <div className="flex flex-col bg-white pb-5 h-screen">
                     { ordersState.map(( item) => (
-                      <div className="w-[95%] border-[1px] bg-white border-solid border-[#acacac] my-2 rounded-[10px] py-4 mx-auto flex flex-row">
-                        <div className="w-4/12 flex flex-row justify-start ml-5">
-                          <div className="w-4/12">
+                      <div className="w-[95%] border-[1px] bg-[white] border-solid border-[#acacac] my-2 rounded-[10px] py-4 md:py-3 mx-auto flex flex-row">
+                        <div className="w-4/12 md:w-3/12 flex flex-row justify-start ml-5 md:ml-1">
+                          <div className="w-4/12 md:w-full">
                              <Image height={150} width={130} src={item.productImage} layout='responsive'/>
                           </div>
                         </div>
-                        <div className="w-4/12 flex flex-col justify-between">
-                          <p className="text-[1.5rem] text-[#626262] font-[600]">
+                        <div className="w-4/12 md:w-5/12 flex flex-col justify-between md:justify-around">
+                          <p className="text-[1.5rem] md:text-[1.2rem] text-[#626262] font-[600]">
                             {item.name}
                           </p>
-                          <p className="text-[2rem] text-[#e43419] font-[600] font-[bhoma] tracking-[4px]">
-                            <span className="text-[#fd8c7a] tracking-[0px] text-[1.5rem] pl-5"> تومان </span> {item.price}{" "}
+                          <p className="text-[2rem] md:text-[1rem] text-[#e43419] font-[600] font-[bhoma] tracking-[4px]">
+                            <span className="text-[#fd8c7a] tracking-[0px] text-[1.5rem] md:text-[0.75rem] pl-5 "> تومان </span> {item.price}{" "}
                           </p>
                         </div>
-                        <div className="w-4/12 flex flex-row justify-end mr-5">
+                        <div className="w-4/12 md:w-3/12 flex flex-row justify-end mr-5 md:pr-2">
                           <div className="flex flex-col justify-between w-6/12">
                             <p className="font-[600] text-[1.75rem] mx-auto text-center px-3 text-[#a9341a] border-solid border-[2px] rounded-[10px] border-[#75210f]">{item.count}</p>
                             <div className=" flex flex-row justify-center pt-5">
@@ -104,7 +111,7 @@ export default function Basket() {
 
                     { ordersState.length === 0 && 
                     <div className="text-center text-[#969696] flex justify-center items-center">
-                          <p className="mt-[7rem] text-[2.5rem] font-[bhoma]">سبد خرید خالی است</p>
+                          <p className="mt-[7rem] text-[2.5rem] md:text-[1.5rem] font-[bhoma]">سبد خرید خالی است</p>
                     </div>
                     }
                   </div>
@@ -115,12 +122,12 @@ export default function Basket() {
                 
                   {/* ///////////////// FOOTER /////////////////////// */}
                   <div className=" bg-[white] w-full flex flex-row justify-between py-[1rem] sticky bottom-0 uperShadow">
-                    <div className="w-4/12 flex flex-row justify-start items-center">
-                        <button className="ml-5 outline-none bg-[#e1561f] hover:bg-[#be410f] transition-all duration-200 hover:scale-105 p-3 font-[600] px-10 text-white rounded-[15px] shadow-2xl">تکمیل خرید </button>
+                    <div className="w-4/12 md:w-5/12 md:text-[1rem] flex flex-row justify-start items-center">
+                        <button className={`ml-5 outline-none ${ ordersState.length ===0 ? 'bg-[#8b8b8b]' : 'bg-[#e1561f] hover:bg-[#be410f] '} transition-all duration-200 hover:scale-105 p-3  md:px-5 font-[600] px-10 text-white rounded-[15px] shadow-2xl`}>تکمیل خرید </button>
                     </div>
-                    <div className="p-1 font-[bhoma] flex flex-row justify-around w-4/12 text-[2rem]">
-                      <p className="text-[#e05721] font-[600]">155,0000</p>
-                      <p className="font-[700] text-[#5b5b5b] text-[1.75rem] pt-1">: جمع کل  </p>
+                    <div className="p-1 font-[bhoma] flex flex-row justify-around w-4/12 md:w-6/12 text-[2rem] md:text-[1.5rem]">
+                      <p className="text-[#e05721] font-[600]">{countTotalSome()}</p>
+                      <p className="font-[700] text-[#5b5b5b] text-[1.75rem] pt-1 md:text-[1.25rem]">: جمع کل  </p>
                     </div>
                   </div>
                  {/* ///////////////// FOOTER /////////////////////// */}
