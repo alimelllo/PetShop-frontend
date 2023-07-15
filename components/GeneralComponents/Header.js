@@ -1,30 +1,47 @@
 import React, { Fragment } from "react";
 import Image from "next/image";
-import Basket from "../../public/images/basket.png";
+import BasketIcon from "../../public/images/basket.png";
 import logo from "../../public/images/logo.PNG";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { useRouter } from "next/router";
-
 import {
-  nameHandler,
-  tokenHandler,
   isLoggedInHandler,
+  showBasketHandler,
+  ordersHandler
 } from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
 import { useDispatch, useSelector } from "react-redux";
+import Basket from '../GeneralComponents/Basket';
+import productService from "../../Services/ProductsServices/product.service";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 const Header = (props) => {
+
+  const [ productGroups , SetProductGroups] = useState([]);
+
   const selectState = useSelector(isLoggedInHandler);
   const isLoggedInState = selectState.payload.ProfileSettings.isLoggedIn;
   const SetIsLoggedInHandler = useDispatch();
 
-  const selectTokenState = useSelector(tokenHandler);
-  const tokenState = selectTokenState.payload.ProfileSettings.token;
+  const selectShowBasketState = useSelector(showBasketHandler);
+  const showBasketState = selectShowBasketState.payload.ProfileSettings.showBasket;
+  const SetShowBasketHandler = useDispatch();
+
+  const selectOrderState = useSelector(ordersHandler);
+  const ordersState = selectOrderState.payload.ProfileSettings.orders;
+
+
+  useEffect(() => {
+     productService.getAllProductGroups().then((resp) => {
+      console.log(resp.data);
+      SetProductGroups(resp.data);
+     })
+  }, [])
+
 
   useEffect(() => {
     if (localStorage.getItem("token") && localStorage.getItem("userName")) {
@@ -45,19 +62,20 @@ const Header = (props) => {
     setClientWindowHeight(window.scrollY);
   };
 
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   });
 
+
   return (
     <header
-      className={`flex flex-row w-full ${
-        asPath !== "/" && "shadow-xl bg-white"
-      }  ${
-        clientWindowHeight > 30 ? " bg-white shadow-2xl " : "bg-transparent"
-      } transition-all duration-300 fixed top-0 justify-between text-white z-50 font-[Bhoma] md:pt-2 md:pb-4 md:bg-[white] md:shadow-2xl`}
+      className={`flex flex-row w-full ${asPath !== "/" && "shadow-xl bg-white"
+        }  ${clientWindowHeight > 30 ? " bg-white shadow-2xl " : "bg-transparent"
+        } transition-all duration-300 fixed top-0 justify-between text-white z-50 font-[Bhoma] md:pt-2 md:pb-4 md:bg-[white] md:shadow-2xl`}
     >
+      {showBasketState && <Basket />}
       <div className="w-6/12 flex flex-row justify-between text-[#505050]  text-center text-[1.25rem] md:text-[1rem]">
         {asPath !== "/" ? <div className="w-[22%] ml-5 md:hidden  cursor-pointer">
           <Link href='/'><Image src={logo} /></Link>
@@ -65,19 +83,23 @@ const Header = (props) => {
           <Image src={logo} />
         </div>}
 
-        <div className="flex flex-row w-8/12 justify-between pt-4">
-          <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 pt-2 md:px-3 md:font-[700] ml-[10rem] md:ml-0 mx-5 hover:shadow-xl rounded-[20px] md:mx-0  cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
-            تماس{" "}
-          </p>
+        <div className="flex flex-row w-8/12 justify-between pt-3">
+          <Link href="/AboutUs">
+            <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 pt-3 md:px-3 md:font-[700] ml-[10rem] md:ml-0 mx-5 hover:shadow-xl rounded-[20px] md:mx-0  cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
+              تماس{" "}
+            </p>
+          </Link>
           <Link href="/Products">
-            <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 pt-2 md:px-3 md:font-[700] mx-5 hover:shadow-xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
+            <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 pt-3 md:px-3 md:font-[700] mx-5 hover:shadow-xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
               محصولات
             </p>
           </Link>
-          <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 pt-2 md:px-3 md:font-[700] mx-5 hover:shadow-xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
-            {" "}
-            دسته{" "}
-          </p>
+          <Link href={{ pathname: '/Products', query: { category: 'cat' } }}>
+            <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 pt-3 md:px-3 md:font-[700] mx-5 hover:shadow-xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
+              {" "}
+              دسته{" "}
+            </p>
+          </Link>
         </div>
       </div>
 
@@ -97,11 +119,10 @@ const Header = (props) => {
           <Menu as="div" className="relative text-center">
             <div>
               <Menu.Button
-                className={`font-[monospace] h-[3rem] mt-3 md:mt-1 cursor-pointer transition-all duration-200 ${
-                  clientWindowHeight > 30 || asPath === "/Products"
+                className={`font-[monospace] h-[3rem] mt-3 md:mt-1 cursor-pointer transition-all duration-200 ${clientWindowHeight > 30 || asPath === "/Products"
                     ? " text-[#7587ff] font-[600] hover:text-[#2236b8]"
                     : "text-[white] hover:font-[600] md:text-[#7587ff] md:font-[600] hover:text-[#363636]"
-                }  text-[1.5rem] pr-3`}
+                  }  text-[1.5rem] pr-3`}
               >
                 {localStorage.getItem("userName")}
               </Menu.Button>
@@ -160,11 +181,11 @@ const Header = (props) => {
         )}
 
         {isLoggedInState && (
-          <div className="w-[4rem]  h-[4rem] md:w-[3rem] md:h-[3rem] relative innerShadow  p-2  rounded-[20px] mr-2 bg-white mt-2 md:mt-1 md:mr-3 text-[1rem]">
-            <p className="bg-[#ba3131] w-[1.5rem]  h-[1.5rem] rounded-[50%] absolute left-[75%]  bottom-[70%] md:bottom-[67%] text-white shadow-2xl font-[monospace]">
-              0
+          <div onClick={() => SetShowBasketHandler(showBasketHandler(true))} className="w-[4rem]  h-[4rem] md:w-[3rem] md:h-[3rem] relative innerShadow  p-2  rounded-[20px] mr-2 bg-white mt-2 md:mt-1 md:mr-3 text-[1rem] hover:bg-[#e1e1e1] cursor-pointer transition-all duration-200">
+            <p key={ordersState} className="bump bg-[#ba3131] w-[1.5rem]  h-[1.5rem] rounded-[50%] absolute left-[75%]  bottom-[70%] md:bottom-[67%] text-white shadow-2xl font-[monospace]">
+              {ordersState.length}
             </p>
-            <Image src={Basket} />
+            <Image src={BasketIcon} />
           </div>
         )}
       </div>

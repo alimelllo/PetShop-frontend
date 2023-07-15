@@ -53,6 +53,11 @@ body {
   box-shadow: 5px 20px 50px #000
 }
 
+.uperShadow{
+  box-shadow:  -6px -6px 12px #d3d3d3,
+             -6px 6px 12px #f1f1f1;
+}
+
 ::-webkit-scrollbar-corner {
   display: none;
 }
@@ -63,12 +68,12 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #252525;
+  background: white;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(136, 0, 45);
+  background: rgb(30, 93, 203);
   border-radius: 10px;
 }
 
@@ -93,4 +98,24 @@ body {
     opacity: 0.9;
     transform: translateY(0);
   }
+}
+
+.bump {
+  animation: bump 0.4s ease-out forwards;
+  transition: all 1s ease-out;
+}
+
+@keyframes bump {
+  from {
+    scale:1.5;
+  }
+  to {
+    scale:1;
+  }
+}
+
+.blurEffect{
+  background: rgba( 255, 255, 255, 0.25 );
+  backdrop-filter: blur( 14.5px );
+  -webkit-backdrop-filter: blur( 14.5px );
 }

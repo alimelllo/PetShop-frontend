@@ -10,6 +10,12 @@ class ProductServices {
   getAllProductIds(){
     return BaseUrl.get("/getAllProductIds");
   }
+  GetAllProductImages( productId ){
+    return BaseUrl.get(`/GetAllProductImages/${productId}`)
+  }
+  getProductById ( productId ){
+    return BaseUrl.get(`/getProductById/${productId}`)
+  }
 }
 
 export default new ProductServices();
