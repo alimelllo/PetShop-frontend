@@ -9,7 +9,7 @@ export default function Home(props) {
     <>
       <Head>
         <title>Pet Shop</title>
-        <meta property="og:title" content="Pet Shop" key="title" />
+        <meta property="og:title" content="Feed Us" key="title" />
       </Head>
 
       <Header />
