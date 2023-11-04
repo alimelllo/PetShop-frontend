@@ -57,7 +57,7 @@ const Main = (props) => {
 
     }, [])
 
-    
+
 
 
     return (
@@ -67,8 +67,8 @@ const Main = (props) => {
 
 
                 <div className='w-6/12 md:w-full flex flex-col text-center z-30'>
-                    <div className='flex flex-row justify-center mt-[10rem] md:mt-[2rem]'>
-                        <p className='text-[4rem] md:text-[2.5rem]  font-[600] font-[monospace] text-[#1e2f4b]'>Feed us </p>
+                    <div className='flex flex-row justify-center mt-[10rem] md:mt-[3rem]'>
+                        <p className='text-[4rem] md:text-[2.5rem] font-[600] font-[monospace] text-[#1e2f4b]'>Feed us </p>
                         <div className='w-1/12 md:w-2/12 mt-[1.5rem] md:mt-[0.25rem] pl-3'>
                             <Image src={catMemoji} />
                         </div>
@@ -76,7 +76,7 @@ const Main = (props) => {
 
                     <div className='flex flex-row justify-center mt-[2rem] md:mt-[1rem]'><p className='text-[1.75rem] md:text-[1.6rem] flex flex-wrap  w-5/12 md:w-8/12 text-[#a5a5a5]'>فروشگاه غذای حیوانات خانگی با ضمانت اصالت کالا</p></div>
 
-                    <div className='flex flex-row justify-between md:justify-around w-5/12 md:w-full mx-auto md: my-3'>
+                    <div className='flex flex-row justify-between md:justify-around w-5/12 md:w-full mx-auto'>
                         <Link href='/Products'>
                             <button className=' pt-1 pb-2 w-6/12 bg-gradient-to-r from-[#52219b] to-[#771b99] hover:bg-gradient-to-r hover:from-[#411584] hover:to-[#611c7a] mt-[3rem] md:mt-[2rem] text-[white] text-[1.5rem] rounded-[20px] shadow-3xl hover:scale-105 transition-all duration-200 flex justify-center items-center'>
                                 محصولات
@@ -91,18 +91,19 @@ const Main = (props) => {
                 <span className='bubbleLeftAnimation bg-[#6298a721] md:hidden w-[8rem] absolute right-[70%] z-10 top-[70%] h-[8rem] rounded-[50%]'></span>
 
 
-                <div className='w-6/12 relative md:w-full md:mt-[2rem] '>
+                <div className='w-6/12 relative md:w-full md:mt-[2rem] md:pl-2'>
                     <Image className='fadeLoadAnimation' src={main} />
-                    <div className='absolute bg-white flex flex-col h-[13rem]  md:h-[8rem] w-[12rem] md:w-[7rem] right-[20%] md:right-[5%] rounded-[20px] shadow-xl top-[85%] md:top-[70%] p-3 md:p-2'>
-                        <div className='w-full bg-[#ffcead] shadow-2xl h-[40%] md:h-[50%] px-1 md:px-0 mx-auto rounded-[10px] text-center text-white'>
-                            <div className='mt-2'>
-                                <Image src={royalCaninLogo} className="shadow-xl opacity-[0.7]" />
+
+                    <div className='specialOfferCard absolute flex flex-col h-[13rem]  md:h-[8rem] w-[10rem] md:w-[7.5rem] right-[20%] md:right-[5%]  shadow-xl top-[85%] md:top-[75%] pt-5 '>
+                        <div className='w-full innerShadow bg-white h-[60%] md:h-[50%] px-1 md:px-0 mx-auto text-center text-white'>
+                            <div className='mt-5 md:mt-3 z-20'>
+                                <Image src={royalCaninLogo} className="shadow-xl logoAnimate opacity-[0.7]" />
                             </div>
-                            <p className='text-center pt-2 md:pt-1 text-[#e43e24] font-[monospace] font-[600] text-[1.5rem] md:text-[1rem]'>10% Off</p>
-                            <p className='text-center z-50 text-[#808080] font-[Bhoma]  text-[1rem] md:text-[0.8rem]'>محصولات</p>
-                            <p className='text-center bg-[#ebebeb] shadow-xl rounded-[5px] mb-3 text-[#505050] font-[monospace] font-[600] text-[1.25rem] md:text-[0.6rem]'>(Royal Canin)</p>
+                            <p className='text-center pt-2 text-[#ffffff] font-[monospace] font-[600] text-[2rem] md:text-[1.5rem]'>10% Off</p>
+        
                         </div>
                     </div>
+
                 </div>
 
             </div>
@@ -114,7 +115,7 @@ const Main = (props) => {
                     <div className="w-5/12 mx-auto opacity-[0.7]">
                         <Image className="w-5/12 mx-auto opacity-[0.7]" src={expressDelivery} />
                     </div>
-                    <p className='text-white text-center opacity-[0.7]'>منشتسایشمسابشنستبذشسنتذبنتشسذبتنشذ</p>
+                    <p className='text-white text-center opacity-[0.7]'>تحویل تا 2 ساعت بعد از سفارش</p>
                 </div>
                 <div className='w-3/12 md:w-full pb-[2rem] boxShadow2x overflow-hidden bg-gradient-to-r from-[#511e62] relative to-[#421b71] rounded-[10px] scale-110 transition-all duration-200 '>
                     <span className='bg-[#9595956b] rounded-[50%] w-[10rem] h-[10rem] absolute left-[60%] bottom-[60%]'></span>
@@ -125,12 +126,12 @@ const Main = (props) => {
                     <div className="w-4/12 mx-auto opacity-[0.6] mt-3">
                         <Image className='' src={guarantee} />
                     </div>
-                    <p className='text-white text-center opacity-[0.7] mt-2'>شسیشکسیتشسمنیشسمنیتشسم</p>
+                    <p className='text-white text-center opacity-[0.7] mt-2'>ضمانت تقلبی نبودن محصول</p>
                 </div>
                 <div className='w-3/12 md:w-full pb-[2rem] shadow-2xl rounded-[15px] text-center py-5'>
                     <p className='text-[#d6d6d6] text-[1.5rem]'> مشتری ها </p>
                     <div className="w-8/12 mx-auto opacity-[0.8] ">
-                        <div className='w-[7rem] m-auto h-[7rem] rounded-[50%] bg-[#59bd8ea0] mt-4 mb-3 ' >
+                        <div className='w-[6rem] mx-auto h-[6rem] rounded-[50%] bg-[#66d4a0a0] mt-2 mb-3 ' >
 
                         </div>
                     </div>
@@ -169,7 +170,7 @@ const Main = (props) => {
                         خدمات مشتریان
                     </div>
                     <div className='text-[#c2c2c2] pt-3 shadow-2xl h-[10rem]  text-center w-3/12 md:w-5/12'>
-                      Feed Us  اطلاعات 
+                        Feed Us  اطلاعات
                     </div>
                     <div className='text-[#c2c2c2] pt-3 shadow-2xl h-[10rem]  text-center w-3/12 md:w-5/12'>
                         دسته‌بندی‌ها
