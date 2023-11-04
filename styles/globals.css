@@ -393,14 +393,14 @@ body {
 }
 
 .mobileScreen {
-  animation: mobileScreen 1.4s ease-out infinite;
+  animation: mobileScreen 2.4s ease-out infinite;
   transition: all 0.5s ease-out;
 }
 
 @keyframes mobileScreen {
   0% {
     display: block;
-    opacity: 0;
+    opacity: 0.3;
     transition: all 0.3s ease-in;
   }
   50% {
@@ -408,7 +408,7 @@ body {
   }
   100% {
     display: block;
-    opacity: 0;
+    opacity: 0.3;
     transition: all 0.3s ease-in;
   }
 }

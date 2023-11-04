@@ -10,7 +10,6 @@ import Router from "next/router";
 import { useEffect } from "react";
 import { useState } from "react";
 import Loading from "../components/GeneralComponents/Loading";
-import { createPortal } from "react-dom";
 
 function MyApp({ Component, pageProps }) {
 

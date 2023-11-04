@@ -86,7 +86,7 @@ const Main = (props) => {
                     </div>
                 </div>
 
-                <span className='bubbleTopAnimation bg-[#e19e9821] md:hidden w-[10rem] absolute right-[83%] z-10 top-[30%] h-[10rem] rounded-[50%]'></span>
+                <span className='bubbleTopAnimation  bg-[#e19e9821] md:hidden w-[10rem] absolute right-[83%] z-10 top-[30%] h-[10rem] rounded-[50%]'></span>
                 <span className='bubbleRightAnimation bg-[#9f9dd421] md:hidden w-[15rem] absolute right-[53%] z-10 top-[15%] h-[15rem] rounded-[50%]'></span>
                 <span className='bubbleLeftAnimation bg-[#6298a721] md:hidden w-[8rem] absolute right-[70%] z-10 top-[70%] h-[8rem] rounded-[50%]'></span>
 

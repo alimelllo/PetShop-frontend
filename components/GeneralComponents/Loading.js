@@ -1,6 +1,6 @@
 const Loading = () => {
     return (
-        <div className="fixed top-0 right-0 left-0 bg-[#ffffffd3] h-[100vh] w-full overflow-hidden z-[500]">
+        <div className="fixed top-0 right-0 left-0 bg-[#fffffff0] h-[100vh] w-full overflow-hidden z-[500]">
             <div className="container z-30 ">
                 <span></span>
                 <span></span>
