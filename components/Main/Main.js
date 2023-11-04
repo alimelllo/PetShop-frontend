@@ -94,12 +94,12 @@ const Main = (props) => {
                 <div className='w-6/12 relative md:w-full md:mt-[2rem] md:pl-2'>
                     <Image className='fadeLoadAnimation' src={main} />
 
-                    <div className='specialOfferCard absolute flex flex-col h-[13rem]  md:h-[8rem] w-[10rem] md:w-[7.5rem] right-[20%] md:right-[5%]  shadow-xl top-[85%] md:top-[75%] pt-5 '>
-                        <div className='w-full innerShadow bg-white h-[60%] md:h-[50%] px-1 md:px-0 mx-auto text-center text-white'>
+                    <div className='specialOfferCard p-2 absolute flex flex-col h-[13rem] md:h-[8rem] w-[10rem] md:w-[7.5rem] right-[20%] md:right-[5%]  top-[85%] md:top-[75%] pt-5 '>
+                        <div className='w-full bg-white rounded-sm h-[60%] md:h-[50%] px-1 md:px-0 mx-auto text-center text-white'>
                             <div className='mt-5 md:mt-3 z-20'>
-                                <Image src={royalCaninLogo} className="shadow-xl logoAnimate opacity-[0.7]" />
+                                <Image src={royalCaninLogo} className="logoAnimate opacity-[0.7]" />
                             </div>
-                            <p className='text-center pt-2 text-[#ffffff] font-[monospace] font-[600] text-[2rem] md:text-[1.5rem]'>10% Off</p>
+                            <p className='text-center   text-[#ffffff] font-[monospace] font-[600] text-[2rem] md:text-[1.5rem]'>10% Off</p>
         
                         </div>
                     </div>
@@ -109,7 +109,7 @@ const Main = (props) => {
             </div>
 
 
-            <div className='mt-[20rem] mb-[10rem] md:my-[10rem] flex flex-row md:flex-col  shadow-2xl font-[Bhoma] w-10/12 bg-gradient-to-r from-[#1c0f31] to-[#161136] rounded-[20px]  mx-auto'>
+            <div className='mt-[20rem] mb-[20rem] md:my-[10rem] flex flex-row md:flex-col  shadow-2xl font-[Bhoma] w-10/12 bg-gradient-to-r from-[#1c0f31] to-[#161136] rounded-[20px]  mx-auto'>
                 <div className='w-3/12 md:w-full shadow-2xl rounded-[15px] py-5'>
                     <p className='text-[#d6d6d6] text-center text-[1.5rem] shadow-lg'> ارسال سریع</p>
                     <div className="w-5/12 mx-auto opacity-[0.7]">
@@ -118,7 +118,7 @@ const Main = (props) => {
                     <p className='text-white text-center opacity-[0.7]'>تحویل تا 2 ساعت بعد از سفارش</p>
                 </div>
                 <div className='w-3/12 md:w-full pb-[2rem] boxShadow2x overflow-hidden bg-gradient-to-r from-[#511e62] relative to-[#421b71] rounded-[10px] scale-110 transition-all duration-200 '>
-                    <span className='bg-[#9595956b] rounded-[50%] w-[10rem] h-[10rem] absolute left-[60%] bottom-[60%]'></span>
+                    <span className='bg-[#95959541] rounded-[50%] w-[10rem] h-[10rem] absolute left-[60%] bottom-[60%]'></span>
                     <p className='text-[#d6d6d6] pl-5 py-3 text-[1.75rem]'> پرفروش </p>
                 </div>
                 <div className='w-3/12 md:w-full shadow-2xl text-center py-5'>
@@ -130,18 +130,18 @@ const Main = (props) => {
                 </div>
                 <div className='w-3/12 md:w-full pb-[2rem] shadow-2xl rounded-[15px] text-center py-5'>
                     <p className='text-[#d6d6d6] text-[1.5rem]'> مشتری ها </p>
-                    <div className="w-8/12 mx-auto opacity-[0.8] ">
-                        <div className='w-[6rem] mx-auto h-[6rem] rounded-[50%] bg-[#66d4a0a0] mt-2 mb-3 ' >
-
+                    <div className="w-8/12 mx-auto">
+                        <div className='w-[6.5rem] m-auto h-[6.5rem] flex justify-center items-center rounded-[50%] bg-[#66d4a165] mt-2 mb-3 ' >
+                          <span className='text-white text-[2.5rem] font-[600]'>+43</span>
                         </div>
                     </div>
-                    <p className='text-white text-center opacity-[0.7]'>۴۷ مشتری فعال</p>
+                    <p className='text-white text-center pt-2 opacity-[0.7]'>۴۷ مشتری فعال</p>
                 </div>
             </div>
 
-            <p className='text-center text-[3rem] font-[Bhoma] text-[#b3b3b3]'>محصولات</p>
+            <p className='text-center text-[2rem] font-[Bhoma] text-[#b3b3b3]'>محصولات</p>
 
-            {!isLoading && <div className='mt-[5rem] mb-[1rem] py-[3rem] innerShadow2 w-full flex flex-row flex-wrap justify-around'>
+            {!isLoading && <div className='mt-[3rem] mb-[1rem] py-[3rem] innerShadow2 w-full flex flex-row flex-wrap justify-around'>
                 {productList}
             </div>}
 

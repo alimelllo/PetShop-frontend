@@ -90,19 +90,19 @@ const Header = (props) => {
           <Image src={logo} />
         </div>}
 
-        <div className="flex flex-row w-8/12 justify-between pt-2 md:hidden">
+        <div className="flex flex-row w-8/12 justify-between items-center md:hidden">
           <Link href="/AboutUs">
-            <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 pt-3 md:px-3 md:font-[700] ml-[10rem] md:ml-0 mx-5 hover:shadow-xl rounded-[20px] md:mx-0  cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
+            <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 flex items-center  md:px-3 md:font-[700] ml-[10rem] md:ml-0 mx-5 hover:shadow-xl rounded-[20px] md:mx-0  cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
               تماس{" "}
             </p>
           </Link>
           <Link href="/Products">
-            <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 pt-3 md:px-3 md:font-[700] mx-5 hover:shadow-xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
+            <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 flex items-center  md:px-3 md:font-[700] mx-5 hover:shadow-xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
               محصولات
             </p>
           </Link>
           <Link href={{ pathname: '/Products', query: { category: 'cat' } }}>
-            <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 pt-3 md:px-3 md:font-[700] mx-5 hover:shadow-xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
+            <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 flex items-center  md:px-3 md:font-[700] mx-5 hover:shadow-xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
               {" "}
               دسته{" "}
             </p>
