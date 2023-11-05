@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "http://localhost:6060",
+  baseURL: "https://pet-shop-backend.vercel.app/",
   headers: {
     "Content-type": "application/json",
     "Authorization": "Bearer secret",
