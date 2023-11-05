@@ -127,7 +127,7 @@ export default function Basket() {
                     </div>
                     <div className="p-1 font-[bhoma] flex flex-row justify-around w-4/12 md:w-6/12 text-[2rem] md:text-[1.5rem]">
                       <p className="text-[#e05721] font-[600]">{countTotalSome()}</p>
-                      <p className="font-[700] text-[#5b5b5b] text-[1.75rem] pt-1 md:text-[1.25rem]">: جمع کل  </p>
+                      {/* <p className="font-[700] text-[#5b5b5b] text-[1.75rem] pt-1 md:text-[1.25rem]">: جمع کل  </p> */}
                     </div>
                   </div>
                  {/* ///////////////// FOOTER /////////////////////// */}
