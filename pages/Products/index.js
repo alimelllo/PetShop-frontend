@@ -6,7 +6,7 @@ import productService from "../../Services/ProductsServices/product.service";
 import ProductCard from "../../components/GeneralComponents/ProductCard";
 import MobileFilterDropDown from "../../components/Products/MobileFilterDropDown.js";
 import Skeleton from 'react-loading-skeleton'
-import { ordersHandler , addOrder} from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
+import { ordersHandler , addOrder, themeHandler} from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router.js";
 
@@ -32,6 +32,9 @@ const Products = (props) => {
 
   const [pageNumber, SetPageNumber] = useState(undefined);
 
+
+  const selectThemeState = useSelector(themeHandler);
+  const themeState = selectThemeState.payload.ProfileSettings.theme;
 
   useEffect(() => {
     const arr = [];
@@ -133,14 +136,13 @@ const Products = (props) => {
 
 
   const {query} = useRouter();
-  console.log(query);
 
   return (
-    <div className="flex flex-col">
+    <div className={`flex flex-col ${themeState === 'light' ? 'bg-white' : 'bg-[#1b1b1b]'}`}>
       <Header />
       <div className="flex flex-row mt-[3rem]">
         <div className="PRODUCTS_CONTAINER w-10/12 md:w-full md:pl-0 mt-[1rem] pl-5 border-r-[3px] border-r-[solid] border-r-[#f7f7f7] flex flex-row flex-wrap">
-          <div className="bg-[#e8e8e861] shadow-2xl pr-5 flex flex-row justify-end md:justify-around items-center w-full py-2 mx-auto mt-[1.5rem] md:mt-[0.5rem] ">
+          <div className={`${themeState ==='dark'? 'bg-[#78787861]' : 'bg-[#e8e8e861] '}shadow-2xl pr-5 flex flex-row justify-end md:justify-around items-center w-full py-2 mx-auto mt-[1.5rem] md:mt-[0.5rem]`}>
             <button
               onClick={() => getAllProducts(searchText)}
               className="mr-5 md:mr-0 bg-[#537df9f4] rounded-[15px] font-[Bhoma] px-5 h-[3rem] text-white flex justify-center items-center transition-all duration-200 hover:bg-[#535ef9f4] shadow-2xl "

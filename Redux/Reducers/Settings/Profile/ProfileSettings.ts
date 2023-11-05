@@ -8,8 +8,12 @@ export const ProfileSettings = createSlice({
     isLoggedIn: false,
     showBasket: false,
     orders: [],
+    theme:'light'
   },
   reducers: {
+    themeHandler: (state: any, action: any) => {
+      state.theme = action.payload
+    },
     tokenHandler: (state: any, action: any) => {
       state.token = action.payload
     },
@@ -44,14 +48,11 @@ export const ProfileSettings = createSlice({
        const index = state.orders.indexOf(item);
        state.orders[index].count = state.orders[index].count - 1;
       }
-    
-    
-    
     }
 
 
   },
 })
 
-export const { tokenHandler, nameHandler, isLoggedInHandler, showBasketHandler, ordersHandler , addOrder , removeOrder } = ProfileSettings.actions;
+export const { tokenHandler, nameHandler, isLoggedInHandler, showBasketHandler, ordersHandler , addOrder , removeOrder , themeHandler } = ProfileSettings.actions;
 export default ProfileSettings.reducer;

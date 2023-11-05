@@ -9,7 +9,8 @@ import { useRouter } from "next/router";
 import {
   isLoggedInHandler,
   showBasketHandler,
-  ordersHandler
+  ordersHandler,
+  themeHandler
 } from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
 import { useDispatch, useSelector } from "react-redux";
 import Basket from '../GeneralComponents/Basket';
@@ -35,7 +36,15 @@ const Header = (props) => {
   const selectOrderState = useSelector(ordersHandler);
   const ordersState = selectOrderState.payload.ProfileSettings.orders;
 
+  const selectThemeState = useSelector(themeHandler);
+  const themeState = selectThemeState.payload.ProfileSettings.theme;
+  const SetThemeHandler = useDispatch();
 
+
+  useEffect(() => {
+    console.log(themeState);
+  },[themeState])
+  
   useEffect(() => {
     productService.getAllProductGroups().then((resp) => {
       console.log(resp.data);
@@ -72,8 +81,8 @@ const Header = (props) => {
 
   return (
     <header
-      className={`flex flex-row w-full ${asPath !== "/" && "shadow-xl bg-white"
-        }  ${clientWindowHeight > 30 ? " bg-white shadow-2xl " : "bg-transparent"
+      className={`flex flex-row w-full ${asPath !== "/" && ` ${themeState === 'dark' ? "bg-[#191919] boxShadow2x" :"bg-white shadow-2xl"}`
+        }  ${clientWindowHeight > 30 ? ` ${themeState === 'dark' ? "bg-[#191919] boxShadow2x" :"bg-white shadow-2xl"}` : "bg-transparent"
         } transition-all duration-300 fixed top-0 justify-between text-white z-50 font-[Bhoma] md:pt-2 md:pb-2 md:bg-[white] md:shadow-2xl`}
     >
 
@@ -83,7 +92,7 @@ const Header = (props) => {
         <MobileHeaderDropDown />
       </div>
 
-      <div className="w-6/12 flex flex-row justify-between text-[#505050] text-center text-[1.25rem] md:text-[1rem]">
+      <div className={`w-6/12 flex flex-row justify-between ${ themeState === 'light' ? 'text-[#505050]' : 'text-[#919191]'}  text-center text-[1.25rem] md:text-[1rem]`}>
         {asPath !== "/" ? <div className="w-[22%] md:w-[50%] md:ml-2 ml-5 cursor-pointer">
           <Link href='/'><Image src={logo} /></Link>
         </div> : <div className="w-[22%] md:w-[50%] md:ml-2 ml-5 ">
@@ -109,7 +118,7 @@ const Header = (props) => {
           </Link>
         </div>
       </div>
-      
+
       <div className="w-3/12 flex flex-row justify-end pr-5  md:pr-2 text-center text-[#bfbfbf] md:w-5/12">
         {!isLoggedInState && (
           <Link href="/Register">
@@ -121,6 +130,18 @@ const Header = (props) => {
             </div>
           </Link>
         )}
+
+        { isLoggedInState && asPath ==='/' && clientWindowHeight > 30 &&
+        <div className="flex items-center mr-5 mb-1 md:mb-0">
+         <label className="ui-switch" >
+          <input type="checkbox" />
+          <div className="slider" onClick={() => {themeState === 'dark' ?  SetThemeHandler(themeHandler('light')) : SetThemeHandler(themeHandler('dark'))}}>
+            <div className="circle"></div>
+          </div>
+        </label>
+        </div>
+        }
+
 
         {isLoggedInState && (
           <Menu as="div" className="relative text-center">
@@ -188,7 +209,7 @@ const Header = (props) => {
         )}
 
         {isLoggedInState && (
-          <div onClick={() => SetShowBasketHandler(showBasketHandler(true))} className="w-[4rem]  h-[4rem] md:w-[3rem] md:h-[3rem] relative innerShadow  p-2  rounded-[20px] mr-2 bg-white mt-2 md:mt-1 md:mr-3 text-[1rem] hover:bg-[#e1e1e1] cursor-pointer transition-all duration-200">
+          <div onClick={() => SetShowBasketHandler(showBasketHandler(true))} className={`w-[4rem]  h-[4rem] md:min-w-[3rem] md:h-[3rem] relative   p-2  rounded-[20px] mr-2 ${ themeState === 'light' ? 'bg-white innerShadow hover:bg-[#e1e1e1]' : ' bg-[#1f1f1f] innerShadowDark'} mt-2 md:mt-1 md:mr-3 text-[1rem]  cursor-pointer transition-all duration-200`}>
             <p key={ordersState} className="bump bg-[#ba3131] w-[1.5rem]  h-[1.5rem] rounded-[50%] absolute left-[75%]  bottom-[70%] md:bottom-[67%] text-white shadow-2xl font-[monospace]">
               {ordersState.length}
             </p>

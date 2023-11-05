@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from "react";
-import { ordersHandler , removeOrder , addOrder} from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
+import { ordersHandler , removeOrder , addOrder, themeHandler} from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
 import { useDispatch, useSelector } from "react-redux";
 
 
@@ -13,10 +13,13 @@ const productCard = (props) => {
     const RemoveOrdersHandler = useDispatch();
     const AddOrdersHandler = useDispatch();
 
+    const selectThemeState = useSelector(themeHandler);
+    const themeState = selectThemeState.payload.ProfileSettings.theme;
+
     return (
         <Link href={`/Products/${props.id}`}>
-            <div className={`shadow-2xl ${props.width} rounded-[10px] flex flex-col transition-all duration-200 hover:cursor-pointer hover:bg-[#f5f5f5] hover:scale-105 justify-between my-5`}>
-                <div className='m-3 innerShadow2 p-3 min-h-[45%] flex justify-center'>
+            <div className={` ${props.width} rounded-[10px] flex flex-col transition-all duration-200 hover:cursor-pointer ${themeState === 'light' ? 'hover:bg-[#f5f5f5] shadow-2xl' :'bg-[#1f1f1f] boxShadow3x'} hover:scale-105 justify-between my-5`}>
+                <div className={`m-3 ${ themeState === 'light' ? 'innerShadow2' : 'innerShadowDark'}  p-3 min-h-[45%] flex justify-center`}>
                     <Image width={props.imageWidth} height={props.imageHeight} src={props.productImage} />
                 </div>
                 <p className='text-[1rem] text-[#5c5c5c] font-[700] font-[monospace] px-3 md:text-[1rem] '>{props.name}</p>
