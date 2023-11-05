@@ -209,7 +209,7 @@ const Header = (props) => {
         )}
 
         {isLoggedInState && (
-          <div onClick={() => SetShowBasketHandler(showBasketHandler(true))} className={`w-[4rem]  h-[4rem] md:min-w-[3rem] md:h-[3rem] relative   p-2  rounded-[20px] mr-2 ${ themeState === 'light' ? 'bg-white innerShadow hover:bg-[#e1e1e1]' : ' bg-[#1f1f1f] innerShadowDark'} mt-2 md:mt-1 md:mr-3 text-[1rem]  cursor-pointer transition-all duration-200`}>
+          <div onClick={() => SetShowBasketHandler(showBasketHandler(true))} className={`w-[4rem]  h-[4rem] md:w-[3rem] md:min-w-[3rem] md:h-[3rem] relative   p-2  rounded-[20px] mr-2 ${ themeState === 'light' ? 'bg-white innerShadow hover:bg-[#e1e1e1]' : ' bg-[#1f1f1f] innerShadowDark'} mt-2 md:mt-1 md:mr-3 text-[1rem]  cursor-pointer transition-all duration-200`}>
             <p key={ordersState} className="bump bg-[#ba3131] w-[1.5rem]  h-[1.5rem] rounded-[50%] absolute left-[75%]  bottom-[70%] md:bottom-[67%] text-white shadow-2xl font-[monospace]">
               {ordersState.length}
             </p>
