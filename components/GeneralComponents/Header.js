@@ -83,7 +83,7 @@ const Header = (props) => {
     <header
       className={`flex flex-row w-full ${asPath !== "/" && ` ${themeState === 'dark' ? "bg-[#191919] boxShadow2x" :"bg-white shadow-2xl"}`
         }  ${clientWindowHeight > 30 ? ` ${themeState === 'dark' ? "bg-[#191919] boxShadow2x" :"bg-white shadow-2xl"}` : "bg-transparent"
-        } transition-all duration-300 fixed top-0 justify-between text-white z-50 font-[Bhoma] md:pt-2 md:pb-2 md:bg-[white] md:shadow-2xl`}
+        } transition-all duration-300 fixed top-[-0.25%] justify-between text-white z-50 font-[Bhoma] md:py-2  ${themeState === 'dark' ? "md:bg-[#191919] boxShadow2x" :"md:bg-[white] shadow-2xl"}  md:shadow-2xl`}
     >
 
       {showBasketState && <Basket />}
@@ -95,7 +95,7 @@ const Header = (props) => {
       <div className={`w-6/12 flex flex-row justify-between ${ themeState === 'light' ? 'text-[#505050]' : 'text-[#919191]'}  text-center text-[1.25rem] md:text-[1rem]`}>
         {asPath !== "/" ? <div className="w-[22%] md:w-[50%] md:ml-2 ml-5 cursor-pointer">
           <Link href='/'><Image src={logo} /></Link>
-        </div> : <div className="w-[22%] md:w-[50%] md:ml-2 ml-5 ">
+        </div> : <div className="w-[22%] md:w-[50%] md:ml-2 ml-5 md:pt-1 ">
           <Image src={logo} />
         </div>}
 
