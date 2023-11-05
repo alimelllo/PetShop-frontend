@@ -83,7 +83,7 @@ const Header = (props) => {
     <header
       className={`flex flex-row w-full ${asPath !== "/" && ` ${themeState === 'dark' ? "bg-[#191919] boxShadow2x" :"bg-white shadow-2xl"}`
         }  ${clientWindowHeight > 30 ? ` ${themeState === 'dark' ? "bg-[#191919] boxShadow2x" :"bg-white shadow-2xl"}` : "bg-transparent"
-        } transition-all duration-300 fixed top-[-0.25%] justify-between text-white z-50 font-[Bhoma] md:py-2  ${themeState === 'dark' ? "md:bg-[#191919] boxShadow2x" :"md:bg-[white] shadow-2xl"}  md:shadow-2xl`}
+        } transition-all duration-300 fixed top-[-0.25%] justify-between text-white z-50 font-[Bhoma] md:py-2  ${themeState === 'dark' ? "md:bg-[#191919] boxShadow2x" :"md:bg-[white] shadow-2xl md:shadow-2xl"} `}
     >
 
       {showBasketState && <Basket />}
