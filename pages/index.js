@@ -13,15 +13,6 @@ export default function Home(props) {
 
   useEffect(() => {
     themeState === 'dark' ? document.body.style.background = '#1b1b1b' : document.body.style.background = '#ffffff'
-    if ('serviceWorker' in navigator) {
-      window.addEventListener("load", () => {
-          navigator.serviceWorker.register('service-worker.js').then(function(registration) {
-              console.log('ServiceWorker registered');
-            }).catch(function(err) {
-              console.log('ServiceWorker error: ', err);
-            });
-      })
-  }
   },[themeState])
 
   return (
@@ -29,7 +20,6 @@ export default function Home(props) {
       <Head>
         <title>Pet Shop</title>
         <meta property="og:title" content="Feed Us" key="title" />
-        <link rel="manifest" href="manifest.json"/> 
       </Head>
 
       <Header />
