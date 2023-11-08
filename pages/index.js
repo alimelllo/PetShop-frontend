@@ -20,6 +20,18 @@ export default function Home(props) {
       <Head>
         <title>Pet Shop</title>
         <meta property="og:title" content="Feed Us" key="title" />
+        <link rel="manifest" href="manifest.json"/>
+                <script>
+                    if ('serviceWorker' in navigator) {
+                        window.addEventListener("load", () => {
+                            navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+                                console.log('ServiceWorker registered');
+                              }).catch(function(err) {
+                                console.log('ServiceWorker error: ', err);
+                              });
+                        })
+                    }
+        </script>    
       </Head>
 
       <Header />
