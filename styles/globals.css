@@ -68,7 +68,7 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: white;
+  background: rgb(161, 161, 161);
 }
 
 /* Handle */

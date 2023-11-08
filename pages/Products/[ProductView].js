@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 import Header from "../../components/GeneralComponents/Header";
 import productService from "../../Services/ProductsServices/product.service";
-import { ordersHandler , removeOrder , addOrder} from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
+import { ordersHandler , removeOrder , addOrder, themeHandler} from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
 import { useDispatch, useSelector } from "react-redux";
 
 const ProductView = (props) => {
@@ -15,6 +15,10 @@ const ProductView = (props) => {
     
     const RemoveOrdersHandler = useDispatch();
     const AddOrdersHandler = useDispatch();
+
+    const selectThemeState = useSelector(themeHandler);
+    const themeState = selectThemeState.payload.ProfileSettings.theme;
+    
 
     return (
         <div>
@@ -35,7 +39,7 @@ const ProductView = (props) => {
                     </div>
                 </div>
               
-                <div className="w-6/12 justify-center md:bg-[#f2f2f2] flex flex-col pr-5 mt-5 md:w-full md:px-5  md:mb-[5rem] md:innerShadow">
+                <div className={`w-6/12 justify-center ${themeState === 'light' ? 'md:bg-[#f2f2f2]' : 'md:bg-[#1b1b1b]'} flex flex-col pr-5 mt-5 md:w-full md:px-5  md:mb-[5rem] md:innerShadow`}>
                     <p className=" text-[gray] pb-3 text-right border-b-solid border-b-[#eeeeee] border-b-[2px] text-[2rem]">{props.product[0].name}</p>
                     <div className=" pt-3 text-center flex flex-row justify-between">
                         <p className="text-[1.5rem] pt-2 text-[gray] ">{props.product[0].description}</p>
