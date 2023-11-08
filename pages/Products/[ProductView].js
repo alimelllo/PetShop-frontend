@@ -40,7 +40,7 @@ const ProductView = (props) => {
                 </div>
               
                 <div className={`w-6/12 justify-center ${themeState === 'light' ? 'md:bg-[#f2f2f2]' : 'md:bg-[#1b1b1b]'} flex flex-col pr-5 mt-5 md:w-full md:px-5  md:mb-[5rem] md:innerShadow`}>
-                    <p className=" text-[gray] pb-3 text-right border-b-solid border-b-[#eeeeee] border-b-[2px] text-[2rem]">{props.product[0].name}</p>
+                    <p className={` ${themeState === 'light' ? 'border-b-solid border-b-[#eeeeee]' : 'border-b-solid border-b-[#7a7a7a]'} text-[gray] pb-3 text-right  border-b-[2px] text-[2rem]`}>{props.product[0].name}</p>
                     <div className=" pt-3 text-center flex flex-row justify-between">
                         <p className="text-[1.5rem] pt-2 text-[gray] ">{props.product[0].description}</p>
                         <p className="font-[bhoma] text-[1.75rem] text-[#5d5d5d]">: توضیحات </p>
@@ -57,11 +57,11 @@ const ProductView = (props) => {
                         <p className="text-[1.5rem] font-[400] pt-2 text-[gray] ">{props.product[0].productGroup} </p>
                         <p className="text-[1.75rem] text-[#5d5d5d]">: دسته بندی </p>
                     </div>
-                    <div className="  border-b-solid pb-3 border-b-[#eeeeee] border-b-[2px] font-[bhoma] mt-[1rem] text-center  flex flex-row justify-between">
+                    <div className={`${themeState === 'light' ? 'border-b-solid border-b-[#eeeeee] border-b-[2px]' : 'border-b-solid border-b-[#7a7a7a] border-b-[2px]'}  pb-3  font-[bhoma] mt-[1rem] text-center  flex flex-row justify-between`}>
                         <p className="text-[1.75rem] font-[400] pt-2 text-[#e1691f] ">{props.product[0].price} تومان</p>
                         <p className="text-[1.75rem] text-[#5d5d5d] pt-2">: قیمت</p>
                     </div>
-                    <div className="font-[bhoma] mt-[1rem] text-[1.25rem] text-center  flex flex-row justify-between md:justify-center md:fixed md:left-0 md:top-[87%] md:py-4 md:w-full md:bg-[white] ">
+                    <div className={`font-[bhoma] mt-[1rem] text-[1.25rem] text-center  flex flex-row justify-between md:justify-center md:fixed md:left-0 md:top-[87%] md:py-4 md:w-full ${themeState === 'light' ? 'md:bg-[white]' : 'md:bg-[#171717]'}`}>
                         {!ordersState.find((x) => x.id === props.product[0].id) &&
                          <button onClick={()=>  AddOrdersHandler(addOrder(props.product[0]))} className="bg-[#e1561f] hover:bg-[#be410f] transition-all duration-200 hover:scale-105 p-2 px-5 text-white rounded-[15px] md:w-11/12 shadow-2xl">+ افزودن به سبد</button>}                    
                         { ordersState.find((x) => x.id === props.product[0].id) &&
