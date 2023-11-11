@@ -16,6 +16,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Basket from '../GeneralComponents/Basket';
 import productService from "../../Services/ProductsServices/product.service";
 import MobileHeaderDropDown from "../Products/MobileHeaderDropDown";
+import ThemeToggle from "./themeToggle";
+import darkIcon from '../../public/images/icons/darkIcon.jpg'
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -43,8 +46,8 @@ const Header = (props) => {
 
   useEffect(() => {
     console.log(themeState);
-  },[themeState])
-  
+  }, [themeState])
+
   useEffect(() => {
     productService.getAllProductGroups().then((resp) => {
       console.log(resp.data);
@@ -81,9 +84,9 @@ const Header = (props) => {
 
   return (
     <header
-      className={`flex flex-row w-full ${asPath !== "/" && ` ${themeState === 'dark' ? "bg-[#191919] boxShadow2x" :"bg-white shadow-2xl"}`
-        }  ${clientWindowHeight > 30 ? ` ${themeState === 'dark' ? "bg-[#191919] boxShadow2x" :"bg-white shadow-2xl"}` : "bg-transparent"
-        } transition-all duration-300 fixed top-[-0.25%] justify-between text-white z-50 font-[Bhoma] md:py-2  ${themeState === 'dark' ? "md:bg-[#191919] " :"bg-transparent md:bg-[white] md:shadow-2xl"} `}
+      className={`flex flex-row w-full ${asPath !== "/" && ` ${themeState === 'dark' ? "bg-[#191919] boxShadow2x" : "bg-white shadow-2xl"}`
+        }  ${clientWindowHeight > 30 ? ` ${themeState === 'dark' ? "bg-[#191919] boxShadow2x" : "bg-white shadow-2xl"}` : "bg-transparent"
+        } transition-all duration-300 fixed top-[-0.25%] justify-between text-white z-50 font-[Bhoma] md:py-2  ${themeState === 'dark' ? "md:bg-[#191919] " : "bg-transparent md:bg-[white] md:shadow-2xl"} `}
     >
 
       {showBasketState && <Basket />}
@@ -92,7 +95,7 @@ const Header = (props) => {
         <MobileHeaderDropDown />
       </div>
 
-      <div className={`w-6/12 flex flex-row justify-between ${ themeState === 'light' ? 'text-[#505050]' : 'text-[#919191]'}  text-center text-[1.25rem] md:text-[1rem]`}>
+      <div className={`w-6/12 flex flex-row justify-between ${themeState === 'light' ? 'text-[#505050]' : 'text-[#919191]'}  text-center text-[1.25rem] md:text-[1rem]`}>
         {asPath !== "/" ? <div className="w-[22%] md:w-[50%] md:ml-2 ml-5 cursor-pointer">
           <Link href='/'><Image src={logo} /></Link>
         </div> : <div className="w-[22%] md:w-[50%] md:ml-2 ml-5 md:pt-1 ">
@@ -131,15 +134,15 @@ const Header = (props) => {
           </Link>
         )}
 
-        { isLoggedInState && asPath ==='/' && clientWindowHeight > 30 &&
-        <div className="flex items-center mr-5 mb-1 md:mb-0">
-         <label className="ui-switch" >
-          <input type="checkbox" />
-          <div className="slider" onClick={() => {themeState === 'dark' ?  SetThemeHandler(themeHandler('light')) : SetThemeHandler(themeHandler('dark'))}}>
-            <div className="circle"></div>
+        {isLoggedInState && asPath === '/' && clientWindowHeight > 30 &&
+          <div className="flex items-center mr-5 mb-1 md:mb-0">
+            <label className="ui-switch" >
+              <input type="checkbox" onClick={() => { themeState === 'dark' ? SetThemeHandler(themeHandler('light')) : SetThemeHandler(themeHandler('dark')) }} />
+              <div className="slider">
+                <div className="circle"></div>
+              </div>
+            </label>
           </div>
-        </label>
-        </div>
         }
 
 
@@ -166,16 +169,24 @@ const Header = (props) => {
               leaveTo="transform opacity-0 scale-95"
             >
               <Menu.Items className="absolute font-[Bhoma] text-[1.25rem] right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                <div className="py-1">
+                <div className="">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <div className={`flex justify-between pr-3 pt-2 ${themeState === 'light' ? 'bg-gray-100 text-[#5c5c5c]' : 'bg-[#333333] text-[#bfbfbf]'}`}>
+                        <div className="p-1 pb-2 ml-3 w-[3rem] h-[3rem]">
+                          <Image src={darkIcon} />
+                        </div>
+                         <ThemeToggle />
+                      </div>
+
+                    )}
+                  </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
                       <button
                         type="submit"
                         className={classNames(
-                          active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block w-full px-4 py-2 text-right "
+                          `block w-full px-4 py-2 text-right ${themeState === 'light' ? 'bg-gray-100 text-[#5c5c5c]' : 'bg-[#333333] text-[#bfbfbf]'}`
                         )}
                       >
                         پروفایل
@@ -192,10 +203,7 @@ const Header = (props) => {
                         }}
                         type="submit"
                         className={classNames(
-                          active
-                            ? "bg-gray-100 text-gray-900"
-                            : "text-gray-700",
-                          "block w-full px-4 py-2 text-right "
+                          `block w-full px-4 py-2 text-right ${themeState === 'light' ? 'bg-gray-100 text-[#5c5c5c]' : 'bg-[#333333] text-[#bfbfbf]'}`
                         )}
                       >
                         خروج
@@ -209,7 +217,7 @@ const Header = (props) => {
         )}
 
         {isLoggedInState && (
-          <div onClick={() => SetShowBasketHandler(showBasketHandler(true))} className={`w-[4rem]  h-[4rem] md:w-[3rem] md:min-w-[3rem] md:h-[3rem] relative   p-2  rounded-[20px] mr-2 ${ themeState === 'light' ? 'bg-white innerShadow hover:bg-[#e1e1e1]' : ' bg-[#1f1f1f] innerShadowDark'} mt-2 md:mt-1 md:mr-3 text-[1rem]  cursor-pointer transition-all duration-200`}>
+          <div onClick={() => SetShowBasketHandler(showBasketHandler(true))} className={`w-[4rem]  h-[4rem] md:w-[3rem] md:min-w-[3rem] md:h-[3rem] relative   p-2  rounded-[20px] mr-2 ${themeState === 'light' ? 'bg-white innerShadow hover:bg-[#e1e1e1]' : ' bg-[#1f1f1f] innerShadowDark'} mt-2 md:mt-1 md:mr-3 text-[1rem]  cursor-pointer transition-all duration-200`}>
             <p key={ordersState} className="bump bg-[#ba3131] w-[1.5rem]  h-[1.5rem] rounded-[50%] absolute left-[75%]  bottom-[70%] md:bottom-[67%] text-white shadow-2xl font-[monospace]">
               {ordersState.length}
             </p>

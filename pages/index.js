@@ -18,7 +18,7 @@ export default function Home(props) {
   return (
     <div className={`${themeState === 'light' ? 'bg-[#ffffff]' : 'bg-[#1b1b1b]'}`}>
       <Head>
-        <title>Pet Shop</title>
+        <title>Feed Us</title>
         <meta property="og:title" content="Feed Us" key="title" />
       </Head>
 

@@ -43,7 +43,7 @@ const Main = (props) => {
                     productImage={item.productImage}
                     description={item.description}
                     weight={item.weight}
-                    width={"w-[19%] md:w-[45%]"}
+                    width={"w-[17%] md:w-[45%]"}
                     data={item} />
             ))
             let arr = [];
@@ -92,7 +92,7 @@ const Main = (props) => {
                 <span className='bubbleRightAnimation bg-[#9f9dd421] md:hidden w-[15rem] absolute right-[53%] z-10 top-[15%] h-[15rem] rounded-[50%]'></span>
                 <span className='bubbleLeftAnimation bg-[#6298a721] md:hidden w-[8rem] absolute right-[70%] z-10 top-[70%] h-[8rem] rounded-[50%]'></span>
 
-
+                
                 <div className='w-6/12 relative md:w-full md:mt-[2rem] md:pl-2'>
                     <Image className='fadeLoadAnimation' src={main} />
 
