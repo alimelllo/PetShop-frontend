@@ -5,8 +5,8 @@ const AboutUs = () => {
     <>
       <Header />
       <div className="flex flex-row justify-center md:flex-col-reverse">
-        <div className="mt-[17rem] md:mt-[1rem] w-4/12 md:mx-auto md:w-10/12">
-          <div className="contactCard mx-auto ">
+        <div className="mt-[17rem] md:mt-[1rem] w-4/12 md:mx-auto md:w-10/12 ">
+          <div className="contactCard mx-auto boxShadow2x">
             <div className="contactHeader ">
               <div className="image"></div>
               <div>

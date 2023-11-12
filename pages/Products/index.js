@@ -83,7 +83,7 @@ const Products = (props) => {
         SetProductGroupsData(result.data);
 
         const list = result.data.map((item) => (
-          <div className="flex flex-row justify-end w-10/12 mx-auto my-2 border-b-[1px] border-b-solid border-b-[#d4d4d4] pb-4 font-[bhoma] text-[#979797]">
+          <div className={`flex flex-row justify-end w-10/12 mx-auto my-1 pb-4 font-[bhoma] text-[#979797]`}>
             <label className="mr-5 text-[1.25rem]" >{item.title}</label>
             <input type="radio" onChange={(e) => { e.target.checked ? SetCategoryName(item.categoryName) : null; SetSearchText(''); SetPageNumber(1); }} value={item.categoryName} name="productGroup" />
           </div>
@@ -138,11 +138,11 @@ const Products = (props) => {
   const {query} = useRouter();
 
   return (
-    <div className={`flex flex-col ${themeState === 'light' ? 'bg-white' : 'bg-[#1b1b1b]'}`}>
+    <div className={`flex flex-col ${themeState === 'light' ? 'bg-white' : 'bg-[#141414]'}`}>
       <Header />
       <div className="flex flex-row mt-[3rem]">
-        <div className="PRODUCTS_CONTAINER w-10/12 md:w-full md:pl-0 mt-[1rem] pl-5 border-r-[3px] border-r-[solid] border-r-[#f7f7f7] flex flex-row flex-wrap">
-          <div className={`${themeState ==='dark'? 'bg-[#78787861]' : 'bg-[#e8e8e861] '}shadow-2xl pr-5 flex flex-row justify-end md:justify-around items-center w-full py-2 mx-auto mt-[1.5rem] md:mt-[0.5rem]`}>
+        <div className={`PRODUCTS_CONTAINER w-10/12 md:w-full md:pl-0 mt-[1rem] pl-5  ${themeState === 'light' ? 'border-r-[3px] border-r-[solid] border-r-[#f7f7f7]' : 'border-r-[3px] border-r-[solid] border-r-[#171717]'}  flex flex-row flex-wrap`}>
+          <div className={`${themeState ==='dark'? 'bg-[#141414]' : 'bg-[#e8e8e861] '}shadow-2xl pr-5 flex flex-row justify-end md:justify-around items-center w-full py-2 mx-auto mt-[1.5rem] md:mt-[0.5rem]`}>
             <button
               onClick={() => getAllProducts(searchText)}
               className="mr-5 md:mr-0 bg-[#537df9f4] rounded-[15px] font-[Bhoma] px-5 h-[3rem] text-white flex justify-center items-center transition-all duration-200 hover:bg-[#535ef9f4] shadow-2xl "
@@ -152,7 +152,7 @@ const Products = (props) => {
             <input
               onKeyUp={(e) => handleEnterPress(e)}
               onChange={(e) => SetSearchText(e.target.value)}
-              className="w-8/12 md:w-7/12 h-[3rem] outline-none md:placeholder:px-3 font-[monospace] text-[1rem] rounded-[15px] placeholder:font-[Bhoma] text-right pr-5 shadow-md mr-8 md:mr-0 bg-[#b2b2b242]"
+              className={`w-8/12 md:w-7/12 h-[3rem] outline-none md:placeholder:px-3 font-[monospace] text-[1rem] rounded-[15px] placeholder:font-[Bhoma] text-right pr-5 shadow-md mr-8 md:mr-0 ${themeState === 'light' ? 'bg-[#b2b2b242]' : 'bg-[#43434342]'}`}
               placeholder="... محصول مورد نظر را جستجو کنید"
             />
             <aside className="hidden md:flex w-1/12 justify-center">
