@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Basket from '../GeneralComponents/Basket';
 import productService from "../../Services/ProductsServices/product.service";
 import MobileHeaderDropDown from "../Products/MobileHeaderDropDown";
-import ThemeToggle from "./themeToggle";
+import ThemeToggle from "./ThemeToggle";
 import darkIcon from '../../public/images/icons/darkIcon.jpg'
 import lightIcon from '../../public/images/icons/lightIcon.png'
 
