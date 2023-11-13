@@ -136,7 +136,7 @@ const Main = (props) => {
                 <span className='bubbleLeftAnimation bg-[#6298a721] md:hidden w-[8rem] absolute right-[70%] z-10 top-[70%] h-[8rem] rounded-[50%]'></span>
 
 
-                <div className='w-6/12 flex justify-center md:h-full h-screen md:items-start items-center md:w-full  md:mt-[5rem]'>
+                <div className='w-6/12 flex justify-center md:h-full h-screen md:items-start items-center md:w-full md:scale-[0.6]  md:mt-[5rem]'>
 
                     <SlideShow />
 
