@@ -1,9 +1,6 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from "react";
-import main from '../../public/images/main3.png';
 import catMemoji from '../../public/images/memoji.png';
-import royalCaninLogo from '../../public/images/royalcaninlogo.png';
-import productService from '../../Services/ProductsServices/product.service';
 import ProductCard from '../GeneralComponents/ProductCard';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css';
@@ -63,14 +60,60 @@ const Main = (props) => {
     const selectThemeState = useSelector(themeHandler);
     const themeState = selectThemeState.payload.ProfileSettings.theme;
 
+    const CARDS = 10;
+    const MAX_VISIBILITY = 3;
+
+
+    const Card = ({ title, content }) =>
+        React.createElement("div", { className: "card shadow-2xl" },
+            React.createElement("h2", null, title),
+            React.createElement("p", null, content));
+
+
+    const Carousel = ({ children }) => {
+        const count = React.Children.count(children);
+        const [active, setActive] = useState(2);
+        // useEffect(() => {
+        //     const interval = setInterval(() => {
+        //         setActive(active++);
+        //     }, 4000)
+        //     setTimeout(() => {
+        //         clearInterval(interval)
+        //     }, 4000)
+        // }, [])
+
+        return (
+            React.createElement("div", { className: "carousel" },
+                React.Children.map(children, (child, i) =>
+                    React.createElement("div", {
+                        className: "card-container", style: {
+                            '--active': i === active ? 1 : 0,
+                            '--offset': (active - i) / 3,
+                            '--direction': Math.sign(active - i),
+                            '--abs-offset': Math.abs(active - i) / 3,
+                            'pointer-events': active === i ? 'auto' : 'none',
+                            'opacity': Math.abs(active - i) >= MAX_VISIBILITY ? '0' : '1',
+                            'display': Math.abs(active - i) > MAX_VISIBILITY ? 'none' : 'block'
+                        }
+                    }, child)),
+            ));
+    };
+
+    const SlideShow = () =>
+        React.createElement("div", { className: "app" },
+            React.createElement(Carousel, null,
+                [...new Array(CARDS)].map((_, i) =>
+                    React.createElement(Card, { title: 'Card ' + (i + 1), content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." }))));
+
+
     return (
         <>
 
-            <div className='app font-[BHoma] flex flex-row md:flex-col-reverse justify-between'>
+            <div className='app font-[BHoma] flex flex-row md:flex-col-reverse justify-between overflow-x-hidden'>
 
                 <div className='w-6/12 md:w-full flex flex-col text-center z-30'>
                     <div className='flex flex-row justify-center mt-[10rem] md:mt-[3rem]'>
-                        <p className={`text-[4rem] md:text-[2.5rem] font-[600] font-[monospace] ${ themeState ==='light' ? 'text-[#1e2f4b]' : 'text-[#d8e6ff]'} `}>Feed us </p>
+                        <p className={`text-[4rem] md:text-[2.5rem] font-[600] font-[monospace] ${themeState === 'light' ? 'text-[#1e2f4b]' : 'text-[#d8e6ff]'} `}>Feed us </p>
                         <div className='w-1/12 md:w-2/12 mt-[1.5rem] md:mt-[0.25rem] pl-3'>
                             <Image src={catMemoji} />
                         </div>
@@ -80,11 +123,11 @@ const Main = (props) => {
 
                     <div className='flex flex-row justify-between md:justify-around w-5/12 md:w-full mx-auto'>
                         <Link href='/Products'>
-                            <button className={`pt-1 pb-2 w-6/12 bg-gradient-to-r from-[#52219b] to-[#771b99] hover:bg-gradient-to-r hover:from-[#411584] hover:to-[#611c7a] mt-[3rem] md:mt-[2rem] text-[white] text-[1.5rem] rounded-[20px] ${themeState ==='light' ? 'shadow-3xl' : 'shadow-2xl' }  hover:scale-105 transition-all duration-200 flex justify-center items-center`}>
+                            <button className={`pt-1 pb-2 w-6/12 bg-gradient-to-r from-[#52219b] to-[#771b99] hover:bg-gradient-to-r hover:from-[#411584] hover:to-[#611c7a] mt-[3rem] md:mt-[2rem] text-[white] text-[1.5rem] rounded-[20px] ${themeState === 'light' ? 'shadow-3xl' : 'shadow-2xl'}  hover:scale-105 transition-all duration-200 flex justify-center items-center`}>
                                 محصولات
                             </button>
                         </Link>
-                        <button className={`mt-[3rem] md:mt-[2.5rem] ${ themeState ==='light' ? 'text-[#241359]' : 'text-[#6b6b6b] hover:bg-[#171717] hover:text-white'}   text-[1.5rem] rounded-[20px] px-5 hover:shadow-xl hover:scale-105 transition-all duration-200 flex justify-center items-center`}>تخفیف ها </button>
+                        <button onClick={() => setActive(active++)} className={`mt-[3rem] md:mt-[2.5rem] ${themeState === 'light' ? 'text-[#241359]' : 'text-[#6b6b6b] hover:bg-[#171717] hover:text-white'}   text-[1.5rem] rounded-[20px] px-5 hover:shadow-xl hover:scale-105 transition-all duration-200 flex justify-center items-center`}>تخفیف ها </button>
                     </div>
                 </div>
 
@@ -92,18 +135,10 @@ const Main = (props) => {
                 <span className='bubbleRightAnimation bg-[#9f9dd421] md:hidden w-[15rem] absolute right-[53%] z-10 top-[15%] h-[15rem] rounded-[50%]'></span>
                 <span className='bubbleLeftAnimation bg-[#6298a721] md:hidden w-[8rem] absolute right-[70%] z-10 top-[70%] h-[8rem] rounded-[50%]'></span>
 
-                
-                <div className='w-6/12 relative md:w-full md:mt-[2rem] md:pl-2'>
-                    <Image className='fadeLoadAnimation' src={main} />
 
-                    <div className=' logoAnimate  absolute flex h-[8rem] md:h-[7rem] w-[8rem] rounded-[50%] md:w-[7rem] right-[20%] md:right-[5%]  top-[80%] md:top-[75%] pt-5 '>
-                        <div className='w-full mx-auto text-center  text-white'>
-                            <div className='z-20 scale-110 md:scale-105 rotate-[10deg]  rounded-[15px]'>
-                                <Image src={royalCaninLogo} className=" rounded-[15px]" />
-                            </div>
-                            <p className='text-center rotate-[10deg] pr-3 text-[#ffffff] font-[monospace] font-[600] text-[1.35rem] md:text-[1.15rem]'>10% Off</p>
-                        </div>
-                    </div>
+                <div className='w-6/12 flex justify-center md:h-full h-screen md:items-start items-center md:w-full  md:mt-[5rem]'>
+
+                    <SlideShow />
 
                 </div>
 
@@ -133,7 +168,7 @@ const Main = (props) => {
                     <p className='text-[#d6d6d6] text-[1.5rem]'> مشتری ها </p>
                     <div className="w-8/12 mx-auto">
                         <div className='w-[6.5rem] m-auto h-[6.5rem] flex justify-center items-center rounded-[50%] bg-[#66d4a165] mt-2 mb-3 ' >
-                          <span className='text-white text-[2.5rem] font-[600]'>+43</span>
+                            <span className='text-white text-[2.5rem] font-[600]'>+43</span>
                         </div>
                     </div>
                     <p className='text-white text-center pt-2 opacity-[0.7]'>۴۷ مشتری فعال</p>
@@ -142,11 +177,11 @@ const Main = (props) => {
 
             <p className='text-center text-[2rem] font-[Bhoma] text-[#b3b3b3]'>محصولات</p>
 
-            {!isLoading && <div className={`mt-[3rem] mb-[1rem] py-[3rem] ${ themeState === 'light' ? 'innerShadow2' : 'innerShadowDark'}  w-full flex flex-row flex-wrap justify-around`}>
+            {!isLoading && <div className={`mt-[3rem] mb-[1rem] py-[3rem] ${themeState === 'light' ? 'innerShadow2' : 'innerShadowDark'}  w-full flex flex-row flex-wrap justify-around`}>
                 {productList}
             </div>}
 
-            {!isLoading && <p className={`bg-[#7777ef] rounded-[15px] transition-all duration-200 cursor-pointer hover:bg-[#3f3fae] hover:scale-105 flex justify-center p-2  items-center text-white text-center w-2/12 md:w-6/12 mx-auto font-[Bhoma] ${ themeState === 'light' ? 'shadow-3xl' : 'boxShadow2x'} text-[1.25rem]`}>نمایش همه</p>}
+            {!isLoading && <p className={`bg-[#7777ef] rounded-[15px] transition-all duration-200 cursor-pointer hover:bg-[#3f3fae] hover:scale-105 flex justify-center p-2  items-center text-white text-center w-2/12 md:w-6/12 mx-auto font-[Bhoma] ${themeState === 'light' ? 'shadow-3xl' : 'boxShadow2x'} text-[1.25rem]`}>نمایش همه</p>}
             {isLoading && <div className='my-[5rem] py-[5rem] innerShadow2 overflow-hidden flex flex-row flex-wrap justify-around'>
                 <div className='w-2/12 md:w-5/12 md:my-5'>
                     {<Skeleton baseColor='#cbcbcb' className='shadow-2xl' highlightColor='white' count={1} height={280} />}
@@ -164,7 +199,7 @@ const Main = (props) => {
 
 
 
-            <footer className={`bg-gradient-to-r from-[#1c0f31] to-[#161136] mt-[10rem] rounded-t-[40px] w-11/12 mx-auto flex flex-col ${ themeState === 'light' ? 'uperShadow' : 'boxShadow3x'}`}>
+            <footer className={`bg-gradient-to-r from-[#1c0f31] to-[#161136] mt-[10rem] rounded-t-[40px] w-11/12 mx-auto flex flex-col ${themeState === 'light' ? 'uperShadow' : 'boxShadow3x'}`}>
 
                 <div className='bg-[#8383831b] w-[95%] mx-auto my-[3rem] rounded-[10px] flex flex-row justify-between md:flex-wrap'>
                     <div className='text-[#c2c2c2] pt-3 shadow-2xl h-[10rem]  text-center w-3/12 md:w-5/12'>
