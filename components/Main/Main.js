@@ -14,7 +14,8 @@ import { phone } from 'react-icons-kit/fa/phone';
 import { telegram } from 'react-icons-kit/fa/telegram';
 import { useSelector } from 'react-redux';
 import { themeHandler } from '../../Redux/Reducers/Settings/Profile/ProfileSettings.ts';
-
+import royalCaninLogo from '../../public/images/royalCaninWhite.png'
+import royalCaninProduct from '../../public/images/royalCaninProduct.png'
 
 export const skeleton = (height, width) => {
     return (
@@ -60,14 +61,43 @@ const Main = (props) => {
     const selectThemeState = useSelector(themeHandler);
     const themeState = selectThemeState.payload.ProfileSettings.theme;
 
-    const CARDS = 10;
+    const CARDS = [
+        {title : 'somthing 1 ', background:"bg-gradient-to-br from-[#f40202] to-[#ff7403]"},
+        {title : 'somthing 2 ', background:"bg-gradient-to-br from-[#2539ad] to-[#0353ff]"},
+        {title : 'somthing 3 ', background:"bg-gradient-to-br from-[#431564] to-[#4f03ff]"},
+        {title : 'somthing 4 ', background:"bg-gradient-to-br from-[#1c8628] to-[#00b734]"},
+        {title : 'somthing 5 ', background:"bg-gradient-to-br from-[#f6b640] to-[#b87904]"},
+        {title : 'somthing 6 ', background:"bg-gradient-to-br from-[#7140f6] to-[#340e9c]"},
+        {title : 'somthing 7 ', background:"bg-gradient-to-br from-[#1c698a] to-[#0480b6]"},
+        {title : 'somthing 8 ', background:"bg-gradient-to-br from-[#a5304c] to-[#8104b6]"},
+        {title : 'somthing 9 ', background:"bg-gradient-to-br from-[#45811d] to-[#5ab51e]"},
+        {title : 'somthing 10', background:"bg-gradient-to-br from-[#f40202] to-[#ff7403]"},
+    ];
+
     const MAX_VISIBILITY = 3;
 
 
-    const Card = ({ title, content }) =>
-        React.createElement("div", { className: "card shadow-2xl" },
-            React.createElement("h2", null, title),
-            React.createElement("p", null, content));
+    const Card = ({ title, background }) => {
+        return (
+            <div className="card shadow-2xl">
+                <div className={`h-[15rem] w-full ${background}`}>
+                    <div className='w-6/12 m-2 p-2'>
+                        <Image src={royalCaninLogo} />
+                    </div>
+                    <div className='w-full flex justify-end'>
+                        <div className='w-6/12 m-1 p-2'>
+                            <Image src={royalCaninProduct} />
+                        </div>
+                    </div>
+                </div>
+                <p className='text-black text-[1.2rem] font-[monospace] p-3 font-[600]'>Royal Canin Medium</p>
+                <p className='text-[#2f2f2f] text-[0.8rem] font-[monospace] px-3'>fresh mest food</p>
+                <p className='text-[#ff7037] text-[1.5rem]  pt-2 px-3 font-[700] font-[bhoma]'>145 , 000</p>
+
+
+            </div>
+        )
+    }
 
 
     const Carousel = ({ children }) => {
@@ -102,8 +132,8 @@ const Main = (props) => {
     const SlideShow = () =>
         React.createElement("div", { className: "app" },
             React.createElement(Carousel, null,
-                [...new Array(CARDS)].map((_, i) =>
-                    React.createElement(Card, { title: 'Card ' + (i + 1), content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." }))));
+                CARDS.map((item, i) =>
+                    React.createElement(Card, { title: 'Card ' + (i + 1), background: item.background }))));
 
 
     return (
@@ -112,7 +142,7 @@ const Main = (props) => {
             <div className='app font-[BHoma] flex flex-row md:flex-col-reverse justify-between overflow-x-hidden'>
 
                 <div className='w-6/12 md:w-full flex flex-col text-center z-30'>
-                    <div className='flex flex-row justify-center mt-[10rem] md:mt-[3rem]'>
+                    <div className='flex flex-row justify-center mt-[10rem] md:mt-0'>
                         <p className={`text-[4rem] md:text-[2.5rem] font-[600] font-[monospace] ${themeState === 'light' ? 'text-[#1e2f4b]' : 'text-[#d8e6ff]'} `}>Feed us </p>
                         <div className='w-1/12 md:w-2/12 mt-[1.5rem] md:mt-[0.25rem] pl-3'>
                             <Image src={catMemoji} />
@@ -121,9 +151,9 @@ const Main = (props) => {
 
                     <div className='flex flex-row justify-center mt-[2rem] md:mt-[1rem]'><p className='text-[1.75rem] md:text-[1.6rem] flex flex-wrap  w-5/12 md:w-8/12 text-[#a5a5a5]'>فروشگاه غذای حیوانات خانگی با ضمانت اصالت کالا</p></div>
 
-                    <div className='flex flex-row justify-between md:justify-around w-5/12 md:w-full mx-auto'>
+                    <div className='flex flex-row justify-between md:flex-col md:justify-center w-5/12 md:w-full mx-auto'>
                         <Link href='/Products'>
-                            <button className={`pt-1 pb-2 w-6/12 bg-gradient-to-r from-[#52219b] to-[#771b99] hover:bg-gradient-to-r hover:from-[#411584] hover:to-[#611c7a] mt-[3rem] md:mt-[2rem] text-[white] text-[1.5rem] rounded-[20px] ${themeState === 'light' ? 'shadow-3xl' : 'shadow-2xl'}  hover:scale-105 transition-all duration-200 flex justify-center items-center`}>
+                            <button className={`pt-1 pb-2 w-6/12 md:w-10/12 md:mx-auto bg-gradient-to-r from-[#52219b] to-[#771b99] hover:bg-gradient-to-r hover:from-[#411584] hover:to-[#611c7a] mt-[3rem] md:mt-[2rem] text-[white] text-[1.5rem] rounded-[20px] ${themeState === 'light' ? 'shadow-3xl' : 'shadow-2xl'}  hover:scale-105 transition-all duration-200 flex justify-center items-center`}>
                                 محصولات
                             </button>
                         </Link>
@@ -136,7 +166,7 @@ const Main = (props) => {
                 <span className='bubbleLeftAnimation bg-[#6298a721] md:hidden w-[8rem] absolute right-[70%] z-10 top-[70%] h-[8rem] rounded-[50%]'></span>
 
 
-                <div className='w-6/12 flex justify-center md:h-full h-screen md:items-start items-center md:w-full md:scale-[0.6]  md:mt-[5rem]'>
+                <div className='w-6/12 flex justify-center md:h-full h-screen md:items-start items-center md:w-full md:scale-[0.6]  md:mt-[1rem]'>
 
                     <SlideShow />
 
