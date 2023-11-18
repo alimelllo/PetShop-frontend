@@ -12,7 +12,7 @@ export default function Home(props) {
   const themeState = selectThemeState.payload.ProfileSettings.theme;
   
   return (
-    <div className={`${themeState === 'light' ? 'bg-[#ffffff]' : 'bg-[#1b1b1b]'}`}>
+    <div className={`${themeState === 'light' ? 'bg-[#ffffff]' : 'bg-[#141414]'}`}>
       <Head>
         <title>Feed Us</title>
         <meta property="og:title" content="Feed Us" key="title" />

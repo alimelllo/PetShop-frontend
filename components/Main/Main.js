@@ -16,6 +16,8 @@ import { useSelector } from 'react-redux';
 import { themeHandler } from '../../Redux/Reducers/Settings/Profile/ProfileSettings.ts';
 import royalCaninLogo from '../../public/images/royalCaninWhite.png'
 import royalCaninProduct from '../../public/images/royalCaninProduct.png'
+import feedUsLogo from '../../public/images/feedUsLogo.png'
+import offerLogo from '../../public/images/offer.png';
 
 export const skeleton = (height, width) => {
     return (
@@ -62,16 +64,16 @@ const Main = (props) => {
     const themeState = selectThemeState.payload.ProfileSettings.theme;
 
     const CARDS = [
-        {title : 'somthing 1 ', background:"bg-gradient-to-br from-[#f40202] to-[#ff7403]"},
-        {title : 'somthing 2 ', background:"bg-gradient-to-br from-[#2539ad] to-[#0353ff]"},
-        {title : 'somthing 3 ', background:"bg-gradient-to-br from-[#431564] to-[#4f03ff]"},
-        {title : 'somthing 4 ', background:"bg-gradient-to-br from-[#1c8628] to-[#00b734]"},
-        {title : 'somthing 5 ', background:"bg-gradient-to-br from-[#f6b640] to-[#b87904]"},
-        {title : 'somthing 6 ', background:"bg-gradient-to-br from-[#7140f6] to-[#340e9c]"},
-        {title : 'somthing 7 ', background:"bg-gradient-to-br from-[#1c698a] to-[#0480b6]"},
-        {title : 'somthing 8 ', background:"bg-gradient-to-br from-[#a5304c] to-[#8104b6]"},
-        {title : 'somthing 9 ', background:"bg-gradient-to-br from-[#45811d] to-[#5ab51e]"},
-        {title : 'somthing 10', background:"bg-gradient-to-br from-[#f40202] to-[#ff7403]"},
+        { title: 'somthing 1 ', background: "bg-gradient-to-bl from-indigo-900 via-indigo-400 to-indigo-900" },
+        { title: 'somthing 2 ', background: "bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-rose-500 to-indigo-700" },
+        { title: 'somthing 3 ', background: "bg-gradient-to-br from-pink-900 via-rose-700 to-rose-500" },
+        { title: 'somthing 4 ', background: "bg-gradient-to-b from-gray-900 via-purple-900 to-violet-600" },
+        { title: 'somthing 5 ', background: "bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-yellow-500 via-purple-500 to-blue-500" },
+        { title: 'somthing 6 ', background: "bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-rose-500 to-indigo-700" },
+        { title: 'somthing 7 ', background: "bg-gradient-to-r from-orange-400 to-rose-400" },
+        { title: 'somthing 8 ', background: "bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800" },
+        { title: 'somthing 9 ', background: "bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900" },
+        { title: 'somthing 10', background: "bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500" },
     ];
 
     const MAX_VISIBILITY = 3;
@@ -79,22 +81,24 @@ const Main = (props) => {
 
     const Card = ({ title, background }) => {
         return (
-            <div className="card shadow-2xl">
+            <div className="card shadow-2xl relative hover:scale-105 hover:bg-[#f0f0f0] cursor-pointer">
+                <div className=' rotate-[25deg] w-[7rem] md:w-[6rem] h-[7rem] md:h-[6rem] text-[1.5rem] md:text-[1.25rem] text-[#7a7a7a] font-[800] shadow-2xl flex justify-center items-center bg-[#ffffff] absolute right-[-5%] top-[-10%] md:top-[-8%] font-[monospace] rounded-[50%]'>
+                  20% Off
+                </div>
+
                 <div className={`h-[15rem] w-full ${background}`}>
                     <div className='w-6/12 m-2 p-2'>
                         <Image src={royalCaninLogo} />
                     </div>
                     <div className='w-full flex justify-end'>
-                        <div className='w-6/12 m-1 p-2'>
+                        <div className='w-8/12 absolute left-[50%] md:left-[45%] bottom-0 pl-5'>
                             <Image src={royalCaninProduct} />
                         </div>
                     </div>
                 </div>
                 <p className='text-black text-[1.2rem] font-[monospace] p-3 font-[600]'>Royal Canin Medium</p>
-                <p className='text-[#2f2f2f] text-[0.8rem] font-[monospace] px-3'>fresh mest food</p>
-                <p className='text-[#ff7037] text-[1.5rem]  pt-2 px-3 font-[700] font-[bhoma]'>145 , 000</p>
-
-
+                <p className='text-[#2f2f2f] text-[1rem] font-[monospace] pt-1 px-3'>fresh mest food</p>
+                <p className={`${background} text-[white] w-6/12 shadow-xl rounded-r-[10px] text-[1.75rem] px-3 mt-5  font-[800] font-[monospace]`}>145,000 T</p>
             </div>
         )
     }
@@ -103,14 +107,25 @@ const Main = (props) => {
     const Carousel = ({ children }) => {
         const count = React.Children.count(children);
         const [active, setActive] = useState(2);
-        // useEffect(() => {
-        //     const interval = setInterval(() => {
-        //         setActive(active++);
-        //     }, 4000)
-        //     setTimeout(() => {
-        //         clearInterval(interval)
-        //     }, 4000)
-        // }, [])
+        const [animate, setAnimate] = useState('increament');
+
+        useEffect(() => {
+            const interval = setInterval(() => {
+                if(active === 9 ){
+                    setAnimate('decreament');
+                }else if(active === 0){
+                    setAnimate('increament');
+                }
+                if(animate === 'increament'){
+                    setActive(active++);
+                }else if(animate === 'decreament'){
+                    setActive(active--);
+                }
+            }, 4000)
+            return () => {
+                clearInterval(interval);
+            }
+        }, [animate])
 
         return (
             React.createElement("div", { className: "carousel" },
@@ -143,17 +158,19 @@ const Main = (props) => {
 
                 <div className='w-6/12 md:w-full flex flex-col text-center z-30'>
                     <div className='flex flex-row justify-center mt-[10rem] md:mt-0'>
-                        <p className={`text-[4rem] md:text-[2.5rem] font-[600] font-[monospace] ${themeState === 'light' ? 'text-[#1e2f4b]' : 'text-[#d8e6ff]'} `}>Feed us </p>
-                        <div className='w-1/12 md:w-2/12 mt-[1.5rem] md:mt-[0.25rem] pl-3'>
+                        <div className='w-4/12 md:w-5/12 mt-[1.5rem] md:mt-[0.75rem] pl-3'>
+                            <Image src={feedUsLogo} />
+                        </div>
+                        <div className='w-1/12 md:w-2/12 mt-[2rem] md:mt-[0.25rem] pl-3'>
                             <Image src={catMemoji} />
                         </div>
                     </div>
 
-                    <div className='flex flex-row justify-center mt-[2rem] md:mt-[1rem]'><p className='text-[1.75rem] md:text-[1.6rem] flex flex-wrap  w-5/12 md:w-8/12 text-[#a5a5a5]'>فروشگاه غذای حیوانات خانگی با ضمانت اصالت کالا</p></div>
+                    <div className='flex flex-row justify-center mt-[2rem] md:mt-[0rem]'><p className='text-[1.75rem] md:text-[1.6rem] flex flex-wrap  w-5/12 md:w-8/12 text-[#a5a5a5]'>فروشگاه غذای حیوانات خانگی با ضمانت اصالت کالا</p></div>
 
                     <div className='flex flex-row justify-between md:flex-col md:justify-center w-5/12 md:w-full mx-auto'>
                         <Link href='/Products'>
-                            <button className={`pt-1 pb-2 w-6/12 md:w-10/12 md:mx-auto bg-gradient-to-r from-[#52219b] to-[#771b99] hover:bg-gradient-to-r hover:from-[#411584] hover:to-[#611c7a] mt-[3rem] md:mt-[2rem] text-[white] text-[1.5rem] rounded-[20px] ${themeState === 'light' ? 'shadow-3xl' : 'shadow-2xl'}  hover:scale-105 transition-all duration-200 flex justify-center items-center`}>
+                            <button className={`pt-1 pb-2 w-6/12 md:w-10/12 md:mx-auto bg-gradient-to-r from-[#52219b] to-[#771b99] hover:bg-gradient-to-r hover:from-[#411584] hover:to-[#611c7a] mt-[3rem] md:mt-[1rem] text-[white] text-[1.5rem] rounded-[20px] ${themeState === 'light' ? 'shadow-3xl' : 'shadow-2xl'}  hover:scale-105 transition-all duration-200 flex justify-center items-center`}>
                                 محصولات
                             </button>
                         </Link>
@@ -166,7 +183,7 @@ const Main = (props) => {
                 <span className='bubbleLeftAnimation bg-[#6298a721] md:hidden w-[8rem] absolute right-[70%] z-10 top-[70%] h-[8rem] rounded-[50%]'></span>
 
 
-                <div className='w-6/12 flex justify-center md:h-full h-screen md:items-start items-center md:w-full md:scale-[0.6]  md:mt-[1rem]'>
+                <div className='w-6/12 flex justify-center md:h-full h-screen md:items-start items-center md:w-full md:scale-[0.85]  md:mt-[3rem]'>
 
                     <SlideShow />
 
@@ -185,14 +202,18 @@ const Main = (props) => {
                 </div>
                 <div className=' w-3/12 md:w-full pb-[2rem] boxShadow2x overflow-hidden bg-gradient-to-r from-[#511e62] relative to-[#421b71] rounded-[10px] scale-110 transition-all duration-200 '>
                     <span className='bg-[#95959541] rounded-[50%] w-[10rem] h-[10rem] absolute left-[60%] bottom-[60%]'></span>
-                    <p className='text-[#d6d6d6] pl-5 py-3 text-[1.75rem]'> پرفروش </p>
-                </div>
-                <div className='w-3/12 md:w-full shadow-2xl text-center py-5'>
-                    <p className='text-[#d6d6d6] text-[1.5rem]'> ضمانت کالا </p>
+                    <p className='text-[#d6d6d6]  pl-5 py-2 text-[1.75rem]'> کیفت مناسب</p>
                     <div className="w-4/12 mx-auto opacity-[0.6] mt-3">
                         <Image className='' src={guarantee} />
                     </div>
-                    <p className='text-white text-center opacity-[0.7] mt-2'>ضمانت تقلبی نبودن محصول</p>
+                    <p className='text-white text-center opacity-[0.7] mt-2'>غذای های  برتر و کم یاب</p>
+                </div>
+                <div className='w-3/12 md:w-full shadow-2xl text-center py-5'>
+                    <p className='text-[#d6d6d6] text-[1.5rem]'> ضمانت کالا </p>
+                    <div className="w-5/12 mx-auto mt-1">
+                        <Image className='' src={offerLogo} />
+                    </div>
+                    <p className='text-white text-center opacity-[0.7]'>ضمانت تقلبی نبودن محصول</p>
                 </div>
                 <div className='w-3/12 md:w-full pb-[2rem] shadow-2xl rounded-[15px] text-center py-5'>
                     <p className='text-[#d6d6d6] text-[1.5rem]'> مشتری ها </p>

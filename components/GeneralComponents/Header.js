@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import Image from "next/image";
 import BasketIcon from "../../public/images/basket.png";
-import logo from "../../public/images/logo.PNG";
+import logo from "../../public/images/feedUsLogo.png";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Menu, Transition } from "@headlessui/react";
@@ -87,8 +87,8 @@ const Header = (props) => {
 
   return (
     <header
-      className={`flex flex-row w-full ${asPath !== "/" && ` ${themeState === 'dark' ? "bg-[#101010] boxShadow2x" : "bg-white shadow-2xl"}`
-        }  ${clientWindowHeight > 30 ? ` ${themeState === 'dark' ? "bg-[#101010] boxShadow2x" : "bg-white shadow-2xl"}` : `bg-transparent`
+      className={`flex flex-row w-full py-2 ${asPath !== "/" && ` ${themeState === 'dark' ? "bg-[#101010] boxShadow2x" : "bg-white shadow-2xl"}`
+        }  ${clientWindowHeight > 30 ? ` ${themeState === 'dark' ? "bg-[#101010] boxShadow2x" : "bg-white shadow-2xl"}` : `${themeState === 'dark' ? "bg-[#101010] boxShadow2x" : "bg-transparent md:bg-[white] md:shadow-2xl"}`
         } transition-all duration-300 fixed top-[-0.25%] justify-between text-white z-50 font-[Bhoma] md:py-2 ${themeState === 'dark' ? "md:bg-[#101010] boxShadow2x" : "bg-transparent md:bg-[white] md:shadow-2xl"} `}
     >
 
@@ -98,14 +98,14 @@ const Header = (props) => {
         <MobileHeaderDropDown />
       </div>
 
-      <div className={`w-6/12 flex flex-row justify-between ${themeState === 'light' ? 'text-[#505050]' : 'text-[#919191]'}  text-center text-[1.25rem] md:text-[1rem]`}>
+      <div className={`w-6/12 flex flex-row justify-between items-center ${themeState === 'light' ? 'text-[#505050]' : 'text-[#919191]'}  text-center text-[1.25rem] md:text-[1rem]`}>
         {asPath !== "/" ? <div className="w-[22%] md:w-[50%] md:ml-2 ml-5 cursor-pointer">
           <Link href='/'><Image src={logo} /></Link>
         </div> : <div className="w-[22%] md:w-[50%] md:ml-2 ml-5 md:pt-1 ">
           <Image src={logo} />
         </div>}
 
-        <div className="flex flex-row w-8/12 justify-between items-center md:hidden">
+        <div className="flex flex-row w-8/12 justify-between md:hidden">
           <Link href="/AboutUs">
             <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 flex items-center  md:px-3 md:font-[700] ml-[10rem] md:ml-0 mx-5 hover:shadow-xl rounded-[20px] md:mx-0  cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
               تماس{" "}
@@ -142,10 +142,7 @@ const Header = (props) => {
           <Menu as="div" className="relative text-center">
             <div>
               <Menu.Button
-                className={`font-[monospace] h-[3rem] mt-3 md:mt-1 cursor-pointer transition-all duration-200 ${clientWindowHeight > 30 || asPath === "/Products"
-                  ? " text-[#7587ff] font-[600] hover:text-[#2236b8]"
-                  : "text-[white] hover:font-[600] md:text-[#7587ff] md:font-[600] hover:text-[#363636]"
-                  }  text-[1.5rem] pr-3`}
+                className={`font-[monospace] h-[3rem] mt-3 md:mt-1 cursor-pointer transition-all duration-200 text-[gray] hover:text-[#4e4e4e] font-[600] text-[1.5rem] pr-3`}
               >
                 {localStorage.getItem("userName")}
               </Menu.Button>
