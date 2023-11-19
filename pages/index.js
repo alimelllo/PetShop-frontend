@@ -16,6 +16,7 @@ export default function Home(props) {
       <Head>
         <title>Feed Us</title>
         <meta property="og:title" content="Feed Us" key="title" />
+        <link rel="manifest" href="/manifest.json"></link>
       </Head>
 
       <Header />
