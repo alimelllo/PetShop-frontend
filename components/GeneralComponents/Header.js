@@ -46,12 +46,12 @@ const Header = (props) => {
 
 
   useEffect(() => {
-    console.log('Current Theme :' , themeState);
+    console.log('Current Theme :', themeState);
   }, [themeState])
 
   useEffect(() => {
     productService.getAllProductGroups().then((resp) => {
-      SetProductGroups(resp.data);
+        SetProductGroups(resp.data);
     })
   }, [])
 
@@ -83,7 +83,7 @@ const Header = (props) => {
 
   useEffect(() => {
     themeState === 'dark' ? document.body.style.background = '#141414' : document.body.style.background = '#ffffff'
-  },[themeState])
+  }, [themeState])
 
   return (
     <header
@@ -95,7 +95,7 @@ const Header = (props) => {
       {showBasketState && <Basket />}
 
       <div className="hidden md:flex w-1/12 ml-2 mt-2">
-        <MobileHeaderDropDown />
+        <MobileHeaderDropDown productGroups={productGroups} />
       </div>
 
       <div className={`w-6/12 flex flex-row justify-between items-center ${themeState === 'light' ? 'text-[#505050]' : 'text-[#919191]'}  text-center text-[1.25rem] md:text-[1rem]`}>
@@ -107,21 +107,57 @@ const Header = (props) => {
 
         <div className="flex flex-row w-8/12 justify-between md:hidden">
           <Link href="/AboutUs">
-            <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 flex items-center  md:px-3 md:font-[700] ml-[10rem] md:ml-0 mx-5 hover:shadow-xl rounded-[20px] md:mx-0  cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
+            <p className={`h-[3rem] md:h-[2rem] md:py-0 px-5 flex items-center  md:px-3 md:font-[700] ml-[10rem] md:ml-0 mx-5 hover:shadow-xl rounded-[20px] md:mx-0  cursor-pointer transition-all duration-200 hover:scale-105 ${themeState === 'light' ? 'hover:text-[#1a1a1a]' : 'hover:text-[#c0c0c0]'} hover:font-[600] hover:tracking-[1px]`}>
               تماس{" "}
             </p>
           </Link>
           <Link href="/Products">
-            <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 flex items-center  md:px-3 md:font-[700] mx-5 hover:shadow-xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
+            <p className={`h-[3rem] md:h-[2rem] md:py-0 px-5 flex items-center  md:px-3 md:font-[700] mx-5 hover:shadow-xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 ${themeState === 'light' ? 'hover:text-[#1a1a1a]' : 'hover:text-[#c0c0c0]'} hover:font-[600] hover:tracking-[1px]`}>
               محصولات
             </p>
           </Link>
-          <Link href={{ pathname: '/Products', query: { category: 'cat' } }}>
-            <p className="h-[3rem] md:h-[2rem] md:py-0 px-5 flex items-center  md:px-3 md:font-[700] mx-5 hover:shadow-xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 hover:text-[#1a1a1a] hover:font-[600] hover:tracking-[1px]">
-              {" "}
-              دسته{" "}
-            </p>
-          </Link>
+          {(
+            <Menu as="div" className="relative text-center">
+              <div>
+                <Menu.Button>
+                  <p className={`h-[3rem] md:h-[2rem] md:py-0 px-5 flex items-center  md:px-3 md:font-[700] mx-5 hover:shadow-xl rounded-[20px] md:mx-0 cursor-pointer transition-all duration-200 hover:scale-105 ${themeState === 'light' ? 'hover:text-[#1a1a1a]' : 'hover:text-[#c0c0c0]'} hover:font-[600] hover:tracking-[1px]`}>
+                    {" "}
+                    دسته{" "}
+                  </p>
+                </Menu.Button>
+              </div>
+
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
+              >
+                <Menu.Items className="absolute font-[Bhoma] text-[1.25rem] right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  {productGroups.map((item) => (
+                    <Menu.Item>
+                      {({ active }) => (
+                        <div className={`w-full flex justify-between ${themeState === 'light' ? 'bg-gray-100 text-[#5c5c5c]' : 'bg-[#242424] hover:bg-[#1a1a1a] text-[#bfbfbf]'}`}>
+                          <Link href={{ pathname: '/Products', query: { category: item.categoryName } }}>
+                            <button
+                              type="submit"
+                              className={classNames(
+                                `block w-full px-4 py-2 text-right ${themeState === 'light' ? 'bg-gray-100 text-[#5c5c5c] hover:bg-gray-200 transition-all duration-150' : 'bg-[#242424] hover:bg-[#1a1a1a] text-[#bfbfbf]'}`
+                              )}>
+                              {item.title}
+                            </button>
+                          </Link>
+                        </div>
+                      )}
+                    </Menu.Item>
+                  ))}
+                </Menu.Items>
+              </Transition>
+            </Menu>
+          )}
         </div>
       </div>
 
@@ -163,9 +199,9 @@ const Header = (props) => {
                     {({ active }) => (
                       <div className={`flex justify-between pr-3 pt-2 ${themeState === 'light' ? 'bg-gray-100 text-[#5c5c5c]' : 'bg-[#333333] text-[#bfbfbf]'}`}>
                         <div className="p-2 pb-3 ml-3 w-[3rem] h-[3rem]">
-                          <Image src={themeState === 'dark' ? darkIcon : lightIcon } />
+                          <Image src={themeState === 'dark' ? darkIcon : lightIcon} />
                         </div>
-                         <ThemeToggle />
+                        <ThemeToggle />
                       </div>
 
                     )}

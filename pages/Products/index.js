@@ -152,7 +152,7 @@ const Products = (props) => {
             <input
               onKeyUp={(e) => handleEnterPress(e)}
               onChange={(e) => SetSearchText(e.target.value)}
-              className={`w-8/12 md:w-7/12 h-[3rem] outline-none md:placeholder:px-3 font-[monospace] text-[1rem] rounded-[15px] placeholder:font-[Bhoma] text-right pr-5 shadow-md mr-8 md:mr-0 ${themeState === 'light' ? 'bg-[#b2b2b242]' : 'bg-[#43434342]'}`}
+              className={`w-8/12 md:w-7/12 h-[3rem] outline-none md:placeholder:px-3 font-[monospace] text-[1rem] rounded-[15px] placeholder:font-[Bhoma] text-right pr-5 shadow-md mr-8 md:mr-0 ${themeState === 'light' ? 'bg-[#b2b2b242]' : 'bg-[#43434342] text-[#b0b0b0]'}`}
               placeholder="... محصول مورد نظر را جستجو کنید"
             />
             <aside className="hidden md:flex w-1/12 justify-center">

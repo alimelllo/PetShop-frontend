@@ -1,12 +1,19 @@
 import Header from "../../components/GeneralComponents/Header";
+import { themeHandler} from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
+import { useSelector } from "react-redux";
 
 const AboutUs = () => {
+
+
+  const selectThemeState = useSelector(themeHandler);
+  const themeState = selectThemeState.payload.ProfileSettings.theme;
+  
   return (
     <>
       <Header />
       <div className="flex flex-row justify-center md:flex-col-reverse">
         <div className="mt-[17rem] md:mt-[1rem] w-4/12 md:mx-auto md:w-10/12 ">
-          <div className="contactCard mx-auto boxShadow2x">
+          <div className={`contactCard mx-auto ${ themeState === 'light' ? 'shadow-2xl' : 'boxShadow3x' } `}>
             <div className="contactHeader ">
               <div className="image"></div>
               <div>
@@ -60,7 +67,7 @@ const AboutUs = () => {
 
 
         <div className="text-center mt-[10rem] md:mt-[6rem] w-4/12 md:w-10/12 md:mx-auto text gray text-[2rem]">
-          <div className="mobile mobileAnimate mx-auto ">
+          <div className={`mobile mobileAnimate mx-auto ${ themeState === 'dark' ? 'boxShadow3x': 'boxShadow1x'} shadow-2xl`}>
             <div className="btn1"></div>
             <div className="btn2"></div>
             <div className="btn3"></div>
