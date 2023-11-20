@@ -253,13 +253,16 @@ const Main = (props) => {
             <footer className={`bg-gradient-to-r from-[#1c0f31] to-[#161136] mt-[10rem] rounded-t-[40px] w-11/12 mx-auto flex flex-col ${themeState === 'light' ? 'uperShadow' : 'boxShadow3x'}`}>
 
                 <div className='bg-[#8383831b] w-[95%] mx-auto my-[3rem] rounded-[10px] flex flex-row justify-between md:flex-wrap'>
-                    <div className='text-[#c2c2c2] pt-3 shadow-2xl h-[10rem]  text-center w-3/12 md:w-5/12'>
-                        خدمات مشتریان
+                    <div className='text-[#a9a9a9] pt-3 shadow-2xl h-[10rem]  text-center w-3/12 md:w-5/12'>
+                         <p className='text-[#e8e8e8] text-[1.25rem] font-[700]'>خدمات مشتریان</p>
+                         <p className='mt-5 pr-3'> تحویل فوری تا 1 ساعت </p>
+                         <p className='pt-1 pr-3'> تخیف ویژه مشتریان </p>
+                         <p className='pt-1 pr-3'>ضمانت تقلبی نبودن محصول</p>
                     </div>
-                    <div className='text-[#c2c2c2] pt-3 shadow-2xl h-[10rem]  text-center w-3/12 md:w-5/12'>
+                    <div className='text-[#c2c2c2] pt-3 shadow-2xl h-[10rem] text-center w-3/12 md:w-5/12'>
                         Feed Us  اطلاعات
                     </div>
-                    <div className='text-[#c2c2c2] pt-3 shadow-2xl h-[10rem]  text-center w-3/12 md:w-5/12'>
+                    <div className='text-[#c2c2c2] pt-3 shadow-2xl h-[10rem] text-center w-3/12 md:w-5/12'>
                         دسته‌بندی‌ها
                     </div>
                     <div className='text-[#c2c2c2] pt-3 shadow-2xl  h-[10rem]  text-center w-3/12 md:w-5/12'>
