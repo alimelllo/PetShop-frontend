@@ -16,10 +16,7 @@ export default function Home(props) {
       <Head>
         <title>Feed Us</title>
         <meta property="og:title" content="Feed Us" key="title" />
-        { themeState === 'light' ? 
-        <link rel="manifest" href="/manifest.json"></link> :
-        <link rel="manifest" href="/manifestDark.json"></link>
-        }
+        <link rel="manifest" href="/manifest.json"></link> 
       </Head>
 
       <Header />
