@@ -11,6 +11,8 @@ export default function Home(props) {
   const selectThemeState = useSelector(themeHandler);
   const themeState = selectThemeState.payload.ProfileSettings.theme;
   
+  useEffect(() => { },[themeState])
+
   return (
     <div className={`${themeState === 'light' ? 'bg-[#ffffff]' : 'bg-[#141414]'}`}>
       <Head>
