@@ -87,7 +87,7 @@ const Header = (props) => {
 
   return (
     <header
-      className={`flex flex-row w-full py-2 ${asPath !== "/" && ` ${themeState === 'dark' ? "bg-[#101010] boxShadow2x" : "bg-white shadow-2xl"}`
+      className={`flex flex-row w-full py-3 ${asPath !== "/" && ` ${themeState === 'dark' ? "bg-[#101010] boxShadow2x" : "bg-white shadow-2xl"}`
         }  ${clientWindowHeight > 30 ? ` ${themeState === 'dark' ? "bg-[#101010] boxShadow2x" : "bg-white shadow-2xl"}` : `${themeState === 'dark' ? "bg-[#101010] boxShadow2x" : "bg-transparent md:bg-[white] md:shadow-2xl"}`
         } transition-all duration-300 fixed top-[-0.25%] justify-between text-white z-50 font-[Bhoma] md:py-2 ${themeState === 'dark' ? "md:bg-[#101010] boxShadow2x" : "bg-transparent md:bg-[white] md:shadow-2xl"} `}
     >
@@ -164,7 +164,7 @@ const Header = (props) => {
       <div className="w-3/12 flex flex-row justify-end pr-5  md:pr-2 text-center text-[#bfbfbf] md:w-5/12">
         {!isLoggedInState && (
           <Link href="/Register">
-            <div className=" h-[3rem] text-[#545454]  md:h-[2.5rem] md:pt-1 md:py-1 mr-[1rem] cursor-pointer transition-all duration-200 hover:scale-105 hover:bg-[#ebebeb] md:mr-0 md:text-[1rem] mt-3 md:mt-1 text-[1.25rem]  bg-white shadow-xl rounded-[25px]  flex flex-row justify-between items-center">
+            <div className=" h-[3rem] text-[#545454]  md:h-[2.5rem] md:pt-1 md:py-1 mr-[1rem] cursor-pointer transition-all duration-200 hover:scale-105 hover:bg-[#ebebeb] md:mr-0 md:text-[1rem] md:mt-1 text-[1.25rem]  bg-white shadow-xl rounded-[25px]  flex flex-row justify-between items-center">
               <span className="px-4  rounded-l-[10px] md:text-[0.9rem]">
                 ثبت نام{" "}
               </span>{" "}
