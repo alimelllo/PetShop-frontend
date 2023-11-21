@@ -46,8 +46,9 @@ const Header = (props) => {
 
 
   useEffect(() => {
-   const link = document.querySelector('#pwa-manifest');
-   link.setAttribute('href','/manifestDark.json')
+  //  const link = document.querySelector('#pwa-manifest');
+  //  link.setAttribute('href','/manifestDark.json')
+  console.log('Current Theme : ' + " " + themeState)
   }, [themeState])
 
   useEffect(() => {
