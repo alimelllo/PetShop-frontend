@@ -46,14 +46,14 @@ const Header = (props) => {
 
 
   useEffect(() => {
-  //  const link = document.querySelector('#pwa-manifest');
-  //  link.setAttribute('href','/manifestDark.json')
-  console.log('Current Theme : ' + " " + themeState)
+    //  const link = document.querySelector('#pwa-manifest');
+    //  link.setAttribute('href','/manifestDark.json')
+    console.log('Current Theme : ' + " " + themeState)
   }, [themeState])
 
   useEffect(() => {
     productService.getAllProductGroups().then((resp) => {
-        SetProductGroups(resp.data);
+      SetProductGroups(resp.data);
     })
   }, [])
 
@@ -218,6 +218,20 @@ const Header = (props) => {
                       >
                         پروفایل
                       </button>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <Link href={{ pathname: '/MyDiscount'}}>
+                        <button
+                          type="submit"
+                          className={classNames(
+                            `block w-full px-4 py-2 text-right ${themeState === 'light' ? 'bg-gray-100 text-[#5c5c5c]' : 'bg-[#333333] text-[#bfbfbf]'}`
+                          )}
+                        >
+                          تخفیف های من
+                        </button>
+                      </Link>
                     )}
                   </Menu.Item>
                   <Menu.Item>

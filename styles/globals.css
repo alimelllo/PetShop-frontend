@@ -75,7 +75,7 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: rgb(161, 161, 161);
+  background: rgb(136, 136, 136);
 }
 
 /* Handle */
@@ -86,7 +86,7 @@ body {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(243, 72, 86);
+  background: rgb(18, 57, 122);
 }
 
 .logoAnimation {
