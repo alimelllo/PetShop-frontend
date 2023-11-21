@@ -11,18 +11,13 @@ export default function Home(props) {
   const selectThemeState = useSelector(themeHandler);
   const themeState = selectThemeState.payload.ProfileSettings.theme;
   
-  useEffect(() => { },[themeState])
-
+  useEffect(() => { } ,[themeState])
   return (
     <div className={`${themeState === 'light' ? 'bg-[#ffffff]' : 'bg-[#141414]'}`}>
       <Head>
         <title>Feed Us</title>
         <meta property="og:title" content="Feed Us" key="title" />
-        {  themeState === 'light' ? 
-            <link rel="manifest" href="/manifest.json"></link> 
-            :
-            <link rel="manifest" href="/manifestDark.json"></link> 
-          }
+        <link rel="manifest" id='pwa-manifest'></link> 
       </Head>
 
       <Header />
