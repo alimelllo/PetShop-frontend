@@ -3,7 +3,7 @@ import Header from '../../components/GeneralComponents/Header';
 
 const Factor = () => {
     return (
-        <div className='flex justify-center items-center'>
+        <div className='flex justify-center items-center h-screen md:w-full'>
             <Header />
             <div id="DIV_52">
                 <div id="DIV_53">

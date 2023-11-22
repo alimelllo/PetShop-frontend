@@ -520,8 +520,6 @@ body {
 }
 
 #DIV_52 {
-  height: 469px;
-  width: 974px;
   perspective-origin: 487px 234.5px;
   transform-origin: 487px 234.5px;
   font: normal normal normal 16px/16px Helvetica, Arial, sans-serif;
@@ -529,8 +527,8 @@ body {
 }/*#DIV_52*/
 
 #DIV_53 {
-  height: 469px;
-  width: 974px;
+  /* height: 469px;
+  width: 974px; */
   perspective-origin: 487px 234.5px;
   transform-origin: 487px 234.5px;
   font: normal normal normal 16px/16px Helvetica, Arial, sans-serif;
@@ -538,8 +536,8 @@ body {
 
 #DIV_54 {
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px, rgba(0, 0, 0, 0.027451) -1px 0px 0px 0px, rgba(0, 0, 0, 0.027451) 1px 0px 0px 0px, rgba(0, 0, 0, 0.117647) 0px 1px 0px 0px;
-  height: 469px;
-  width: 974px;
+  /* height: 469px;
+  width: 974px; */
   perspective-origin: 487px 234.5px;
   transform-origin: 487px 234.5px;
   background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
@@ -548,7 +546,7 @@ body {
 
 #FORM_55 {
   color: rgb(51, 51, 51);
-  width: 974px;
+  /* width: 974px; */
   perspective-origin: 487px 0px;
   transform-origin: 487px 0px;
   border: 0px none rgb(51, 51, 51);
@@ -560,8 +558,8 @@ body {
 #DIV_1 {
   color: rgb(51, 51, 51);
   float: left;
-  height: 429px;
-  width: 288px;
+  /* height: 429px;
+  width: 288px; */
   perspective-origin: 159px 234.5px;
   transform-origin: 159px 234.5px;
   border: 0px none rgb(51, 51, 51);
