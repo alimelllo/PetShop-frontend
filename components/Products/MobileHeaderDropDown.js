@@ -44,7 +44,6 @@ const MobileHeaderDropDown = (props) => {
                                 <Menu.Button>
 
                                     <p className={`text-right py-2 pr-5  `}>
-                                        <span className={`${showProductGroups ? 'rotate-[-45deg]' : 'rotate-0'} transition-all duration-200`}>{"<"}</span>
                                         {" "}
                                         دسته{" "}
                                     </p>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import basketIcon from "../../public/images/basket.png";
 import { showBasketHandler , ordersHandler , removeOrder , addOrder} from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
 import { useDispatch, useSelector } from "react-redux";
+import Link from "next/link";
 
 export default function Basket() {
 
@@ -123,7 +124,9 @@ export default function Basket() {
                   {/* ///////////////// FOOTER /////////////////////// */}
                   <div className=" bg-[white] w-full flex flex-row justify-between py-[1rem] sticky bottom-0 uperShadow">
                     <div className="w-4/12 md:w-5/12 md:text-[1rem] flex flex-row justify-start items-center">
-                        <button className={`ml-5 outline-none ${ ordersState.length ===0 ? 'bg-[#8b8b8b]' : 'bg-[#e1561f] hover:bg-[#be410f] '} transition-all duration-200 hover:scale-105 p-3  md:px-5 font-[600] px-10 text-white rounded-[15px] shadow-2xl`}>تکمیل خرید </button>
+                      <Link href={'/Factor'}>
+                         <button onClick={() => SetShowBasketHandler(showBasketHandler(false))} className={`ml-5 font-[bhoma] outline-none bg-[#e1561f] hover:bg-[#be410f] transition-all duration-200 hover:scale-105 p-3  md:px-5 font-[600] px-10 text-white rounded-[15px] shadow-2xl`}>تکمیل خرید </button>
+                      </Link>
                     </div>
                     <div className="p-1 font-[bhoma] flex flex-row justify-around w-4/12 md:w-6/12 text-[2rem] md:text-[1.5rem]">
                       <p className="text-[#e05721] font-[600]">{countTotalSome()}</p>

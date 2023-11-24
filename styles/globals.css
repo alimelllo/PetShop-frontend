@@ -57,6 +57,11 @@ body {
 .boxShadow3x {
   box-shadow: 5px 20px 50px #000;
 }
+.boxShadow4x{
+  -moz-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
 
 .uperShadow {
   box-shadow: -6px -6px 12px #d3d3d3, -6px 6px 12px #f1f1f1;
@@ -533,50 +538,35 @@ body {
   color: #00773d;
   line-height: 30px;
 }
-.paid p {
-  background-image: url("http://dc455.4shared.com/download/VILITso0/tsid20130720-183900-9216b81f/check.png");
-  background-repeat: no-repeat;
-  background-position: left center;
-  padding-left: 30px;
-  width: 190px;
-  margin: 0 auto;
-}
 
-.tab {
-  width: 350px;
-  margin: 0 auto;
-  height: 10px;
-  background-color: #2b2929;
-  border-radius: 50px;
-}
+
 .receipt {
-  background-color: #fafaf9;
-  padding-top: 20px;
+  
+  padding-top: 40px;
   width: 300px;
 
   margin: -5px auto;
-  border-radius: 5px 5px 50px 50px;
-  -moz-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 0 0 30px 30px;
+  
 }
 .paper {
-  border-top: 1px dashed #ccc;
+  border-top: 3px dashed #ccc;
+  padding-top: 1rem;
   width: 96%;
   margin: 0 auto;
 }
 .title {
   color: #00773d;
-  margin-top: 20px;
+  margin-top: 5px;
   margin-left: 10px;
   font-weight: bold;
   float: left;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 30px;
 }
 .date {
   color: #00773d;
-  margin-top: 20px;
+  margin-top: 5px;
   margin-right: 10px;
   font-weight: lighter;
   float: right;
@@ -587,9 +577,9 @@ table {
   width: 95%;
   margin: auto;
   color: #5b5b5b;
-  font-size: 12px;
-  padding-bottom: 20px;
-  border-bottom: 1px dashed #ccc;
+  font-size: 15px;
+  padding-bottom: 2rem;
+  border-bottom: 3px dashed #ccc;
 }
 
 .submitFactor {
@@ -614,7 +604,7 @@ table {
 }
 
 .barcode {
-  height: 10px;
+  height: 20px;
   width: 0;
   box-shadow: 1px 0 0 1px #343434, 5px 0 0 1px #343434, 10px 0 0 1px #343434,
     11px 0 0 1px #343434, 15px 0 0 1px #343434, 18px 0 0 1px #343434,
@@ -626,14 +616,29 @@ table {
     74px 0 0 1px #343434, 77px 0 0 1px #343434, 81px 0 0 1px #343434;
   display: inline-block;
   margin-right: 85px;
+  margin-top: 1rem;
 }
-.sign {
-  text-align: center;
-}
+
 .thankyou {
   line-height: 14px;
   font-size: 15px;
-  margin-top: 2rem;
   color: #b9b9b9;
   width: 100%;
 }
+
+.factorAnimation {
+  animation: factorAnimation 1.2s ease-out forwards;
+  transition: all 1s ease-out;
+}
+
+@keyframes factorAnimation {
+  from {
+    transform: translateY(-20rem);
+  }
+
+  to {
+    
+    transform: translateY(0);
+  }
+}
+
