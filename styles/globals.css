@@ -541,17 +541,15 @@ body {
 
 
 .receipt {
-  
   padding-top: 40px;
   width: 300px;
-
   margin: -5px auto;
-  border-radius: 0 0 30px 30px;
-  
+  border-radius: 0 0 20px 20px;
 }
 .paper {
   border-top: 3px dashed #ccc;
-  padding-top: 1rem;
+
+
   width: 96%;
   margin: 0 auto;
 }
@@ -573,20 +571,18 @@ body {
   font-size: 20px;
   line-height: 30px;
 }
-table {
+.table {
   width: 95%;
   margin: auto;
   color: #5b5b5b;
   font-size: 15px;
-  padding-bottom: 2rem;
-  border-bottom: 3px dashed #ccc;
+  padding-bottom: 1rem;   
 }
 
 .submitFactor {
   background-color: #00874c;
   outlie: none;
   border: 1px solid #ccc;
-  padding: 10px;
   border-radius: 5px;
   font-weight: bold;
   color: #fff;
