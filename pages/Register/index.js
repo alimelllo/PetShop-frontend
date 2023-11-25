@@ -88,6 +88,7 @@ const Login = () => {
         //  SetName(nameHandler(response.data.user.name));
         localStorage.setItem("token" , response.data.token);
         localStorage.setItem("userName" , response.data.user.name)
+        localStorage.setItem("id" , response.data.user.id)
 
         SetIsLoggedInHandler(isLoggedInHandler(true));
         router.push('/');
@@ -121,10 +122,11 @@ const Login = () => {
         SetIsLoading(false);
         localStorage.setItem("userName" , response.data.user.name );
         localStorage.setItem("token" , response.data.token );
+        localStorage.setItem("id" , response.data.user.id)
+
         // SetToken(tokenHandler(response.data.token));
         // SetName(nameHandler(response.data.user.name));
-        localStorage.setItem("token" , response.data.token);
-        localStorage.setItem("userName" , response.data.user.name);
+        
         SetIsLoggedInHandler(isLoggedInHandler(true));
         router.push('/');
       })

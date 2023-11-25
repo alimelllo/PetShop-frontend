@@ -156,8 +156,8 @@ const Main = (props) => {
 
             <div className='app font-[BHoma] flex flex-row md:flex-col-reverse justify-between overflow-x-hidden'>
 
-                <div className='w-6/12 md:w-full flex flex-col text-center z-30'>
-                    <div className='flex flex-row justify-center mt-[10rem] md:mt-0'>
+                <div className='w-6/12 md:w-full  flex flex-col text-center z-30'>
+                    <div className='flex flex-row justify-center mt-[15rem] md:mt-0'>
                         <div className='w-4/12 md:w-5/12 mt-[1.5rem] md:mt-[0.75rem] pl-3'>
                             <Image src={feedUsLogo} />
                         </div>
@@ -170,11 +170,11 @@ const Main = (props) => {
 
                     <div className='flex flex-row justify-between md:flex-col md:justify-center w-5/12 md:w-full mx-auto'>
                         <Link href='/Products'>
-                            <button className={`pt-1 pb-2 w-6/12 md:w-10/12 md:mx-auto bg-gradient-to-r from-[#52219b] to-[#771b99] hover:bg-gradient-to-r hover:from-[#411584] hover:to-[#611c7a] mt-[3rem] md:mt-[1rem] text-[white] text-[1.5rem] rounded-[20px] ${themeState === 'light' ? 'shadow-3xl' : 'shadow-2xl'}  hover:scale-105 transition-all duration-200 flex justify-center items-center`}>
+                            <button className={`p-2 w-11/12 mx-auto bg-gradient-to-r from-[#52219b] to-[#771b99] hover:bg-gradient-to-r hover:from-[#411584] hover:to-[#611c7a] mt-[3rem] md:mt-[1rem] text-[white] text-[1.5rem] rounded-[20px] ${themeState === 'light' ? 'shadow-3xl' : 'shadow-2xl'}  hover:scale-105 transition-all duration-200 flex justify-center items-center`}>
                                 محصولات
                             </button>
                         </Link>
-                        <button onClick={() => setActive(active++)} className={`mt-[3rem] md:mt-[2.5rem] ${themeState === 'light' ? 'text-[#241359]' : 'text-[#6b6b6b] hover:bg-[#171717] hover:text-white'}   text-[1.5rem] rounded-[20px] px-5 hover:shadow-xl hover:scale-105 transition-all duration-200 flex justify-center items-center`}>تخفیف ها </button>
+                        {/* <button className={`mt-[3rem] md:mt-[2.5rem] ${themeState === 'light' ? 'text-[#241359]' : 'text-[#6b6b6b] hover:bg-[#171717] hover:text-white'}   text-[1.5rem] rounded-[20px] px-5 hover:shadow-xl hover:scale-105 transition-all duration-200 flex justify-center items-center`}>تخفیف ها </button> */}
                     </div>
                 </div>
 

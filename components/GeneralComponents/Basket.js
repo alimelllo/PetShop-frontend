@@ -49,7 +49,7 @@ export default function Basket() {
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 overflow-y-hidden h-screen md:h-[95%]">
-          <div className="flex h-[85%] bg-white md:h-[95%] mt-[1rem] justify-center m-4 md:m-3 text-center">
+          <div className="flex h-[85%] m-auto md:h-[95%] mt-[1rem] justify-center  md:m-3 text-center">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -59,7 +59,7 @@ export default function Basket() {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className={`fadeLoadAnimation relative transform ${ ordersState.length > 0 ? 'overflow-y-scroll' : 'overflow-y-hidden'} rounded-lg bg-white shadow-xl transition-all w-8/12 md:w-full`}>
+              <Dialog.Panel className={`fadeLoadAnimation bg-white relative transform ${ ordersState.length > 0 ? 'overflow-y-scroll' : 'overflow-y-hidden'} rounded-lg bg-white shadow-xl transition-all w-8/12 md:w-full`}>
                 <div className="MODAL_CONTAINER bg-white relative w-full flex flex-col ">
                   {/* ///////////////// HEADER /////////////////////// */}
                   <div className="MODAL_HEADER sticky top-0 z-50 bg-white flex flex-row shadow-xl mb-[1rem] py-[1rem] w-full">

@@ -659,22 +659,23 @@ body {
 
 .logo{
   float: left;
-	height: 60px;
-	width: 60px;
-	/* background: url(http://michaeltruong.ca/images/logo1.png) no-repeat; */
-	background-size: 60px 60px;
+	height: 40px;
+	width: 150px;
+  opacity: 0.8;
+	background: url('../public/images/feedUsLogo.png') no-repeat;
+	background-size: 150px 40px;
 }
 .clientlogo{
   float: left;
 	height: 60px;
 	width: 60px;
-	/* background: url(http://michaeltruong.ca/images/client.jpg) no-repeat; */
+	background: url(http://michaeltruong.ca/images/client.jpg) no-repeat;
 	background-size: 60px 60px;
   border-radius: 50px;
 }
 .info{
   display: block;
-  float:left;
+  float:right;
   margin-left: 20px;
 }
 .successTitle{

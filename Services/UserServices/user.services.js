@@ -9,7 +9,11 @@ class UserService {
   login(data) {
     return BaseUrl.post("/login", data);
   }
- 
+  
+  getCurrentUserInfo(data) {
+    return BaseUrl.post("/getUserInfo", data);
+  }
+  
 
 }
 

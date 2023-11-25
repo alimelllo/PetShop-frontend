@@ -5,13 +5,12 @@ const SuccessPage = () => {
         <Header />
         <div className="h-screen flex items-center">
             <div className={''} id="invoiceholder">
-                <div id="invoice" className="effect2">
+                <div id="invoice" className="effect2 shadow-2xl">
                     <div id="invoice-top">
                         <div className="logo"></div>
                         <div className="info">
-                            <h2>Michael Truong</h2>
-                            <p> hello@michaeltruong.ca
-                                289-335-6503
+                            <h2 className="text-right font-bold">Alireza Maleki</h2>
+                            <p> hello@email.com
                             </p>
                         </div>
                         <div className="successTitle">
