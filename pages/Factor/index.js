@@ -20,14 +20,14 @@ const Factor = () => {
         <div
           className={`${
             themeState === "light" ? "bg-[white]" : "bg-[#141414]"
-          } z-30 absolute h-[12rem] md:h-full w-[350px] top-[-70%] md:top-[-100%] right-[26%] md:right-[10%]`}
+          } z-30 absolute h-full w-[350px] top-[-100%] md:top-[-100%] right-[27%] md:right-[5%]`}
         ></div>
         <div
           className={`${
             themeState === "light"
               ? "bg-[#3c3939] boxShadow3x"
               : "bg-[#2a2a2a] boxShadow2x"
-          }  w-[350px] m-auto h-[20px]  absolute right-[26%] md:right-[5%] z-50 rounded-[3px]`}
+          }  w-[350px] m-auto h-[20px]  absolute right-[27%] md:right-[5%] z-50 rounded-[3px]`}
         ></div>
 
         <div
@@ -54,7 +54,7 @@ const Factor = () => {
 
                 <tr>
                   <td className="text-[1.25rem] text-[#00773d] font-bold">Total :</td>
-                  <td className="text-[1.25rem] text-[#00773d] font-bold text-right">2,455,000 T</td>
+                  <td className="text-[1rem] text-[#00773d] font-bold text-right">2,455,000 T</td>
                 </tr>
 
                 <tr>

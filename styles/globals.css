@@ -635,9 +635,7 @@ table {
   from {
     transform: translateY(-20rem);
   }
-
   to {
-    
     transform: translateY(0);
   }
 }
