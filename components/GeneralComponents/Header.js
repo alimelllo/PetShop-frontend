@@ -170,7 +170,7 @@ const Header = (props) => {
               <span className="px-4  rounded-l-[10px] md:text-[0.9rem]">
                 ثبت نام{" "}
               </span>{" "}
-              | <span className="px-6   rounded-r-[10px] "> ورود </span>
+              | <span className="px-6 rounded-r-[10px]"> ورود </span>
             </div>
           </Link>
         )}

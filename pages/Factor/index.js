@@ -23,7 +23,7 @@ useEffect(() => {}, [paymentType])
     <div className="flex flex-row md:flex-col-reverse justify-between items-center md:items-start h-screen md:w-full">
       <Header />
 
-      <div className="w-6/12 md:w-full md:h-[60%] md:flex md:flex-row relative">
+      <div className="w-6/12 md:w-full md:h-[63%] md:flex md:flex-row relative">
         <div
           className={`${themeState === "light" ? "bg-[white]" : "bg-[#141414]"
             } z-30 absolute h-full w-[350px] top-[-100%] md:top-[-100%] right-[27%] md:right-[5%]`}
@@ -37,7 +37,7 @@ useEffect(() => {}, [paymentType])
 
         <div
           className={`${themeState === "light" ? "boxShadow4x " : "boxShadow3x"
-            } bg-[#fafaf9] receipt md:h-full logoAnimation`}
+            } bg-[#fafaf9] receipt h-[100%] md:h-[95%] logoAnimation`}
         >
           <div className="paper pt-[1rem] md:pt-0">
             <div className="title mb-5">Feed Us</div>
@@ -69,13 +69,13 @@ useEffect(() => {}, [paymentType])
             </div>
             <div className="flex">
               <input
-                className="submitFactor p-2 mx-auto w-6/12 md:w-10/12 font-[bhoma] text-[1rem]"
+                className="submitFactor mt-1 md:mt-5 p-2 mx-auto w-6/12 md:w-10/12 font-[bhoma] text-[1rem]"
                 type="button"
                 value="ثبت فاکتور"
               />
             </div>
            
-              <div className="thankyou text-center absolute top-[88%] font-[bhoma] text-[1rem] py-5">
+              <div className="thankyou text-center  font-[bhoma] text-[1rem] py-5">
                 از اعتماد شما به فروشگاه ما مچکریم
               </div>
            

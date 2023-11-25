@@ -45,11 +45,11 @@ export default function Basket() {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-[#04040496] bg-opacity-75 transition-opacity " />
+          <div className="fixed inset-0  " />
         </Transition.Child>
 
-        <div className="fixed inset-0 z-10 overflow-y-hidden h-screen">
-          <div className="flex h-[85%] md:h-[95%] mt-[1rem] justify-center p-4 text-center">
+        <div className="fixed inset-0 z-10 overflow-y-hidden h-screen md:h-[95%]">
+          <div className="flex h-[85%] bg-white md:h-[95%] mt-[1rem] justify-center m-4 md:m-3 text-center">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -112,7 +112,7 @@ export default function Basket() {
 
                     { ordersState.length === 0 && 
                     <div className="text-center text-[#969696] flex justify-center items-center">
-                          <p className="mt-[7rem] text-[2.5rem] md:text-[1.5rem] font-[bhoma]">سبد خرید خالی است</p>
+                          <p className="mt-[7rem] text-[2rem] md:text-[1rem] font-[bhoma]">سبد خرید خالی است</p>
                     </div>
                     }
                   </div>
@@ -123,9 +123,9 @@ export default function Basket() {
                 
                   {/* ///////////////// FOOTER /////////////////////// */}
                   <div className=" bg-[white] w-full flex flex-row justify-between py-[1rem] sticky bottom-0 uperShadow">
-                    <div className="w-4/12 md:w-5/12 md:text-[1rem] flex flex-row justify-start items-center">
+                    <div className="w-4/12 md:w-6/12 md:text-[1rem] flex flex-row justify-start items-center">
                       <Link href={'/Factor'}>
-                         <button onClick={() => SetShowBasketHandler(showBasketHandler(false))} className={`ml-5 font-[bhoma] outline-none bg-[#e1561f] hover:bg-[#be410f] transition-all duration-200 hover:scale-105 p-3  md:px-5 font-[600] px-10 text-white rounded-[15px] shadow-2xl`}>تکمیل خرید </button>
+                         <button onClick={() => SetShowBasketHandler(showBasketHandler(false))} className={`ml-5 font-[bhoma] outline-none bg-[#e1561f] hover:bg-[#be410f] md:w-10/12 transition-all duration-200 hover:scale-105 p-3  md:px-5 font-[600] px-10 text-white rounded-[15px] shadow-2xl`}>تکمیل خرید </button>
                       </Link>
                     </div>
                     <div className="p-1 font-[bhoma] flex flex-row justify-around w-4/12 md:w-6/12 text-[2rem] md:text-[1.5rem]">
