@@ -48,11 +48,13 @@ export const ProfileSettings = createSlice({
        const index = state.orders.indexOf(item);
        state.orders[index].count = state.orders[index].count - 1;
       }
-    }
-
-
+    },
+    emptyBasket: (state: any, action: any) => {
+      state.orders = []
+    },
+    
   },
 })
 
-export const { tokenHandler, nameHandler, isLoggedInHandler, showBasketHandler, ordersHandler , addOrder , removeOrder , themeHandler } = ProfileSettings.actions;
+export const { emptyBasket , tokenHandler, nameHandler, isLoggedInHandler, showBasketHandler, ordersHandler , addOrder , removeOrder , themeHandler } = ProfileSettings.actions;
 export default ProfileSettings.reducer;

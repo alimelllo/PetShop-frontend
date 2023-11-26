@@ -57,7 +57,8 @@ body {
 .boxShadow3x {
   box-shadow: 5px 20px 50px #000;
 }
-.boxShadow4x{
+
+.boxShadow4x {
   -moz-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -199,21 +200,19 @@ body {
 }
 
 .mobile-int {
-  background-image: linear-gradient(
-    to right bottom,
-    #ff0000,
-    #ff0045,
-    #ff0078,
-    #ea00aa,
-    #b81cd7,
-    #8a3ad6,
-    #5746cf,
-    #004ac2,
-    #003d94,
-    #002e66,
-    #001d3a,
-    #020812
-  );
+  background-image: linear-gradient(to right bottom,
+      #ff0000,
+      #ff0045,
+      #ff0078,
+      #ea00aa,
+      #b81cd7,
+      #8a3ad6,
+      #5746cf,
+      #004ac2,
+      #003d94,
+      #002e66,
+      #001d3a,
+      #020812);
   background-size: 200% 200%;
   background-position: 0% 0%;
   height: 100%;
@@ -285,14 +284,12 @@ body {
   height: 45px;
   top: 30%;
   right: -4px;
-  background-image: linear-gradient(
-    to right,
-    #111111,
-    #222222,
-    #333333,
-    #464646,
-    #595959
-  );
+  background-image: linear-gradient(to right,
+      #111111,
+      #222222,
+      #333333,
+      #464646,
+      #595959);
 }
 
 .btn2,
@@ -404,16 +401,14 @@ body {
   width: 4rem;
   border-radius: 9999px;
   object-fit: cover;
-  background-image: linear-gradient(
-    to right bottom,
-    #ff0000,
-    #ff0045,
-    #ff0078,
-    #ea00aa,
-    #b81cd7,
-    #8a3ad6,
-    #5746cf
-  );
+  background-image: linear-gradient(to right bottom,
+      #ff0000,
+      #ff0045,
+      #ff0078,
+      #ea00aa,
+      #b81cd7,
+      #8a3ad6,
+      #5746cf);
 }
 
 .stars {
@@ -485,10 +480,7 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  transform: rotateY(calc(var(--offset) * 50deg))
-    scaleY(calc(1 + var(--abs-offset) * -0.3))
-    translateZ(calc(var(--abs-offset) * -30rem))
-    translateX(calc(var(--direction) * -3rem));
+  transform: rotateY(calc(var(--offset) * 50deg)) scaleY(calc(1 + var(--abs-offset) * -0.3)) translateZ(calc(var(--abs-offset) * -30rem)) translateX(calc(var(--direction) * -3rem));
   filter: blur(calc(var(--abs-offset) * 10rem));
   transition: all 0.7s ease-in-out;
 }
@@ -521,6 +513,7 @@ body {
 .nav.left {
   transform: translateX(-100%) translatey(-50%);
 }
+
 .nav.right {
   right: 0;
   transform: translateX(100%) translatey(-50%);
@@ -546,6 +539,7 @@ body {
   margin: -5px auto;
   border-radius: 0 0 20px 20px;
 }
+
 .paper {
   border-top: 3px dashed #ccc;
 
@@ -553,6 +547,7 @@ body {
   width: 96%;
   margin: 0 auto;
 }
+
 .title {
   color: #00773d;
   margin-top: 5px;
@@ -562,6 +557,7 @@ body {
   font-size: 20px;
   line-height: 30px;
 }
+
 .date {
   color: #00773d;
   margin-top: 5px;
@@ -571,12 +567,13 @@ body {
   font-size: 20px;
   line-height: 30px;
 }
+
 .table {
   width: 95%;
   margin: auto;
   color: #5b5b5b;
   font-size: 15px;
-  padding-bottom: 1rem;   
+  padding-bottom: 1rem;
 }
 
 .submitFactor {
@@ -593,6 +590,7 @@ body {
   -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
+
 .submitFactor:hover {
   background-color: #185f40;
   cursor: pointer;
@@ -631,90 +629,85 @@ body {
   from {
     transform: translateY(-20rem);
   }
+
   to {
     transform: translateY(0);
   }
 }
 
-#invoiceholder{
-  width:100%;
+#invoiceholder {
+  width: 100%;
 }
 
-#invoice{
+#invoice {
   position: relative;
   /* top: -290px; */
   margin: 0 auto;
-  width: 700px;
   background: #FFF;
+  display: flex;
+  flex-direction: column;
 }
 
-[id*='invoice-']{ /* Targets all id with 'col-' */
+[id*='invoice-'] {
+  /* Targets all id with 'col-' */
   border-bottom: 1px solid #EEE;
   padding: 30px;
 }
 
-#invoice-top{min-height: 120px;}
-#invoice-mid{min-height: 120px;}
-#invoice-bot{min-height: 250px;}
+#invoice-top {
+  min-height: 50px;
+}
 
-.logo{
+#invoice-mid {
+  min-height: 50px;
+}
+
+.logo {
   float: left;
-	height: 40px;
-	width: 150px;
-  opacity: 0.8;
-	background: url('../public/images/feedUsLogo.png') no-repeat;
-	background-size: 150px 40px;
+  height: 40px;
+  opacity: 0.6;
+  background: url('../public/images/feedUsLogo.png') no-repeat;
+  background-size: 150px 40px;
 }
-.clientlogo{
-  float: left;
-	height: 60px;
-	width: 60px;
-	background: url(http://michaeltruong.ca/images/client.jpg) no-repeat;
-	background-size: 60px 60px;
-  border-radius: 50px;
-}
-.info{
-  display: block;
-  float:right;
-  margin-left: 20px;
-}
-.successTitle{
+
+.info {
   float: right;
 }
-.successTitle p{
-  text-align: right;
-}
 
-#project{
-  margin-left: 52%;
-}
 
-table{
+table {
   width: 100%;
   border-collapse: collapse;
 }
-td{
-  padding: 5px 0 5px 15px;
+
+td {
+  text-align: right;
+  padding: 5px 10px 5px 15px;
   border: 1px solid #EEE
 }
-.tabletitle{
-  padding: 5px;
+
+.tabletitle {
   background: #EEE;
 }
-.service{border: 1px solid #EEE;}
-.item{width: 50%;}
-.itemtext{font-size: .9em;}
 
-#legalcopy{
+.service {
+  border: 1px solid #EEE;
+}
+
+.itemtext {
+  font-size: 0.9em;
+}
+
+#legalcopy {
   margin-top: 30px;
 }
 
-.effect2
-{
+.effect2 {
   position: relative;
 }
-.effect2:before, .effect2:after
-{
+
+.effect2:before,
+.effect2:after {
   z-index: -1;
   position: absolute;
   content: "";
@@ -722,7 +715,7 @@ td{
   left: 10px;
   width: 50%;
   top: 80%;
-  max-width:300px;
+  max-width: 300px;
   background: #777;
   -webkit-box-shadow: 0 15px 10px #777;
   -moz-box-shadow: 0 15px 10px #777;
@@ -733,8 +726,8 @@ td{
   -ms-transform: rotate(-3deg);
   transform: rotate(-3deg);
 }
-.effect2:after
-{
+
+.effect2:after {
   -webkit-transform: rotate(3deg);
   -moz-transform: rotate(3deg);
   -o-transform: rotate(3deg);
@@ -744,6 +737,17 @@ td{
   left: auto;
 }
 
-.legal{
-  width:70%;
+
+
+@media only screen and (max-width: 870px) {
+  .logo {
+    background-size: 70px 20px;
+  }
+
+  td {
+    text-align: center;
+    padding: 5px 10px 5px 5px;
+    border: 1px solid #EEE
+  }
 }
+

@@ -157,7 +157,7 @@ const Main = (props) => {
             <div className='app font-[BHoma] flex flex-row md:flex-col-reverse justify-between overflow-x-hidden'>
 
                 <div className='w-6/12 md:w-full  flex flex-col text-center z-30'>
-                    <div className='flex flex-row justify-center mt-[15rem] md:mt-0'>
+                    <div className='flex flex-row justify-center mt-[12rem] md:mt-0'>
                         <div className='w-4/12 md:w-5/12 mt-[1.5rem] md:mt-[0.75rem] pl-3'>
                             <Image src={feedUsLogo} />
                         </div>

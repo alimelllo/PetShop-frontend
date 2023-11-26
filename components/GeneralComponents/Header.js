@@ -222,6 +222,18 @@ const Header = (props) => {
                   </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
+                        <button
+                          type="submit"
+                          className={classNames(
+                            `block w-full px-4 py-2 text-right ${themeState === 'light' ? 'bg-gray-100 text-[#5c5c5c]' : 'bg-[#333333] text-[#bfbfbf]'}`
+                          )}
+                        >
+                           سفارشات من
+                        </button>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
                       <Link href={{ pathname: '/MyDiscount'}}>
                         <button
                           type="submit"

@@ -1,94 +1,104 @@
+import { useState } from "react";
+import factorService from "../../Services/FactorServices/factor.service";
 import Header from "../../components/GeneralComponents/Header";
+import { useDispatch } from "react-redux";
+import { emptyBasket } from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
 
 const SuccessPage = () => {
-    return (<div className="h-screen">
+
+    const [paymentSuccess, SetPaymentSuccess] = useState(false)
+    const emtyBasketHandler = useDispatch();
+
+    const Payment = () => {
+        factorService.Payment({ amount: 45000 }).then((resp) => {
+            emtyBasketHandler(emptyBasket())
+            SetPaymentSuccess(true);
+        })
+    }
+
+    return (<div className="h-screen font-[bhoma] ">
         <Header />
         <div className="h-screen flex items-center">
-            <div className={''} id="invoiceholder">
-                <div id="invoice" className="effect2 shadow-2xl">
-                    <div id="invoice-top">
-                        <div className="logo"></div>
-                        <div className="info">
-                            <h2 className="text-right font-bold">Alireza Maleki</h2>
-                            <p> hello@email.com
-                            </p>
-                        </div>
-                        <div className="successTitle">
-                            <h1>Invoice #1069</h1>
-                            <p>Issued: May 27, 2015
-                                Payment Due: June 27, 2015
-                            </p>
-                        </div>
+            <div id="invoiceholder">
+                <div id="invoice" className="w-6/12  md:w-11/12 effect2 shadow-2xl">
+                    <div id="invoice-top flex flex-row  ">
+                        {paymentSuccess && <>
+                            <p className="text-center text-[green] text-[1.4rem] ">پرداخت با موفقیت انجام شد</p>
+                            <div className="absolute right-[35%] top-[-20%]">
+                                <div className="svg-container logoAnimation rounded-[50%] boxShadow4x">
+                                    <svg className="ft-green-tick" xmlns="http://www.w3.org/2000/svg" height="100" width="100" viewBox="0 0 48 48" aria-hidden="true">
+                                        <circle className="circle" fill="#5bb543" cx="24" cy="24" r="22" />
+                                        <path className="tick" fill="none" stroke="#FFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M14 27l5.917 4.917L34 17" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </>
+
+                        }
+                        {!paymentSuccess && <div className="logo w-3/12 ">
+                            <p className="text-[1.25rem] font-[monospace] mt-[4rem] md:mt-[2rem] md:text-[1rem]">1402/06/31</p>
+                        </div>}
+                        {!paymentSuccess && <div className="flex flex-col w-9/12 ">
+                            <div className="info text-right">
+                                <h2 className="font-bold font-[monospace] text-[1.25rem]">Alireza Maleki</h2>
+                                <p className="font-[monospace] text-[1rem] pt-1 text-[#565656]"> 0904 632 9661 </p>
+                            </div>
+                            <div className="info flex flex-row justify-end mt-2 items-center  md:text-[0.7rem]">
+                                <p className="pr-3 text-[#565656] md:mt-3"> جنت آباد شمالی - خیابان ایرانشهر - پلاک 32 - واحد 17</p>
+                                <h2 className="text-right md:w-3/12 font-bold text-[1.1rem] md:text-[1rem]">: آدرس</h2>
+                            </div>
+                        </div>}
+
                     </div>
 
 
-                    <div id="invoice-bot">
+
+                    <div className="p-5 md:p-0">
                         <div id="table">
                             <table>
                                 <tbody>
                                     <tr className="tabletitle">
-                                        <td className="item"><h2>Item Description</h2></td>
-                                        <td className="Hours"><h2>Hours</h2></td>
-                                        <td className="Rate"><h2>Rate</h2></td>
-                                        <td className="subtotal"><h2>Sub-total</h2></td>
+                                        <td className="Hours"><h2>مبلغ نهایی</h2></td>
+                                        <td className="Rate"><h2>تخفیف</h2></td>
+                                        <td className="subtotal"><h2>تعداد</h2></td>
+                                        <td className="subtotal"><h2>مبلغ</h2></td>
+                                        <td className="w-[30%]"><h2> محصول</h2></td>
                                     </tr>
 
-                                    <tr className="service">
-                                        <td className="tableitem"><p className="itemtext">Communication</p></td>
-                                        <td className="tableitem"><p className="itemtext">5</p></td>
-                                        <td className="tableitem"><p className="itemtext">$75</p></td>
-                                        <td className="tableitem"><p className="itemtext">$375.00</p></td>
+                                    <tr className="service font-[monospace] text-[1rem]">
+                                        <td className="tableitem"><p className="itemtext">245,000</p></td>
+                                        <td className="tableitem"><p className="itemtext">10%</p></td>
+                                        <td className="tableitem"><p className="itemtext">x3</p></td>
+                                        <td className="tableitem"><p className="itemtext">85,000</p></td>
+                                        <td className="tableitem"><p className="itemtext">Royal Canin pluppy</p></td>
                                     </tr>
 
-                                    <tr className="service">
-                                        <td className="tableitem"><p className="itemtext">Asset Gathering</p></td>
-                                        <td className="tableitem"><p className="itemtext">3</p></td>
-                                        <td className="tableitem"><p className="itemtext">$75</p></td>
-                                        <td className="tableitem"><p className="itemtext">$225.00</p></td>
+                                    <tr className="service font-[monospace] text-[1rem]">
+                                        <td className="tableitem"><p className="itemtext">245,000</p></td>
+                                        <td className="tableitem"><p className="itemtext">5%</p></td>
+                                        <td className="tableitem"><p className="itemtext">x2</p></td>
+                                        <td className="tableitem"><p className="itemtext">45,000</p></td>
+                                        <td className="tableitem"><p className="itemtext">Royal Canin fix</p></td>
                                     </tr>
-
-                                    <tr className="service">
-                                        <td className="tableitem"><p className="itemtext">Design Development</p></td>
-                                        <td className="tableitem"><p className="itemtext">5</p></td>
-                                        <td className="tableitem"><p className="itemtext">$75</p></td>
-                                        <td className="tableitem"><p className="itemtext">$375.00</p></td>
-                                    </tr>
-
-                                    <tr className="service">
-                                        <td className="tableitem"><p className="itemtext">Animation</p></td>
-                                        <td className="tableitem"><p className="itemtext">20</p></td>
-                                        <td className="tableitem"><p className="itemtext">$75</p></td>
-                                        <td className="tableitem"><p className="itemtext">$1,500.00</p></td>
-                                    </tr>
-
-                                    <tr className="service">
-                                        <td className="tableitem"><p className="itemtext">Animation Revisions</p></td>
-                                        <td className="tableitem"><p className="itemtext">10</p></td>
-                                        <td className="tableitem"><p className="itemtext">$75</p></td>
-                                        <td className="tableitem"><p className="itemtext">$750.00</p></td>
-                                    </tr>
-
-                                    <tr className="service">
-                                        <td className="tableitem"><p className="itemtext"></p></td>
-                                        <td className="tableitem"><p className="itemtext">HST</p></td>
-                                        <td className="tableitem"><p className="itemtext">13%</p></td>
-                                        <td className="tableitem"><p className="itemtext">$419.25</p></td>
-                                    </tr>
-
 
                                     <tr className="tabletitle">
+                                        <td className="payment"><h2 className="font-[monospace] md:font-bold text-[1rem]"> 365,000 </h2></td>
                                         <td></td>
                                         <td></td>
-                                        <td className="Rate"><h2>Total</h2></td>
-                                        <td className="payment"><h2>$3,644.25</h2></td>
+                                        <td className="Rate"><h2></h2></td>
+                                        <td><h2>: قابل پرداخت </h2></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
 
-                        <div id="legalcopy">
-                            <p className="legal"><strong>Thank you for your business!</strong>  Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices.
-                            </p>
+                        <div id="legalcopy" className="flex flex-row md:flex-col justify-between text-right">
+                            <div className="flex w-[30%] md:w-full justify-center">
+                                {!paymentSuccess && <button onClick={Payment} className="m-auto w-8/12 md:w-10/12 bg-[#8957b8] text-[white]  text-[1.1rem] p-2 md:p-3 rounded-[10px] transition-all duration-200 hover:bg-[#673f8d] boxShadow4x">پرداخت</button>}
+                                {paymentSuccess && <button className="m-auto my-5 w-8/12 md:w-10/12 bg-[#d86b38] text-[white]  text-[1.1rem] p-2 md:p-3  rounded-[10px] transition-all duration-200 hover:bg-[#d85538] boxShadow4x">پیگیری سفارش</button>}
+
+                            </div>
+                            {!paymentSuccess && <p className="w-[70%] text-[#4b4b4b] text-[1.1rem] md:text-[0.9rem] md:w-full md:px-2 md:py-4"> لطفا درست بودن اطلاعات فاکتور را بررسی کنید. <strong>پس از پرداخت امکان تغییر برروی سفارش امکان پذیر نمی باشد</strong> </p>}
                         </div>
 
                     </div>

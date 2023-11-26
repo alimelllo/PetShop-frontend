@@ -8,10 +8,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import userServices from "../../Services/UserServices/user.services";
 import { useRouter } from "next/router";
+import factorService from "../../Services/FactorServices/factor.service.js";
 
 const Factor = () => {
   const router = useRouter();
-  const [paymentType, SetPaymentType] = useState("");
+  const [paymentType, SetPaymentType] = useState("ONLINE");
 
   const selectThemeState = useSelector(themeHandler);
   const themeState = selectThemeState.payload.ProfileSettings.theme;
@@ -24,8 +25,17 @@ const Factor = () => {
   const getCurrentUserInfo = () => {
     userServices.getCurrentUserInfo({ id: localStorage.getItem("id") })
       .then((response) => {
-        console.log(response);
-        router.push('/SuccessPage');
+        factorService.Createfactor(
+          {
+            user: response.id ,
+            products: ordersState.map((item)=> (item.id) ),
+            discount: 0,
+            finalPrice : 545000,
+            payment: paymentType,
+          }
+        ).then((resp) => {
+          router.push('/SuccessPage');
+        })
       });
   };
 
@@ -103,7 +113,7 @@ const Factor = () => {
             <div className="flex">
               <input
                 onClick={getCurrentUserInfo}
-                className="submitFactor mt-1 md:mt-5 p-2 mx-auto w-6/12 md:w-10/12 font-[bhoma] text-[1rem]"
+                className="submitFactor mt-1 p-2 mx-auto w-6/12 md:w-10/12 font-[bhoma] text-[1rem]"
                 type="button"
                 value="ثبت فاکتور"
               />
