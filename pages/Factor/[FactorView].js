@@ -76,7 +76,7 @@ const FactorView = (props) => {
                                         </tr>
                                     ))}
 
-                                    {props.factor.products.lrngth > 0 &&
+                                    {props.factor.products.length > 0 &&
                                         <tr className="tabletitle">
                                             <td className="payment"><h2 className="font-[monospace] md:font-bold text-[1rem]"> 365,000 </h2></td>
                                             <td></td>
