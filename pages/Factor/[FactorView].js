@@ -44,7 +44,7 @@ const FactorView = (props) => {
                                 <h2 className="font-bold font-[monospace] text-[1.25rem]">Alireza Maleki</h2>
                                 <p className="font-[monospace] text-[1rem] pt-1 text-[#565656]"> 0904 632 9661 </p>
                             </div>
-                            <div className="info flex flex-row h-[2rem] md:absolute md:top-[25%] md:right-8 justify-end mt-2 items-center text-justify md:w-10/12 md:text-[0.7rem]">
+                            <div className="info flex flex-row h-[2rem] md:absolute md:top-[15%] md:right-8 justify-end mt-2 items-center text-justify md:w-10/12 md:text-[0.7rem]">
                                 <p className="pr-3 text-[#565656] pt-5"> جنت آباد شمالی - خیابان اکبری - علامه شمالی  -ایرانشهر جنوبی  - پلاک 32 - واحد 17</p>
                                 <h2 className="text-right w-4/12 md:w-3/12 font-bold text-[1.1rem] md:pt-1 md:text-[1rem]">: آدرس</h2>
                             </div>
