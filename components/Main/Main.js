@@ -15,7 +15,7 @@ import { telegram } from 'react-icons-kit/fa/telegram';
 import { useSelector } from 'react-redux';
 import { themeHandler } from '../../Redux/Reducers/Settings/Profile/ProfileSettings.ts';
 import royalCaninLogo from '../../public/images/royalCaninWhite.png'
-import royalCaninProduct from '../../public/images/royalCaninProduct.png'
+import royalCaninProduct from '../../public/images/royalCaninProduct.png';
 import feedUsLogo from '../../public/images/feedUsLogo.png'
 import offerLogo from '../../public/images/offer.png';
 
@@ -250,7 +250,7 @@ const Main = (props) => {
 
 
 
-            <footer className={`bg-gradient-to-r from-[#1c0f31] to-[#161136] mt-[10rem] rounded-t-[40px] w-11/12 mx-auto flex flex-col ${themeState === 'light' ? 'uperShadow' : 'boxShadow3x'}`}>
+            <footer className={`bg-gradient-to-r font-[bhoma] tracking-[0.5px] from-[#1c0f31] to-[#161136] mt-[10rem] rounded-t-[40px] w-11/12 mx-auto flex flex-col ${themeState === 'light' ? 'uperShadow' : 'boxShadow3x'}`}>
 
                 <div className='bg-[#8383831b] w-[95%] mx-auto my-[3rem] rounded-[10px] flex flex-row justify-between md:flex-wrap'>
                     <div className='text-[#a9a9a9] pt-3 shadow-2xl h-[10rem]  text-center w-3/12 md:w-5/12'>

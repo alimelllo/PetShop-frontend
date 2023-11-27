@@ -7,6 +7,12 @@ class FactorServices {
   Payment( data ) {
     return BaseUrl.post(`/Payment` , data);
   }
+  getAllFactorIds() {
+    return BaseUrl.get(`/getAllFactorIds`);
+  }
+  GetFactorById ( factorId ){
+    return BaseUrl.get(`/getFactorById/${factorId}`)
+  }
 }
 
 export default new FactorServices();

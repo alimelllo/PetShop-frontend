@@ -4,7 +4,7 @@ import Header from "../../components/GeneralComponents/Header";
 import { useDispatch } from "react-redux";
 import { emptyBasket } from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
 
-const SuccessPage = () => {
+const FactorView = (props) => {
 
     const [paymentSuccess, SetPaymentSuccess] = useState(false)
     const emtyBasketHandler = useDispatch();
@@ -16,6 +16,7 @@ const SuccessPage = () => {
         })
     }
 
+    console.log(props)
     return (<div className="h-screen font-[bhoma] ">
         <Header />
         <div className="h-screen flex items-center">
@@ -24,7 +25,7 @@ const SuccessPage = () => {
                     <div id="invoice-top flex flex-row  ">
                         {paymentSuccess && <>
                             <p className="text-center text-[green] text-[1.4rem] ">پرداخت با موفقیت انجام شد</p>
-                            <div className="absolute right-[35%] top-[-20%]">
+                            <div className="absolute right-[45%] md:right-[35%] top-[-20%]">
                                 <div className="svg-container logoAnimation rounded-[50%] boxShadow4x">
                                     <svg className="ft-green-tick" xmlns="http://www.w3.org/2000/svg" height="100" width="100" viewBox="0 0 48 48" aria-hidden="true">
                                         <circle className="circle" fill="#5bb543" cx="24" cy="24" r="22" />
@@ -38,14 +39,14 @@ const SuccessPage = () => {
                         {!paymentSuccess && <div className="logo w-3/12 ">
                             <p className="text-[1.25rem] font-[monospace] mt-[4rem] md:mt-[2rem] md:text-[1rem]">1402/06/31</p>
                         </div>}
-                        {!paymentSuccess && <div className="flex flex-col w-9/12 ">
+                        {!paymentSuccess && <div className="flex flex-col w-9/12 md:pb-[2rem]">
                             <div className="info text-right">
                                 <h2 className="font-bold font-[monospace] text-[1.25rem]">Alireza Maleki</h2>
                                 <p className="font-[monospace] text-[1rem] pt-1 text-[#565656]"> 0904 632 9661 </p>
                             </div>
-                            <div className="info flex flex-row justify-end mt-2 items-center  md:text-[0.7rem]">
-                                <p className="pr-3 text-[#565656] md:mt-3"> جنت آباد شمالی - خیابان ایرانشهر - پلاک 32 - واحد 17</p>
-                                <h2 className="text-right md:w-3/12 font-bold text-[1.1rem] md:text-[1rem]">: آدرس</h2>
+                            <div className="info flex flex-row h-[2rem] md:absolute md:top-[25%] md:right-8 justify-end mt-2 items-center text-justify md:w-10/12 md:text-[0.7rem]">
+                                <p className="pr-3 text-[#565656] pt-5"> جنت آباد شمالی - خیابان اکبری - علامه شمالی  -ایرانشهر جنوبی  - پلاک 32 - واحد 17</p>
+                                <h2 className="text-right w-4/12 md:w-3/12 font-bold text-[1.1rem] md:pt-1 md:text-[1rem]">: آدرس</h2>
                             </div>
                         </div>}
 
@@ -65,29 +66,24 @@ const SuccessPage = () => {
                                         <td className="w-[30%]"><h2> محصول</h2></td>
                                     </tr>
 
-                                    <tr className="service font-[monospace] text-[1rem]">
-                                        <td className="tableitem"><p className="itemtext">245,000</p></td>
-                                        <td className="tableitem"><p className="itemtext">10%</p></td>
-                                        <td className="tableitem"><p className="itemtext">x3</p></td>
-                                        <td className="tableitem"><p className="itemtext">85,000</p></td>
-                                        <td className="tableitem"><p className="itemtext">Royal Canin pluppy</p></td>
-                                    </tr>
+                                    {props.factor.products.map((item) => (
+                                        <tr className="service font-[monospace] text-[1rem]">
+                                            <td className="tableitem"><p className="itemtext">{item.price}</p></td>
+                                            <td className="tableitem"><p className="itemtext">{item.discount}</p></td>
+                                            <td className="tableitem"><p className="itemtext">{item.count}</p></td>
+                                            <td className="tableitem"><p className="itemtext">{item.price}</p></td>
+                                            <td className="tableitem"><p className="itemtext">{item.name}</p></td>
+                                        </tr>
+                                    ))}
 
-                                    <tr className="service font-[monospace] text-[1rem]">
-                                        <td className="tableitem"><p className="itemtext">245,000</p></td>
-                                        <td className="tableitem"><p className="itemtext">5%</p></td>
-                                        <td className="tableitem"><p className="itemtext">x2</p></td>
-                                        <td className="tableitem"><p className="itemtext">45,000</p></td>
-                                        <td className="tableitem"><p className="itemtext">Royal Canin fix</p></td>
-                                    </tr>
-
-                                    <tr className="tabletitle">
-                                        <td className="payment"><h2 className="font-[monospace] md:font-bold text-[1rem]"> 365,000 </h2></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td className="Rate"><h2></h2></td>
-                                        <td><h2>: قابل پرداخت </h2></td>
-                                    </tr>
+                                    {props.factor.products.lrngth > 0 &&
+                                        <tr className="tabletitle">
+                                            <td className="payment"><h2 className="font-[monospace] md:font-bold text-[1rem]"> 365,000 </h2></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td className="Rate"><h2></h2></td>
+                                            <td><h2>: قابل پرداخت </h2></td>
+                                        </tr>}
                                 </tbody>
                             </table>
                         </div>
@@ -111,4 +107,26 @@ const SuccessPage = () => {
     )
 }
 
-export default SuccessPage;
+export async function getStaticPaths() {
+    const FactorIds = await factorService.getAllFactorIds();
+    const loadedPaths = FactorIds.data.map((item) => ({ params: { FactorView: String(item.id) } }));
+    return {
+        paths: loadedPaths,
+        fallback: false
+    }
+}
+
+export async function getStaticProps(context) {
+
+    const params = context.params.FactorView;
+    const factorResult = await factorService.GetFactorById(params);
+
+    return {
+        props: {
+            factor: factorResult.data[0],
+        }
+    }
+}
+
+
+export default FactorView;

@@ -20,21 +20,21 @@ const Factor = () => {
   const selectOrderState = useSelector(ordersHandler);
   const ordersState = selectOrderState.payload.ProfileSettings.orders;
 
-  useEffect(() => {}, [paymentType]);
 
-  const getCurrentUserInfo = () => {
+  const getCurrentUserInfo = () => { 
+    
     userServices.getCurrentUserInfo({ id: localStorage.getItem("id") })
       .then((response) => {
         factorService.Createfactor(
           {
-            user: response.id ,
-            products: ordersState.map((item)=> (item.id) ),
+            user: response.data.id ,
+            products: ordersState.map((item) => ({ id: item.id, name: item.name, price: item.price, discount: 0 })),
             discount: 0,
-            finalPrice : 545000,
+            finalPrice: 545000,
             payment: paymentType,
           }
         ).then((resp) => {
-          router.push('/SuccessPage');
+          resp.data.id && router.push('/Factor' + '/' + resp.data.id);
         })
       });
   };
@@ -45,22 +45,19 @@ const Factor = () => {
 
       <div className="w-6/12 md:w-full md:h-[63%] md:flex md:flex-row relative">
         <div
-          className={`${
-            themeState === "light" ? "bg-[white]" : "bg-[#141414]"
-          } z-30 absolute h-full w-[350px] top-[-100%] md:top-[-100%] right-[27%] md:right-[5%]`}
+          className={`${themeState === "light" ? "bg-[white]" : "bg-[#141414]"
+            } z-30 absolute h-full w-[350px] top-[-100%] md:top-[-100%] right-[27%] md:right-[5%]`}
         ></div>
         <div
-          className={`${
-            themeState === "light"
-              ? "bg-[#3c3939] boxShadow3x"
-              : "bg-[#2a2a2a] boxShadow2x"
-          } w-[350px] m-auto md:w-11/12 md:z-[30] h-[15px] absolute right-[27%] md:right-[5%] z-50 rounded-[3px]`}
+          className={`${themeState === "light"
+            ? "bg-[#3c3939] boxShadow3x"
+            : "bg-[#2a2a2a] boxShadow2x"
+            } w-[350px] m-auto md:w-11/12 md:z-[30] h-[15px] absolute right-[27%] md:right-[5%] z-50 rounded-[3px]`}
         ></div>
 
         <div
-          className={`${
-            themeState === "light" ? "boxShadow4x " : "boxShadow3x"
-          } bg-[#fafaf9] receipt h-[100%] md:h-[95%] logoAnimation`}
+          className={`${themeState === "light" ? "boxShadow4x " : "boxShadow3x"
+            } bg-[#fafaf9] receipt h-[100%] md:h-[95%] logoAnimation`}
         >
           <div className="paper pt-[1rem] md:pt-0">
             <div className="title mb-5">Feed Us</div>
@@ -84,21 +81,19 @@ const Factor = () => {
             <div className="flex font-[bhoma] flex-row justify-center px-2 py-2 my-3 md:my-1 items-center ">
               <p
                 onClick={() => SetPaymentType("ONLINE")}
-                className={`${
-                  paymentType === "ONLINE"
-                    ? "opactiy-[1] scale-105 boxShadow4x"
-                    : "opacity-[0.4] scale-100"
-                } cursor-pointer transition-all duration-200 w-6/12 text-[1.25rem] text-[white]  text-center p-1 md:p-1 rounded-l-[10px]  bg-[#823edb]`}
+                className={`${paymentType === "ONLINE"
+                  ? "opactiy-[1] scale-105 boxShadow4x"
+                  : "opacity-[0.4] scale-100"
+                  } cursor-pointer transition-all duration-200 w-6/12 text-[1.25rem] text-[white]  text-center p-1 md:p-1 rounded-l-[10px]  bg-[#823edb]`}
               >
                 پرداخت آنلاین
               </p>
               <p
                 onClick={() => SetPaymentType("ONSITE")}
-                className={`${
-                  paymentType === "ONSITE"
-                    ? "opactiy-[1] scale-105 boxShadow4x"
-                    : "opacity-[0.4] scale-100"
-                } cursor-pointer transition-all duration-200 w-6/12 text-[1.25rem] text-[white]  text-center p-1 md:p-1 rounded-r-[10px]  bg-[#3e56db]`}
+                className={`${paymentType === "ONSITE"
+                  ? "opactiy-[1] scale-105 boxShadow4x"
+                  : "opacity-[0.4] scale-100"
+                  } cursor-pointer transition-all duration-200 w-6/12 text-[1.25rem] text-[white]  text-center p-1 md:p-1 rounded-r-[10px]  bg-[#3e56db]`}
               >
                 درب منزل
               </p>
@@ -128,11 +123,10 @@ const Factor = () => {
 
       <div className="DESCRIPTION_SECTION md:h-[40%] md:absolute md:top-[10%] md:z-[30] font-[bhoma] w-6/12 md:w-full h-[30rem] text-right">
         <p
-          className={` w-6/12 md:w-full mx-auto rounded-[10px] text-center text-[1.5rem] md:text-[1.2rem] ${
-            themeState === "light"
-              ? "text-[#3b3b3b] shadow-xl"
-              : "text-[#9e9e9e] boxShadow4x"
-          }  font-bold py-2 pb-3`}
+          className={` w-6/12 md:w-full mx-auto rounded-[10px] text-center text-[1.5rem] md:text-[1.2rem] ${themeState === "light"
+            ? "text-[#3b3b3b] shadow-xl"
+            : "text-[#9e9e9e] boxShadow4x"
+            }  font-bold py-2 pb-3`}
         >
           لطفا موارد زیر را با دقت بخوانید
         </p>
