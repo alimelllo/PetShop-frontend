@@ -120,7 +120,7 @@ const Factor = () => {
                 onClick={getCurrentUserInfo}
                 className="submitFactor mt-1 p-2 mx-auto w-6/12 md:w-10/12 font-[bhoma] text-[1rem]"
                 type="button"
-                value="ثبت فاکتور"
+                value=" ثبت فاکتور" 
               />}
               {factorCreated  && !isLoading &&
                 <Link href={`/Factor/${factorId}`}>
