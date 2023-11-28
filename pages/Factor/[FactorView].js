@@ -16,7 +16,6 @@ const FactorView = (props) => {
         })
     }
 
-    console.log(props)
     return (<div className="h-screen font-[bhoma] ">
         <Header />
         <div className="h-screen flex items-center">
