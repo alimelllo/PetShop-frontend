@@ -17,9 +17,6 @@ const Factor = () => {
   const [paymentType, SetPaymentType] = useState("ONLINE");
   const [isLoading, SetIsLoading] = useState(false);
 
-  const [factorCreated, SetFactorCreated] = useState(false);
-  const [factorId, SetFactorId] = useState('');
-
   const selectThemeState = useSelector(themeHandler);
   const themeState = selectThemeState.payload.ProfileSettings.theme;
 
@@ -40,9 +37,7 @@ const Factor = () => {
           payment: paymentType,
         }
       )
-      SetFactorCreated(true);
-      // router.push('/Factor' + '/' + factor.data.id);
-      SetFactorId(factor.data.id);
+      router.push(`/Factor/${factor.data.id}`)
       SetIsLoading(false);
     } catch (err) {
       SetIsLoading(false);
@@ -116,23 +111,12 @@ const Factor = () => {
               </p>
             </div>
             <div className="flex">
-              {!isLoading && !factorCreated && <input
-                onClick={getCurrentUserInfo}
-                className="submitFactor mt-1 p-2 mx-auto w-6/12 md:w-10/12 font-[bhoma] text-[1rem]"
-                type="button"
-                value=" ثبت فاکتور" 
-              />}
-              {factorCreated  && !isLoading &&
-                <Link href={`/Factor/${factorId}`}>
-                  <input
-                    className="text-white rounded-[10px] cursor-pointer bg-[#6161f1] hover:bg-[#3e3eaa] transition-all duration-200 mt-1 p-2 mx-auto w-6/12 md:w-10/12 font-[bhoma] text-[1rem]"
-                    type="button"
-                    value="ادامه"
-                  />
-                </Link>
-              }
-
-              {isLoading && <ReactLoading type={"bars"} color="#2c125c" width={50} className=" mt-[2rem] mx-auto" />}
+              {!isLoading &&
+                <button
+                  onClick={() => getCurrentUserInfo()}
+                  className="submitFactor mt-1 p-2 mx-auto w-6/12 md:w-10/12 font-[bhoma] text-[1rem]"
+                > ثبت فاکتور</button>}
+              {isLoading && <ReactLoading type={"bars"} color="#2c125c" width={50} className=" mt-[1rem] mx-auto" />}
 
             </div>
 

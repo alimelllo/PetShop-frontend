@@ -13,6 +13,9 @@ class FactorServices {
   GetFactorById ( factorId ){
     return BaseUrl.get(`/getFactorById/${factorId}`)
   }
+  GetAllFactorsByUserId(userId){
+    return BaseUrl.get(`/getAllFactorsByUserId/${userId}`)
+  }
 }
 
 export default new FactorServices();

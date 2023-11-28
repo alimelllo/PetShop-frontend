@@ -65,7 +65,7 @@ const FactorView = (props) => {
                                         <td className="w-[30%]"><h2> محصول</h2></td>
                                     </tr>
 
-                                    {props.factor[0].products.map((item) => (
+                                    {props.factor.products.map((item) => (
                                         <tr className="service font-[monospace] text-[1rem]">
                                             <td className="tableitem"><p className="itemtext">{item.price}</p></td>
                                             <td className="tableitem"><p className="itemtext">{item.discount}</p></td>
@@ -75,7 +75,7 @@ const FactorView = (props) => {
                                         </tr>
                                     ))}
 
-                                    {props.factor[0].products.length > 0 &&
+                                    {props.factor.products.length > 0 &&
                                         <tr className="tabletitle">
                                             <td className="payment"><h2 className="font-[monospace] md:font-bold text-[1rem]"> 365,000 </h2></td>
                                             <td></td>
@@ -91,7 +91,6 @@ const FactorView = (props) => {
                             <div className="flex w-[30%] md:w-full justify-center">
                                 {!paymentSuccess && <button onClick={Payment} className="m-auto w-8/12 md:w-10/12 bg-[#8957b8] text-[white]  text-[1.1rem] p-2 md:p-3 rounded-[10px] transition-all duration-200 hover:bg-[#673f8d] boxShadow4x">پرداخت</button>}
                                 {paymentSuccess && <button className="m-auto my-5 w-8/12 md:w-10/12 bg-[#d86b38] text-[white]  text-[1.1rem] p-2 md:p-3  rounded-[10px] transition-all duration-200 hover:bg-[#d85538] boxShadow4x">پیگیری سفارش</button>}
-
                             </div>
                             {!paymentSuccess && <p className="w-[70%] text-[#4b4b4b] text-[1.1rem] md:text-[0.9rem] md:w-full md:px-2 md:py-4"> لطفا درست بودن اطلاعات فاکتور را بررسی کنید. <strong>پس از پرداخت امکان تغییر برروی سفارش امکان پذیر نمی باشد</strong> </p>}
                         </div>
@@ -122,7 +121,7 @@ export async function getStaticProps(context) {
 
     return {
         props: {
-            factor: factorResult.data,
+            factor: factorResult.data[0],
         }
     }
 }
