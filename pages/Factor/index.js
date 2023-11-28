@@ -9,11 +9,12 @@ import { useEffect } from "react";
 import userServices from "../../Services/UserServices/user.services";
 import { useRouter } from "next/router";
 import factorService from "../../Services/FactorServices/factor.service.js";
+import ReactLoading from "react-loading";
 
 const Factor = () => {
   const router = useRouter();
   const [paymentType, SetPaymentType] = useState("ONLINE");
-
+  const [isLoading, SetIsLoading] = useState(false);
   const selectThemeState = useSelector(themeHandler);
   const themeState = selectThemeState.payload.ProfileSettings.theme;
 
@@ -21,13 +22,13 @@ const Factor = () => {
   const ordersState = selectOrderState.payload.ProfileSettings.orders;
 
 
-  const getCurrentUserInfo = () => { 
-    
+  const getCurrentUserInfo = () => {
+    SetIsLoading(true);
     userServices.getCurrentUserInfo({ id: localStorage.getItem("id") })
       .then((response) => {
         factorService.Createfactor(
           {
-            user: response.data.id ,
+            user: response.data.id,
             products: ordersState.map((item) => ({ id: item.id, name: item.name, price: item.price, discount: 0 })),
             discount: 0,
             finalPrice: 545000,
@@ -35,6 +36,7 @@ const Factor = () => {
           }
         ).then((resp) => {
           resp.data.id && router.push('/Factor' + '/' + resp.data.id);
+          SetIsLoading(false);
         })
       });
   };
@@ -106,12 +108,14 @@ const Factor = () => {
               </p>
             </div>
             <div className="flex">
-              <input
+              {!isLoading &&<input
                 onClick={getCurrentUserInfo}
                 className="submitFactor mt-1 p-2 mx-auto w-6/12 md:w-10/12 font-[bhoma] text-[1rem]"
                 type="button"
                 value="ثبت فاکتور"
-              />
+              />}
+              {isLoading && <ReactLoading type={"bars"} color="#2c125c" width={50} className=" mt-[2rem] mx-auto" />}
+
             </div>
 
             <div className="thankyou text-center  font-[bhoma] text-[1rem] py-5">

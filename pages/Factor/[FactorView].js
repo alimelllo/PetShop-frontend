@@ -65,7 +65,7 @@ const FactorView = (props) => {
                                         <td className="w-[30%]"><h2> محصول</h2></td>
                                     </tr>
 
-                                    {props.factor.products.map((item) => (
+                                    {props.factor[0].products.map((item) => (
                                         <tr className="service font-[monospace] text-[1rem]">
                                             <td className="tableitem"><p className="itemtext">{item.price}</p></td>
                                             <td className="tableitem"><p className="itemtext">{item.discount}</p></td>
@@ -75,7 +75,7 @@ const FactorView = (props) => {
                                         </tr>
                                     ))}
 
-                                    {props.factor.products.length > 0 &&
+                                    {props.factor[0].products.length > 0 &&
                                         <tr className="tabletitle">
                                             <td className="payment"><h2 className="font-[monospace] md:font-bold text-[1rem]"> 365,000 </h2></td>
                                             <td></td>
@@ -122,7 +122,7 @@ export async function getStaticProps(context) {
 
     return {
         props: {
-            factor: factorResult.data[0],
+            factor: factorResult.data,
         }
     }
 }
