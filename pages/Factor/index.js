@@ -22,23 +22,24 @@ const Factor = () => {
   const ordersState = selectOrderState.payload.ProfileSettings.orders;
 
 
-  const getCurrentUserInfo = () => {
+  const getCurrentUserInfo = async () => {
     SetIsLoading(true);
-    userServices.getCurrentUserInfo({ id: localStorage.getItem("id") })
-      .then((response) => {
-        factorService.Createfactor(
-          {
-            user: response.data.id,
-            products: ordersState.map((item) => ({ id: item.id, name: item.name, price: item.price, discount: 0 })),
-            discount: 0,
-            finalPrice: 545000,
-            payment: paymentType,
-          }
-        ).then((resp) => {
-          resp.data.id && router.push('/Factor' + '/' + resp.data.id);
-          SetIsLoading(false);
-        })
-      });
+    try {
+      const user = await userServices.getCurrentUserInfo({ id: localStorage.getItem("id") });
+      const factor = await factorService.Createfactor(
+        {
+          user: user.data.id,
+          products: ordersState.map((item) => ({ id: item.id, name: item.name, price: item.price, discount: 0 })),
+          discount: 0,
+          finalPrice: 545000,
+          payment: paymentType,
+        }
+      )
+      router.push('/Factor' + '/' + factor.data.id);
+      SetIsLoading(false);
+    } catch (err) {
+      SetIsLoading(false);
+    }
   };
 
   return (
@@ -108,7 +109,7 @@ const Factor = () => {
               </p>
             </div>
             <div className="flex">
-              {!isLoading &&<input
+              {!isLoading && <input
                 onClick={getCurrentUserInfo}
                 className="submitFactor mt-1 p-2 mx-auto w-6/12 md:w-10/12 font-[bhoma] text-[1rem]"
                 type="button"
