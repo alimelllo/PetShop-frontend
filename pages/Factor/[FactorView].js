@@ -19,7 +19,7 @@ const FactorView = (props) => {
     }
 
     if(router.isFallback) {
-        return <ReactLoading type={"bars"} color="#2c125c" width={50} className=" mt-[1rem] m-auto" />
+        return <ReactLoading type={"bars"} color="#2c125c" width={50} className=" mt-[10rem] m-auto" />
     }
 
     return (<div className="h-screen font-[bhoma] ">
