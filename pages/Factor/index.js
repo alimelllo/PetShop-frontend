@@ -5,7 +5,6 @@ import {
   themeHandler,
 } from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
 import { useState } from "react";
-import { useEffect } from "react";
 import userServices from "../../Services/UserServices/user.services";
 import { useRouter } from "next/router";
 import factorService from "../../Services/FactorServices/factor.service.js";

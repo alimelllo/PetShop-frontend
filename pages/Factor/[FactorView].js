@@ -3,9 +3,11 @@ import factorService from "../../Services/FactorServices/factor.service";
 import Header from "../../components/GeneralComponents/Header";
 import { useDispatch } from "react-redux";
 import { emptyBasket } from "../../Redux/Reducers/Settings/Profile/ProfileSettings.ts";
+import { useRouter } from "next/router";
+import ReactLoading from "react-loading";
 
 const FactorView = (props) => {
-
+ const router  = useRouter();
     const [paymentSuccess, SetPaymentSuccess] = useState(false)
     const emtyBasketHandler = useDispatch();
 
@@ -14,6 +16,10 @@ const FactorView = (props) => {
             emtyBasketHandler(emptyBasket())
             SetPaymentSuccess(true);
         })
+    }
+
+    if(router.isFallback) {
+        return <ReactLoading type={"bars"} color="#2c125c" width={50} className=" mt-[1rem] m-auto" />
     }
 
     return (<div className="h-screen font-[bhoma] ">
@@ -110,7 +116,7 @@ export async function getStaticPaths() {
     const loadedPaths = FactorIds.data.map((item) => ({ params: { FactorView: String(item.id) } }));
     return {
         paths: loadedPaths,
-        fallback: false
+        fallback: true,
     }
 }
 
@@ -122,7 +128,8 @@ export async function getStaticProps(context) {
     return {
         props: {
             factor: factorResult.data[0],
-        }
+        },
+        revalidate: 1000
     }
 }
 
